@@ -36,8 +36,6 @@ const emoji = new EmojiAPI()
 const { smsg, formatp, tanggal, GIFBufferToVideoBuffer, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
 const { aiovideodl } = require('./lib/scraper.js')
 const cheerio = require ("cheerio");
-const eco = require('discord-mongoose-economy')
-const ty = eco.connect('https://replit.com/@SebastianLoidl/Nishikigi-Chisato');
 const textpro = require('./lib/textpro')
 const { detikNews } = require('./lib/detik')
 const { wikiSearch } = require('./lib/wiki.js');
@@ -45,54 +43,33 @@ const { Gempa } = require("./lib/gempa.js");
 const ms = require('ms')
  let { covid } = require('./lib/covid.js') 
 const { jadwaltv }= require('./lib/jadwaltv');
-const {MikuTiktok } = require('./lib/tiktokmikudl');
+const { MikuTiktok } = require('./lib/tiktokmikudl');
 const maker = require('mumaker')
 const xfarrapi = require('xfarr-api')
 const { hentai } = require('./lib/scraper2.js')
 let { msgFilter } = require('./lib/antispam')
 const { mediafireDl } = require('./lib/mediafire.js')
 
-const Chisatotime = moment.tz('Europe/Vienna').format('HH:mm:ss')
-const Chisatodate = moment.tz('Europe/Vienna').format('DD/MM/YYYY')
-const time2 = moment().tz('Europe/Vienna').format('HH:mm:ss');
+const {
+getRegisteredRandomId,
+addRegisteredUser,
+createSerial,
+checkRegisteredUser
+} = require('./register.js')
 
 
-        if(time2 < "23:59:00"){
+global.prem = require("./database/premium.json")
+/*const command = ${prefix}
+const can = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
+const tik = can[Math.floor(Math.random() * can.length)
+Miku.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${tik}%*` }, { quoted: m })
 
-        var ucapanWaktu = 'Good night 🌌'
+const cal = ['ja','vllt','nein']
 
-}
-
-        if(time2 < "19:00:00"){
-
-        var ucapanWaktu = 'Good afternoon 🌆'
-
-}
-
-        if(time2 < "18:00:00"){
-
-        var ucapanWaktu = 'Good afternoon 🌇'
-
-}
-
-        if(time2 < "15:00:00"){
-
-        var ucapanWaktu = 'Good afternoon 🏞'
-
-}
-
-        if(time2 < "11:00:00"){
-
-        var ucapanWaktu = 'Good morning 🌅'
-
-}
-
-        if(time2 < "05:00:00"){
-
-        var ucapanWaktu = 'Good night 🏙'
-
-}
-
+const tiik = cal[Math.floor(Math.random() * can.length)] 
+Miku.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${tiik}%*` }, { quoted: m }
+*/
+global.prem = require("./lib/premium.js")
 
 const _ = require('lodash')
 const yargs = require('yargs/yargs')
@@ -113,13 +90,11 @@ const {
 
 let banUser = JSON.parse(fs.readFileSync('./database/banUser.json'));
 let banchat = JSON.parse(fs.readFileSync('./database/banChat.json'));
-
+let premium = JSON.parse(fs.readFileSync('./database/premiumuser.json'));
  let _limit = JSON.parse(fs.readFileSync('./storage/user/limit.json'));
  let _buruan = JSON.parse(fs.readFileSync('./storage/user/bounty.json'));
  let _darahOrg = JSON.parse(fs.readFileSync('./storage/user/blood.json'))
 
-let PhoneNumber = require('awesome-phonenumber')
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.db = new Low(
@@ -203,7 +178,7 @@ var syear = (yye < 1000) ? yye + 1900 : yye;
 const jangwak = (hri + '' + buln[bulnh] + '' + syear)
 const janghar = (thisDaye)
 
-module.exports =  Chisato = async ( Chisato, m, chatUpdate, store) => {
+module.exports = Miku = async (Miku, m, chatUpdate, store) => {
 try {
 var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
 var budy = (typeof m.text == 'string' ? m.text : '')
@@ -214,7 +189,7 @@ const command = isCmd ? body.slice(1).trim().split(' ')[0].toLowerCase() : ''
 const args = body.trim().split(/ +/).slice(1)
 const pushname = m.pushName || "No Name"
 
-const botNumber = await  Chisato.decodeJid( Chisato.user.id)
+const botNumber = await Miku.decodeJid(Miku.user.id)
 const isCreator = [botNumber, ...global.Owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const itsMe = m.sender == botNumber ? true : false
 const text = args.join(" ")
@@ -223,7 +198,7 @@ const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''
 const isMedia = /image|video|sticker|audio/.test(mime)
 const messagesD = body.slice(0).trim().split(/ +/).shift().toLowerCase()
-const groupMetadata = m.isGroup ? await  Chisato.groupMetadata(m.chat).catch(e => {}) : ''
+const groupMetadata = m.isGroup ? await Miku.groupMetadata(m.chat).catch(e => {}) : ''
 const groupName = m.isGroup ? groupMetadata.subject : ''
 const participants = m.isGroup ? await groupMetadata.participants : ''
 const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
@@ -242,7 +217,7 @@ const AntiLinkFacebook = m.isGroup ? ntilinkfb.includes(from) : false
 const AntiLinkTiktok = m.isGroup ? ntilinktt.includes(from) : false
 const AntiLinkTelegram = m.isGroup ? ntilinktg.includes(from) : false
 const AntiLinkTwitter = m.isGroup ? ntilinktwt.includes(from) : false
-const AntiLinkAll = m.isGroup ? ntilinkall.includes(from) : false
+const AntiLinkAll = m.isGroup ? ntilinkall.includes(from) : true
 const antiWame = m.isGroup ? ntwame.includes(from) : false
 const antiVirtex = m.isGroup ? ntvirtex.includes(from) : false
 const AntiNsfw = m.isGroup ? ntnsfw.includes(from) : false
@@ -259,24 +234,28 @@ const isQuotedAudio = m.mtype === 'extendedTextMessage' && content.includes('aud
 
 const mongoose = require("mongoose");
 
+	
 
-/*
+
 /////////// -  DM chatbot (Delete this part to turn off DM Chat Bot) - //////////////////
+
 if (!isCmd && !m.isGroup){
     const botreply = await axios.get(`http://api.brainshop.ai/get?bid=168758&key=Ci7eNhtxpxxDB5FQ&uid=[uid]&msg=[${budy}]`)
     txt = `${botreply.data.cnt}`
     m.reply(txt)
     }
+
 //////////////////////////////////////////////////////////////////////////////////////
-*/
-_sewa.expiredCheck( Chisato, sewa)
+
+
+_sewa.expiredCheck(Miku, sewa)
 
 const reply = (teks) => {
-             Chisato.sendMessage(m.chat, { text: teks},{ quoted: m})
+            Miku.sendMessage(m.chat, { text: teks},{ quoted: m})
         }
         
         const replay = (teks) => {
-             Chisato.sendMessage(m.chat, { text: teks}, { quoted: m})
+            Miku.sendMessage(m.chat, { text: teks}, { quoted: m})
         }
         
 
@@ -397,7 +376,7 @@ const addCooldown = (userId) => {
 }
 
 var levelRole = getLevelingLevel(m.sender)
-        var role = 'Copper V'
+        var role = 'User'
         if (levelRole <= 5) {
             role = 'Copper IV'
         } else if (levelRole <= 10) {
@@ -484,7 +463,7 @@ var levelRole = getLevelingLevel(m.sender)
             roles = 'Exter'
         }
    
-                        if (m.isGroup && isLeveling && isUser &&  Chisato.public) {
+                        if (m.isGroup && isLeveling && isUser && Miku.public) {
                                 const currentLevel = getLevelingLevel(m.sender)
                                 const checkId = getLevelingId(m.sender)
                                 try {
@@ -497,7 +476,7 @@ var levelRole = getLevelingLevel(m.sender)
                                         if (requiredXp <= getLevelingXp(m.sender)) {
                                         addLevelingLevel(m.sender, 1)
 teks = `「 *User Level UP* 」\n\n@${m.sender.split("@")[0]} got leveled up!!\n\n*User XP*: ${getLevelingXp(m.sender)}\n*Level*: ${getLevel} -> ${getLevelingLevel(m.sender)}\n*Role*: ${role} \n\n`
- Chisato.sendMessage(m.chat, {text: teks, mentions:[m.sender]}, {quoted:m})
+Miku.sendMessage(m.chat, {text: teks, mentions:[m.sender]}, {quoted:m})
 }
 
                         } catch (err) {
@@ -525,31 +504,31 @@ teks = `「 *User Level UP* 」\n\n@${m.sender.split("@")[0]} got leveled up!!\n
 
 if (autoreadsw) {
 		if (from === 'status@broadcast') {
-		 Chisato.chatRead(from)
+		Miku.chatRead(from)
 	}
 	}
 
 if (global.autoreadpmngc) {
 if (command) {
-await  Chisato.sendPresenceUpdate('composing', m.chat)
- Chisato.sendReadReceipt(from, m.sender, [m.key.id])}
+await Miku.sendPresenceUpdate('composing', m.chat)
+Miku.sendReadReceipt(from, m.sender, [m.key.id])}
 }
 /*
   if (global.autoReadGc) {
-  if (m.isGroup) {  Chisato.sendReadReceipt(m.chat, m.sender, [m.key.id]) }
+  if (m.isGroup) { Miku.sendReadReceipt(m.chat, m.sender, [m.key.id]) }
 }
 */
 
-  if (global.autoReadAll) { if (m.chat) {  Chisato.sendReadReceipt(m.chat, m.sender, [m.key.id]) }
+  if (global.autoReadAll) { if (m.chat) { Miku.sendReadReceipt(m.chat, m.sender, [m.key.id]) }
   }
 
-    if (global.autoRecord) { if (m.chat) {  Chisato.sendPresenceUpdate('recording', m.chat) }
+    if (global.autoRecord) { if (m.chat) { Miku.sendPresenceUpdate('recording', m.chat) }
 }
 
-  if (global.autoTyping) { if (m.chat) {  Chisato.sendPresenceUpdate('composing', m.chat) }
+  if (global.autoTyping) { if (m.chat) { Miku.sendPresenceUpdate('composing', m.chat) }
 }
 
-  if (global.available) { if (m.chat) {  Chisato.sendPresenceUpdate('available', m.chat) }
+  if (global.available) { if (m.chat) { Miku.sendPresenceUpdate('available', m.chat) }
   }
 
 const hariRaya = new Date('6 1, 2022 00:00:00')
@@ -622,7 +601,7 @@ const order = generateWAMessageFromContent(jid, proto.Message.fromObject({
 "totalCurrencyCode": "IDR", 
 }
 }), { userJid: jid })
- Chisato.relayMessage(jid, order.message, { messageId: order.key.id})
+Miku.relayMessage(jid, order.message, { messageId: order.key.id})
 }
 
 
@@ -735,10 +714,8 @@ if (!user) continue
 let afkTime = user.afkTime
 if (!afkTime || afkTime < 0) continue
 let reason = user.afkReason || ''
-resuollt = fs.readFileSync(`./nerv.mp3`)
-Chisato.sendMessage(m.chat, { audio: resuollt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
 reply(`
-bitte markiere andere persone nicht mich ${pushname}!
+Pls try not to tag him!
 He's in away from keyboard ${reason ? 'with reason ' + reason : 'no reason'}
 During ${clockString(new Date - afkTime)}
 `.trim())
@@ -747,7 +724,7 @@ During ${clockString(new Date - afkTime)}
 if (db.users[m.sender].afkTime > -1) {
 let user = global.db.users[m.sender]
 reply(`
-Im back!
+Pls try not to tag him!
 He's Offline ${user.afkReason ? ' after ' + user.afkReason : ''}
 During ${clockString(new Date - user.afkTime)}
 `.trim())
@@ -763,7 +740,7 @@ sendOrder(m.chat, teks, "436764242454", fs.readFileSync('./Assets/pic10.jpg'), `
 
 
 if (AntiLink) {
-    linkgce = await  Chisato.groupInviteCode(from)
+    linkgce = await Miku.groupInviteCode(from)
     if (budy.includes(`https://chat.whatsapp.com/`)) {
     reply(`\`\`\`「  Antilink System  」\`\`\`\n\nNo action will be because you sent this group's link.`)
     } else if (isUrl(m.text)) {
@@ -772,8 +749,8 @@ if (AntiLink) {
     if (m.key.fromMe) return reply(bvl)
     if (isCreator) return reply(bvl)
     kice = m.sender
-    await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-     Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+    await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+    Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
     } else {
     }
     }
@@ -786,8 +763,8 @@ if (AntiLink) {
   if (m.key.fromMe) return reply(bvl)
   if (isCreator) return reply(bvl)
   kice = m.sender
-  await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-   Chisato.sendMessage(from, {text:`\`\`\`「 'wa.me' PM link Detected! 」\`\`\`\n\n@${kice.split("@")[0]} Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+  await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+  Miku.sendMessage(from, {text:`\`\`\`「 'wa.me' PM link Detected! 」\`\`\`\n\n@${kice.split("@")[0]} Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
   } else {
   }
   if (antiWame)
@@ -798,25 +775,24 @@ if (isAdmins) return reply(bvl)
 if (m.key.fromMe) return reply(bvl)
 if (isCreator) return reply(bvl)
 kice = m.sender
-await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
- Chisato.sendMessage(from, {text:`\`\`\`「 'wa.me' PM link Detected! 」\`\`\`\n\n@${kice.split("@")[0]}  Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+Miku.sendMessage(from, {text:`\`\`\`「 'wa.me' PM link Detected! 」\`\`\`\n\n@${kice.split("@")[0]}  Baka Has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } else {
 }
-	
+
 if (antiVirtex) {
     if (budy.length > 3500) {
     reply(`*Caution!*\n\n`.repeat(300))
     reply(`\`\`\`Virus Detected !!\`\`\`\n\nRevoving sender...`)
     if (!isBotAdmins) return reply(mess.botAdmin)
-     Chisato.group	
-ParticipantsUpdate(m.chat, [m.sender], 'remove')
+    Miku.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
     }
     }
 
 
     if (AntiLink) {
         if (!isBotAdmins) return
-        linkgce = await  Chisato.groupInviteCode(from)
+        linkgce = await Miku.groupInviteCode(from)
         if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
         reply(`\`\`\`「  Antilink System  」\`\`\`\n\nNo action will be taken because you sent this group's link!`)
         } else if (isUrl(m.text)) {
@@ -825,8 +801,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         }
@@ -840,8 +816,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt video link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt video link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -853,8 +829,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt channel link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt channel link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -866,8 +842,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Instagram link in this group! No promotion is allowed!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Instagram link in this group! No promotion is allowed!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -879,8 +855,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Facebook link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Facebook link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -893,8 +869,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Telegram link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Telegram link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -906,8 +882,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Tiktok link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Tiktok link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -919,8 +895,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Twitter link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Twitter link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -932,8 +908,8 @@ ParticipantsUpdate(m.chat, [m.sender], 'remove')
         if (m.key.fromMe) return reply(bvl)
         if (isCreator) return reply(bvl)
         kice = m.sender
-        await  Chisato.groupParticipantsUpdate(m.chat, [kice], 'remove')
-         Chisato.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending links in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+        await Miku.groupParticipantsUpdate(m.chat, [kice], 'remove')
+        Miku.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending links in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
         } else {
         }
         
@@ -946,13 +922,13 @@ ${themeemoji} User : @${m.sender.split("@")[0]}
 ${themeemoji} Clock : ${moment.tz('Asia/Kolkata').format('HH:mm:ss')} 
 ${themeemoji} Date : ${moment.tz('Asia/Kolkata').format('DD/MM/YYYY')}
 ${themeemoji} MessageType : ${m.mtype}`
- Chisato.sendTextWithMentions(m.chat, teks, m)
+Miku.sendTextWithMentions(m.chat, teks, m)
 await sleep(500)
 m.copyNForward(m.chat, true, { readViewOnce: true }).catch(_ => reply(`Maybe it's been opened by a bot`))
 }
 
 
-if (! Chisato.public) {
+if (!Miku.public) {
 if (!m.key.fromMe) return
 }
 
@@ -961,7 +937,7 @@ setInterval(() => {
 fs.writeFileSync('./src/database.json', JSON.stringify(global.db, null, 2))
 }, 60 * 1000)
 
-//reset limit every 24 hours
+// reset limit every 24 hours
 let cron = require('node-cron')
     cron.schedule('00 12 * * *', () => {
     let user = Object.keys(global.db.users)
@@ -977,7 +953,7 @@ let cron = require('node-cron')
       kuis = true
       jawaban = tebaklagu[m.sender.split('@')[0]]
       if (budy.toLowerCase() == jawaban) {
-      await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Song 🎮\n\nCorrect answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+      await Miku.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Song 🎮\n\nCorrect answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
       delete tebaklagu[m.sender.split('@')[0]]
       } else reply('*Wrong answer!*')
       }
@@ -986,7 +962,7 @@ let cron = require('node-cron')
         kuis = true
         jawaban = tebakgambar[m.sender.split('@')[0]]
         if (budy.toLowerCase() == jawaban) {
-        await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess picture', buttonText: { displayText: 'Guess The Picture' }, type: 1 }], `🎮 Guess The Picture 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+        await Miku.sendButtonText(m.chat, [{ buttonId: 'guess picture', buttonText: { displayText: 'Guess The Picture' }, type: 1 }], `🎮 Guess The Picture 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
         delete tebakgambar[m.sender.split('@')[0]]
         } else reply('*Wrong answer!*')
         }
@@ -995,7 +971,7 @@ let cron = require('node-cron')
           kuis = true
           jawaban = tebakkata[m.sender.split('@')[0]]
           if (budy.toLowerCase() == jawaban) {
-          await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess word', buttonText: { displayText: 'Guess The Word' }, type: 1 }], `🎮 Guess The Word 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+          await Miku.sendButtonText(m.chat, [{ buttonId: 'guess word', buttonText: { displayText: 'Guess The Word' }, type: 1 }], `🎮 Guess The Word 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
           delete tebakkata[m.sender.split('@')[0]]
           } else reply('*Wrong answer!*')
           }
@@ -1005,7 +981,7 @@ let cron = require('node-cron')
           jawaban = caklontong[m.sender.split('@')[0]]
           deskripsi = caklontong_desk[m.sender.split('@')[0]]
           if (budy.toLowerCase() == jawaban) {
-          await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess saying', buttonText: { displayText: 'Guess The Saying' }, type: 1 }], `🎮 Guess The Saying 🎮\n\nCorrect Answer 🎉\n*${deskripsi}*\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+          await Miku.sendButtonText(m.chat, [{ buttonId: 'guess saying', buttonText: { displayText: 'Guess The Saying' }, type: 1 }], `🎮 Guess The Saying 🎮\n\nCorrect Answer 🎉\n*${deskripsi}*\n\nWant to play again? press the button below`, `${global.BotName}`, m)
           delete caklontong[m.sender.split('@')[0]]
           delete caklontong_desk[m.sender.split('@')[0]]
           } else reply('*Wrong answer!*')
@@ -1015,7 +991,7 @@ let cron = require('node-cron')
           kuis = true
           jawaban = tebakkalimat[m.sender.split('@')[0]]
           if (budy.toLowerCase() == jawaban) {
-          await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess sentence', buttonText: { displayText: 'Guess The Sentence' }, type: 1 }], `🎮 Guess The Sentence 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+          await Miku.sendButtonText(m.chat, [{ buttonId: 'guess sentence', buttonText: { displayText: 'Guess The Sentence' }, type: 1 }], `🎮 Guess The Sentence 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
           delete tebakkalimat[m.sender.split('@')[0]]
           } else reply('*Wrong answer!*')
           }
@@ -1024,7 +1000,7 @@ let cron = require('node-cron')
           kuis = true
           jawaban = tebaklirik[m.sender.split('@')[0]]
           if (budy.toLowerCase() == jawaban) {
-          await  Chisato.sendButtonText(m.chat, [{ buttonId: 'guess lyrics', buttonText: { displayText: 'Guess The Lyrics' }, type: 1 }], `🎮 Guess The Lyrics 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+          await Miku.sendButtonText(m.chat, [{ buttonId: 'guess lyrics', buttonText: { displayText: 'Guess The Lyrics' }, type: 1 }], `🎮 Guess The Lyrics 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
           delete tebaklirik[m.sender.split('@')[0]]
           } else reply('*Wrong answer!*')
           }
@@ -1033,7 +1009,7 @@ let cron = require('node-cron')
           kuis = true
           jawaban = tebaktebakan[m.sender.split('@')[0]]
           if (budy.toLowerCase() == jawaban) {
-          await  Chisato.sendButtonText(m.chat, [{ buttonId: 'riddles', buttonText: { displayText: 'Riddles' }, type: 1 }], `🎮 Riddles 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
+          await Miku.sendButtonText(m.chat, [{ buttonId: 'riddles', buttonText: { displayText: 'Riddles' }, type: 1 }], `🎮 Riddles 🎮\n\nCorrect Answer 🎉\n\nWant to play again? press the button below`, `${global.BotName}`, m)
           delete tebaktebakan[m.sender.split('@')[0]]
           } else reply('*Wrong answer!*')
           }
@@ -1056,7 +1032,7 @@ let cron = require('node-cron')
           return isSurender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split('@')[0] : ''}`.trim() : false
           }).filter(v => v).join('\n')}
           ${isSurender ? '' : `Perfect Player`}`.trim()
-           Chisato.sendText(m.chat, caption, m, { contextInfo: { mentionedJid: parseMention(caption) }}).then(mes => { return _family100['family100'+m.chat].pesan = mesg }).catch(_ => _)
+          Miku.sendText(m.chat, caption, m, { contextInfo: { mentionedJid: parseMention(caption) }}).then(mes => { return _family100['family100'+m.chat].pesan = mesg }).catch(_ => _)
           if (isWin || isSurender) delete _family100['family100'+m.chat]
           }
           
@@ -1068,7 +1044,7 @@ let cron = require('node-cron')
           let tie = false
           if (m.sender == roof.p2 && /^(acc(ept)?|accept|yes|oke?|reject|dont want|later|no(pe)?can|y)/i.test(m.text) && m.isGroup && roof.status == 'wait') {
           if (/^(reject|dont want|later|n|no(pe)?can)/i.test(m.text)) {
-           Chisato.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} rejected the suit, the suit is canceled`, m)
+          Miku.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} rejected the suit, the suit is canceled`, m)
           delete this.suit[roof.id]
           return !0
           }
@@ -1076,19 +1052,19 @@ let cron = require('node-cron')
           roof.asal = m.chat
           clearTimeout(roof.waktu)
           
-           Chisato.sendText(m.chat, `Suit has been sent to chat
+          Miku.sendText(m.chat, `Suit has been sent to chat
           @${roof.p.split`@`[0]} dan 
           @${roof.p2.split`@`[0]}
 
           Please choose a suit in the respective chat"
           Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
-          if (!roof.pilih)  Chisato.sendText(roof.p, `Please select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
-          if (!roof.pilih2)  Chisato.sendText(roof.p2, `Please select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
+          if (!roof.pilih) Miku.sendText(roof.p, `Please select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
+          if (!roof.pilih2) Miku.sendText(roof.p2, `Please select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
           roof.waktu_milih = setTimeout(() => {
-          if (!roof.pilih && !roof.pilih2)  Chisato.sendText(m.chat, `Both players don't want to play,\nSuit canceled`)
+          if (!roof.pilih && !roof.pilih2) Miku.sendText(m.chat, `Both players don't want to play,\nSuit canceled`)
           else if (!roof.pilih || !roof.pilih2) {
           win = !roof.pilih ? roof.p2 : roof.p
-           Chisato.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} don't choose suit, game over`, m)
+          Miku.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} don't choose suit, game over`, m)
           }
           delete this.suit[roof.id]
           return !0
@@ -1099,18 +1075,18 @@ let cron = require('node-cron')
           let g = /scissors/i
           let b = /rock/i
           let k = /paper/i
-          let reg = /^(scisors|rok|peper)/i
+          let reg = /^(scissors|rock|paper)/i
           if (jwb && reg.test(m.text) && !roof.pilih && !m.isGroup) {
           roof.pilih = reg.exec(m.text.toLowerCase())[0]
           roof.text = m.text
           reply(`You have chosen ${m.text} ${!roof.pilih2 ? `\n\nWaiting for the opponent to choose` : ''}`)
-          if (!roof.pilih2)  Chisato.sendText(roof.p2, '_The opponent has chosen_\nNow it is your turn', 0)
+          if (!roof.pilih2) Miku.sendText(roof.p2, '_The opponent has chosen_\nNow it is your turn', 0)
           }
           if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
           roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
           roof.text2 = m.text
           reply(`You have chosen ${m.text} ${!roof.pilih ? `\n\nWaiting for the opponent to choose` : ''}`)
-          if (!roof.pilih)  Chisato.sendText(roof.p, '_The opponent has chosen_\nNow it is your turn', 0)
+          if (!roof.pilih) Miku.sendText(roof.p, '_The opponent has chosen_\nNow it is your turn', 0)
           }
           let stage = roof.pilih
           let stage2 = roof.pilih2
@@ -1124,7 +1100,7 @@ let cron = require('node-cron')
             else if (k.test(stage) && b.test(stage2)) win = roof.p
             else if (k.test(stage) && g.test(stage2)) win = roof.p2
             else if (stage == stage2) tie = true
-             Chisato.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
+            Miku.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
             @${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` Win \n` : ` Lost \n`}
             @${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` Win \n` : ` Lost \n`}
             `.trim(), m, { mentions: [roof.p, roof.p2] })
@@ -1174,10 +1150,10 @@ let cron = require('node-cron')
               let hash = global.db.sticker[m.msg.fileSha256.toString('base64')]
               let { text, mentionedJid } = hash
               let messages = await generateWAMessage(m.chat, { text: text, mentions: mentionedJid }, {
-              userJid:  Chisato.user.id,
+              userJid: Miku.user.id,
               quoted: m.quoted && m.quoted.fakeObj
               })
-              messages.key.fromMe = areJidsSameUser(m.sender,  Chisato.user.id)
+              messages.key.fromMe = areJidsSameUser(m.sender, Miku.user.id)
               messages.key.id = m.key.id
               messages.pushName = m.pushName
               if (m.isGroup) messages.participant = m.sender
@@ -1186,13 +1162,13 @@ let cron = require('node-cron')
               messages: [proto.WebMessageInfo.fromObject(messages)],
               type: 'append'
               }
-               Chisato.ev.emit('messages.upsert', msg)
+              Miku.ev.emit('messages.upsert', msg)
               }
           
 
 
               const textImg = (teks) => {
-                 Chisato.sendMessage(m.chat, { text :teks, }, {quoted: m, thumbnail: fs.readFileSync('./Assets/pic4.jpg')}) 
+                Miku.sendMessage(m.chat, { text :teks, }, {quoted: m, thumbnail: fs.readFileSync('./Assets/pic4.jpg')}) 
                 }
                 
                
@@ -1229,8 +1205,8 @@ let cron = require('node-cron')
                                },
                   message: { 
                                 "videoMessage": { 
-                                "title": ` Chisato`,
-                                "h": ` Chisato`,
+                                "title": `Miku`,
+                                "h": `Miku`,
                                 'duration': '99999', 
                                 'gifPlayback': 'true', 
                                 'caption': `Sebastian`,
@@ -1378,7 +1354,7 @@ const ftroli = {
 
 
     const menulist = `
-    Konichiwa ${pushname} hallo👋. Ich bin ${global.BotName}, ein Bot entwickelt von : Sebastian um Ihre WhatsApp-Nutzung auf die nächste Stufe zu bringen.
+    Konichiwa ${pushname} Hallo👋. Ich bin ${global.BotName}, ein Bot entwickelt von : Sebastian um Ihre WhatsApp-Nutzung auf die nächste Stufe zu bringen.
         
        「 System Info 」
     
@@ -1386,7 +1362,7 @@ const ftroli = {
     Up Time : ${runtime(process.uptime())}
     Bot Name : ${global.BotName}
     Owner Name : ${global.OwnerName}
-    𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : *
+    𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : Amazon AWS
     𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}
     
     
@@ -1397,7 +1373,7 @@ const ftroli = {
     User Role : ${role}
     
     
-       「 User Bank 」
+       「 User Bank 」v
     
     User Balance : ${uangku}
     Iron : ${getBesi(m.sender)}
@@ -1408,7 +1384,7 @@ const ftroli = {
     
     Type *-menu* or press any button below to start using *${global.BotName}*
     
-    ©️ *${global.BotName}* All Rights Reserved by: *Sebastian*
+    ©️ *${global.BotName}* All Rights Reserved by: *MkM Bot Inc.*
     `
         const qtod = m.quoted? "true":"false"
         
@@ -1417,103 +1393,50 @@ const ftroli = {
 function pickRandom(list) {
 return list[Math.floor(list.length * Math.random())]
 }
-/*
-let mikuaudio = JSON.parse(fs.readFileSync('/Assets/Audio'));
-	
-for (let anju of mikuaudio){
-				if (budy === anju){
-					result = fs.readFileSync(`./Assets/Audio/baka.mp3`)
-					 Chisato.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
-					}
-			}
-        
-*/
 
-	
 //Some special chat replies
 	
  let smallinput = budy.toLowerCase()
-    if (smallinput.includes('¢')) {
-      reply (`Hello *${pushname}*, Ich bin *${BotName}*. Kann ich dir iirgendwie helfen ?`);
+    if (smallinput.includes('hello')) {
+      reply (`Hello *${pushname}*, I am *${BotName}*. How can i help you?`);
     } 
 
-    if( smallinput.includes('¢') || smallinput.includes('a2') || smallinput.includes('¢') || smallinput.includes('¢')){
-      reply (`PONG Speed : ${latensie.toFixed(3)} miliseconds.`);
-    } 
+    if( smallinput.includes('konichiwa') || smallinput.includes('konochiwa') || smallinput.includes('konichiba') || smallinput.includes('salute')){
+      reply (`Konichiwa *${pushname}*, I am *${BotName}*. How can i help you?`);
+    }
    
-    if (smallinput=='¢') {
-      reply (`Hello *${pushname}*, I am *${BotName}*, a WhatsApp bot made by *Sebastian* and curbarently being hosted by *${OwnerName}*.  type  *${prefix}help* to get my full command list.`);
+    if (smallinput=='!') {
+      reply (`Hello *${pushname}*, I am *${BotName}*, a WhatsApp bot made by *MkM Bot Inc*. And curbarently being hosted by *${OwnerName}*.  type  *${prefix}help* to get my full command list.`);
     }
 
     if (smallinput=='lol') {
         reply (`*XD*`)
     }
 
-    if (smallinput=='user') {
-        reply (`Alle User von diesem bot 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}`)
+    if (smallinput=='XD ') {
+        reply (`XD`)
     }
     
-     if (smallinput=='test') {
-	 Chisato.sendMessage(from, { react: { text: "😊" , key: m.key }})
-        reply (`Ich arbeite schon !!`)
-	 Chisato.sendMessage(from, { react: { text: "😊" , key: m.key }})
-    }
-
-    if (smallinput.includes('Guten Morgen') || smallinput.includes('guten morgen')) {
-      reply (`guten morgen`);
-    }
-    
-    if (smallinput.includes('pablo') || smallinput.includes('paplo')) {
-	    resullt = fs.readFileSync(`./pablo.mp3`)
-       Chisato.sendMessage(m.chat, { audio: resullt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
+     if (smallinput=='Hi ') {
+        reply (`hdf`)
     }
 	
-   if (smallinput.includes('https://sexybabes') || smallinput.includes('https://bit.ly/')) {
-	    resullt = fs.readFileSync(`./Max.mp3`)
-       Chisato.sendMessage(m.chat, { audio: resullt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
+    if (smallinput.includes('Guten Morgen ') || smallinput.includes('good morning')) {
+      reply (`🌝was willst du jetzt 🌚`);
     }
 
-    if (smallinput.includes('sad') || smallinput.includes('bye')) {
-	    ressullt = fs.readFileSync(`./Sad.m4a`)
-       Chisato.sendMessage(m.chat, { audio: ressullt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
-    }
-
-    if (smallinput.includes('😇') || smallinput.includes('🤪')) {
-	    resuollt = fs.readFileSync(`./😇.mp3`)
-       Chisato.sendMessage(m.chat, { audio: resuollt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
-    }
-
-    
-    if (smallinput.includes('😈') || smallinput.includes('👿')) {
-	    resuollt = fs.readFileSync(`./Monster.m4a`)
-       Chisato.sendMessage(m.chat, { audio: resuollt, mimetype: 'audio/mp4', ptt: true }, { quoted: m })
-    }
-	
-    if (smallinput.includes('junge') || smallinput.includes('kirito')) {
-resullt = fs.readFileSync(`/Assets/.Chisaton.600.3752321.jp`)
- Chisato.sendMessage(m.chat, { mimetype: 'image/jpeg', url: resullt }, { quoted: m })
-
-
-    }
-	
     if (smallinput.includes('gute nacht')) {
-      reply (`gute nacht ;)`);
+      reply (`warum schon so früh 🥲 oder willst du noch etwas machen 😏 *${pushname}* 😇. Sleep well and sweet dreams.`);
     }
 
-    if (smallinput.includes('baka')|| smallinput.includes('¢') || smallinput.includes('¥')) {
-	    result = fs.readFileSync(`./Assets/audio/audio.mp3`)
-	 Chisato.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })    
-
+    if (smallinput.includes('Ohio ')|| smallinput.includes('Hi') || smallinput.includes('Moin')) {
+      reply (`Yai endlich wider da *${pushname}*`);
     }      
-  
-
 
 switch(command) {
-	  
 
-		
-case 'me': case 'profile': case 'p': case 'b':
 
+case 'me': case 'profile': case 'p': case 'xp':
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
   if (!isDarah){ addInventoriDarah(m.sender, DarahAwal) }
@@ -1522,13 +1445,13 @@ case 'me': case 'profile': case 'p': case 'b':
      
 
      var flob = await getBuffer(picak+'User Profile')
-     var bio= await  Chisato.fetchStatus(m.sender)
+     var bio= await Miku.fetchStatus(m.sender)
      var bioo = bio.status
      const adn= isAdmins? "True":"False"
      
      try {
         
-        pfp=await  Chisato.profilePictureUrl(m.sender, 'image')
+        pfp=await Miku.profilePictureUrl(m.sender, 'image')
     
           } catch (e) {
      
@@ -1549,402 +1472,131 @@ let buttonspro = [
                 buttons: buttonspro,
                 headerType: 4
             }
-         Chisato.sendMessage(m.chat,buttonMessage,{quoted:m})
+        Miku.sendMessage(m.chat,buttonMessage,{quoted:m})
         	
             break
-
-/*             if (m.isGroup && isLeveling && isUser &&  Chisato.public) {
-                                const currentLevel = getLevelingLevel(m.sender)
-                                const checkId = getLevelingId(m.sender)
-                                try {
-                                        addCooldown(m.sender)
-                                        if (currentLevel === undefined && checkId === undefined) addLevelingId(m.sender)
-                                        const amountXp = Math.floor(Math.random() * 10) + 200
-                                        const requiredXp = 200 * (Math.pow(2, currentLevel) - 1)
-                                        const getLevel = getLevelingLevel(m.sender)
-                                        addLevelingXp(m.sender, amountXp)
-                                        if (requiredXp <= getLevelingXp(m.sender)) {
-                                        addLevelingLevel(m.sender, 1)
-teks = `「 *User Level UP* 」\n\n@${m.sender.split("@")[0]} got leveled up!!\n\n*User XP*: ${getLevelingXp(m.sender)}\n*Level*: ${getLevel} -> ${getLevelingLevel(m.sender)}\n*Role*: ${role} \n\n`
- Chisato.sendMessage(m.chat, {text: teks, mentions:[m.sender]}, {quoted:m})
-}*/
-	/*
-		case'withdraw':  case 'Rückzug': {
-      if (isBan) return reply(mess.banned)	 			
-      if (isBanChat) return reply(mess.bangc)
-
-			
-      if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-        const user = m.sender
-		if (!text) return replay("Geben Sie den Betrag an, den Sie abheben möchten!");
-		const query = text.trim();
-        const cara = 'cara'
-        const withdraw = await eco.withdraw(user, cara, query);
-        if(withdraw.noten) return replay('🏧 Unzureichendes Guthaben in der Bank'); //if user states more than whats in his wallet
-        const add = eco.give(user, cara, query);
-          replay(`🏧 ALARM  💎${withdraw.amount} wurde in Ihrer Brieftasche hinzugefügt`)
-        
-}
-break  
-	
-
-
-		  
-	case'rob':  case'rob':  case 'attack': case'rob':{
-	if (!text) return replay(`Use ${prefix}rob @user`)
-	const target =
-			             m.quoted && m.mentionedJid.length === 0
-			             ? m.quoted.sender
-			             : m.mentionedJid[0] || null;    
-           if (!target || target === m.sender) return replay("Was versuchst du zu machen!")
-           if (m.quoted?.sender && !m.mentionedJid.includes(m.quoted.sender)) m.mentionedJid.push(m.quoted.sender)
-        while (m.mentionedJid.length < 2) m.mentionedJid.push(m.sender)
-        const cara = "cara"
-        const user1 = m.sender
-        const user2 = target
-	    const k = 250
-	const balance1  = await eco.balance(user1, cara)
-	const balance2  = await eco.balance(user2, cara)
-	const typ = ['ran','rob','caught'];
-    const random = typ[Math.floor(Math.random() * typ.length)];
-    if (k > balance1.wallet) return replay(`☹️ Du hast nicht genug Geld, um zu bezahlen, falls du erwischt wirst`);
-    if (k > balance2.wallet) return replay(`Sorry, dein Opfer ist zu arm 🤷🏽‍♂️ lass los.`);
-    let tpy = random
-  switch (random) {
-          case 'ran':
-                await replay(`Dein Opfer ist entkommen, sei das nächste Mal gruseliger.`)
-  }
-	}
-                break  
-
 		
-		  
-	case'transfer':  case 'give': {
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc) 
-	let value = text.trim().split(" ");
-	if (value[0] === "") return replay(`mach ${prefix}transfer 100 @user`);
-	const target =
-			             m.quoted && m.mentionedJid.length === 0
-			             ? m.quoted.sender
-			             : m.mentionedJid[0] || null;    
-           if (!target || target === m.sender) return replay("Was versuchst du zu machen!")
-           if (m.quoted?.sender && !m.mentionedJid.includes(m.quoted.sender)) m.mentionedJid.push(m.quoted.sender)
-        while (m.mentionedJid.length < 2) m.mentionedJid.push(m.sender)
-        const cara = "cara"
-        const user1 = m.sender
-        const user2 = target
-		           const word = value[0];
-		           const code = value[1];
-		let d = parseInt(word)
-		if (!d) return replay("Überprüfen Sie Ihren Text, wenn Sie den Befehl falsch verwenden")
+case 'register':
+                if (isRegistered) return reply('Du bist bereits registriert')
+                if (!q.includes('|')) return reply('Falsches Format!')
+                const namaUser = q.substring(0, q.indexOf('|') - 0)
+                const umurUser = q.substring(q.lastIndexOf('|') + 1)
+                const serialUser = createSerial(20)
+                if(isNaN(umurUser)) return reply('Das Alter muss eine Zahl sein!!')
+                if (namaUser.length >= 30) return m.reply(`Warum ist dein Name so lang, es ist ein Name oder ein Zug`)
+                if (umurUser > 100) return m.reply(`your age is too  old maximum 100 years`)
+                if (umurUser < 6) return m.reply(`your age is too young minimum 6 years`)
+				mzd = `Sie haben sich mit den folgenden Informationen registriert:\n\n⭔ Name : ${namaUser}\n⭔ Alter : ${umurUser}\n⭔ Nummer : wa.me/${m.sender.split("@")[0]}\n⭔ ? : ${barat}\n⭔ ID : ${serialUser}`
+               zharzx = fs.readFileSync('./media/image/reg.jpg')
+                veri = m.sender
+                if (!m.isGroup) {
+                    addRegisteredUser(m.sender, namaUser, umurUser, serialUser)
+                    Miku.sendMessage(m.chat, {image: zharzx, caption: mzd}, {quoted: m})
+                    
+                } else {
+                    addRegisteredUser(m.sender, namaUser, umurUser, serialUser)
+                    Miku.sendMessage(m.chat, {image: zharzx, caption: mzd}, {quoted: m})
+                    
+                }
+    reply(` Du wurdest erfolgreich Registert , Vielen Dank! `)
+break
 		
-		const balance = await eco.balance(user1, cara); 
-        let a = (balance.wallet) < parseInt(word)
-       	
-        if(a == true) return replay("you dont have sufficient money to transfer");
-        
-        const deduct = await eco.deduct(user1, cara, value[0]);
-        const give = await eco.give(user2, cara, value[0]);
-        replay(` Transaktion Erfolgreich`)
+case 'registercheck': case 'checkregister':
+  if (isBan) return reply(mess.banned )
+  if (isBanChat) return reply(mess.bangc)
+  reply(` *Deine Registrierten Daten sind:*\n\n_Name:_ ${namaUser}\n\n_Alter:_ ${umurUser}\n\n_Nummer:_ wa.me/${m.sender.split("@")[0]}\n\n_:?_ ${barat}\n\n_ID :_ ${serialUser}\n\n Das sind alle von dir eingetragenen Daten !`)
+break
+		
+    /*
+case 'addprem':
+				if (!isCreator) return m.reply(mess.owner)
+				{ q, args } {
+				if (args.length < 2)
+				return m.reply(
+				`Penggunaan :\n*#addprem* @tag waktu\n*${prefix}addprem* nomor waktu\n\nContoh : #addprem @tag 30d`
+				);
+				if (m.mentionedJid.length !== 0) {
+				for (let i = 0; i < m.mentionedJid.length; i++) {
+				prem.addPremiumUser(m.mentionedJid[0], args[1], isPremium);
+						}
+				Miku.sendMessage(m.chat, { text: "Sukses Premium" }, { quoted: fkontak });
+					} else {
+				prem.addPremiumUser(args[0] + "@s.whatsapp.net", args[1], premium);
+				Miku.sendMessage(m.chat, { text: "Sukses Via Nomor" }, { quoted: fkontak });
+						}
+					}
+break
 
-}
-break  	  
-	
- 
-		
-	 case 'wealth': case 'ritual': {
-                    if (!isCreator) return replay(mess.botowner)
-                    var user = m.sender
-                    var cara = 'cara'
-                    const give1 = eco.give(user, cara, 2000000)
-                    replay(`Du bist der reichste mein *Lord*`)
-            }
-            break
-            
+case 'delprem':
+				if (!isCreator) return m.reply(mess.owner)
+				{ q, args, arg } {
+				if (args.length < 1) return reply(`Penggunaan :\n*${prefix}delprem* @tag\n*#delprem* nomor`);
+				if (m.mentionedJid.length !== 0) {
+					for (let i = 0; i < m.mentionedJid.length; i++) {
+						premium.splice(prem.getPremiumPosition(m.mentionedJid[i], isPremium), 1);
+						fs.writeFileSync("./database/premium.json", JSON.stringify(premium));
+					}
+					Miku.sendMessage(m.chat, { text: "Sukses Delete" }, { quoted: fkontak });
+				} else {
+				premium.splice(prem.getPremiumPosition(args[0] + "@s.whatsapp.net", premium), 1);
+				fs.writeFileSync("./database/premium.json", JSON.stringify(premium));
+				Miku.sendMessage(m.chat, { text: "Sukses Via Nomer" }, { quoted: fkontak });
+				}
+				}
+break
 
-		
-		case'gamble':  case 'lottery': {
+case 'listprem': {
+			if (!isCreator) return m.reply(mess.owner)
+			let data = require("./database/premium.json")
+			let txt = `*------「 LIST PREMIUM 」------*\n\n`
+                    for (let i of data) {
+                txt += `*Nomer : ${i.id}*\n*Expired : ${i.expired} Second*\n\n`
+                }
+            m.reply(txt)
+			}
+break
+
+    const mess1 = lose[Math.floor(Math.random() * lose.length)];
+    const mess2 = won[Math.floor(Math.random() * won.length)];
+    const mess3 = near[Math.floor(Math.random() * near.length)];
+    const mess4 = jack[Math.floor(Math.random() * jack.length)];
+    const mess5 = smallLose[Math.floor(Math.random() * smallLose.length)];
     
-    var texts = text.trim().split(" ");
-    var opp = texts[1];// your value
-    var value = texts[0].toLowerCase();
-    var gg = parseInt(value)
-    var user = m.sender //m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
-    const cara = 'cara'
-    const balance = await eco.balance(user, cara); 
-    const g = (balance.wallet) > parseInt(value)
-    const k = 50
-    const a = (k) > parseInt(value)
-    const twice = gg*2
-    const f = ["up", "right", "left", "down", "up", "left", "down", "right", "up", "down", "right", "left"]
-    const r = f[Math.floor(Math.random () * f.length)]
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-    if (!m.isGroup) return reply(mess.grouponly)
-    //if (link1 == link2){
-       if (texts[0] === "")
-           return replay(
-               `Example:  ${prefix}Glücksspiel 100 Richtung (links, rechts, oben, unten)`
-           );
-       if (!value) return replay("*Please, specify the amount you are gambling with!");
-       if (!opp) return replay("Geben Sie die Richtung an, auf die Sie wetten!");
-       if (!gg) return replay("Check your text please, You are using the command in a wrong way")
-       if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-       if (g == false) return replay(`Du hast nicht genug 💎 Diamanten, um damit zu spielen`);
-       if (a == true) return replay(`Sorry, ${pushname}, du kannst nur mit mehr als 💎50 spielen.`);
-       if ( r == opp){
-          let give = await eco.give(user , cara, twice);
-          replay(`*du gewinnst 💎${twice}*`)
-       }
-       else{
-          let deduct = await eco.deduct(user, cara, texts[0]);
-          replay(`*du verlierst 💎${texts[0]}*`)
-        }
-    
-}
-break
-*/		
-
-
-case'slot': case 'spin': {
-       if (isBan) return replay(mess.banned);
-       if (isBanChat) return replay(mess.bangc)
-       if (!m.isGroup) return replay(mess.grouponly)
-       var today = new Date();
-   if (today.getDay() == 6 || today.getDay() == 5 || today.getDay() == 0){
-       if (text == 'help') return replay(`*1:* Use ${prefix}slot to play\n\n*2:* You must have 💎100 in your wallet\n\n*3:* If you don't have money in wallet then withdraw from your bank\n\n*4:* If you don't have money in your bank too then use economy features to gain money`)
-       if (text == 'money') return replay(`*1:* Small Win --> +💎20\n\n*2:* Small Lose --> -💎20\n\n*3:* Big Win --> +💎100\n\n*4:* Big Lose --> -💎50\n\n*5:* 🎉 JackPot --> +💎1000`)
-       const fruit1= ["🥥", "🍎", "🍇"]
-       const fruit2 = ["🍎", "🍇", "🥥"]  
-       const fruit3 = ["🍇", "🥥", "🍎"]         
-       const fruit4 = ["🍇", "🍎", "🥥"]
-       const lose = ['*You suck at playing this game*\n\n_--> 🍍-🥥-🍎_', '*Totally out of line*\n\n_--> 🥥-🍎-🍍_', '*Are you a newbie?*\n\n_--> 🍎-🍍-🥥_']
-       const smallLose = ['*You cannot harvest coconut 🥥 in a pineapple 🍍 farm*\n\n_--> 🍍>🥥<🍍_', '*Apples and Coconut are not best Combo*\n\n_--> 🍎>🥥<🍎_', '*Coconuts and Apple are not great deal*\n\n_--> 🥥>🍎<🥥_']
-       const won = ['*You harvested a basket of*\n\n_--> 🍎+🍎+🍎_', '*Impressive, You must be a specialist in plucking coconuts*\n\n_--> 🥥+🥥+🥥_', '*Amazing, you are going to be making pineapple juice for the family*\n\n_--> 🍍+🍍+🍍_']             
-       const near = ['*Wow, you were so close to winning pineapples*\n\n_--> 🍎-🍍+🍍_', '*Hmmm, you were so close to winning Apples*\n\n_--> 🍎+🍎-🍍_']          
-       const jack = ['*🥳 JackPot 🤑*\n\n_--> 🍇×🍇×🍇×🍇_', '*🎉 JaaackPooot!*\n\n_--> 🥥×🥥×🥥×🥥_', '*🎊 You Just hit a jackpot worth 💎1000*']
-       const user = m.sender
-       const cara = "cara"
-       const k = 100
-       const balance1  = await eco.balance(user, cara)
-       
-       if (k > balance1.wallet) return replay(`Sie werden sich auf Ihre Brieftasche drehen, das brauchen Sie zumindest 💎100`);
-       const f1 = fruit1[Math.floor(Math.random() * fruit1.length)];
-       const f2 = fruit2[Math.floor(Math.random() * fruit2.length)];
-       const f3 = fruit3[Math.floor(Math.random() * fruit3.length)];
-       const f4 = fruit4[Math.floor(Math.random() * fruit4.length)];
-       const mess1 = lose[Math.floor(Math.random() * lose.length)];
-       const mess2 = won[Math.floor(Math.random() * won.length)];
-       const mess3 = near[Math.floor(Math.random() * near.length)];
-       const mess4 = jack[Math.floor(Math.random() * jack.length)];
-       const mess5 = smallLose[Math.floor(Math.random() * smallLose.length)];
-       
-       if ((f1 !== f2) && f2 !== f3){
-          const deduct1 = await eco.deduct(user, cara, 50);
-                 replay(`${mess1}\n\n*Big Lose -->* _💎50_`)
-       }
-       else if ((f1 == f2) && f2 == f3){
-          const give1 = await eco.give(user, cara, 100); 
-                replay(`${mess2}\n*_Big Win -->* _💎100_`)
-       }
-       else if ((f1 == f2) && f2 !== f3){
-          const give2 = await eco.give(user, cara, 20);
-                replay(`${mess3}\n*Small Win -->* _💎20_`)
-       }
-       else if ((f1 !== f2) && f1 == f3){
-          const deduct2 = await eco.deduct(user, cara, 20);
-                replay(`${mess5}\n\n*Small Lose -->* _💎20_`)
-       }
-       else if ((f1 !== f2) && f2 == f3){
-          const give4 = eco.give(user, cara, 20); 
-                replay(`${mess3}\n\n*Small Win -->* _💎20_`)
-       }
-       else if (((f1 == f2) && f2 == f3) && f3 == f4){
-          const give5 = eco.give(user, cara, 1000);
-               replay(`${mess4}\n\n_🎊 JackPot --> _💎1000_`)
-       }
-       else { 
-               replay(`Verstehen Sie, was Sie tun?`)
-       }
+    if ((f1 !== f2) && f2 !== f3){
+       const deduct1 = await eco.deduct(user, cara, 50);
+              replay(`${mess1}\n\n*Big Lose -->* _💎50_`)
     }
-    else{
-           replay(`*Sie können dieses Spiel nur an diesen tagen spielen*\n\n*Freitag*\n*Samstag*\n*Sonntag*`)
+    else if ((f1 == f2) && f2 == f3){
+       const give1 = await eco.give(user, cara, 100); 
+             replay(`${mess2}\n*_Big Win -->* _💎100_`)
     }
+    else if ((f1 == f2) && f2 !== f3){
+       const give2 = await eco.give(user, cara, 20);
+             replay(`${mess3}\n*Small Win -->* _💎20_`)
+    }
+    else if ((f1 !== f2) && f1 == f3){
+       const deduct2 = await eco.deduct(user, cara, 20);
+             replay(`${mess5}\n\n*Small Lose -->* _💎20_`)
+    }
+    else if ((f1 !== f2) && f2 == f3){
+       const give4 = eco.give(user, cara, 20); 
+             replay(`${mess3}\n\n*Small Win -->* _💎20_`)
+    }
+    else if (((f1 == f2) && f2 == f3) && f3 == f4){
+       const give5 = eco.give(user, cara, 1000);
+            replay(`${mess4}\n\n_🎊 JackPot --> _💎1000_`)
+    }
+    else { 
+            replay(`Do you understand what you are doing?`)
+    }
+ }
+ else{
+        replay(`*You can only play this game during weekends*\n\n*🌿 Friday*\n*🎏 Saturday*\n*🎐 Sunday*`)
+ }
 }
 break
-/*
- case'daily': case'claim': case 'gift': {
-	if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc) 
-        let user = m.sender
-	 const gan = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
-					const teng = gan[Math.floor(Math.random() * gan.length)]
-	const cara = "cara"
-	const daily  = await (user, cara, 0);
-	
-	        if (daily.cd) return replay(`Du hast für heute schon täglich beansprucht, ${daily.cdL}  komm wieder rein `); 
-	
-            replay(`Sie haben für 💎${daily.amount} täglich beansprucht`);        
-}
-break
-
-		
-
-case'wallet':  case 'geld': {
-
-        if (isBan) return reply(mess.banned)	 			
-
-        if (isBanChat) return reply(mess.bangc)
-
-
-	if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-
-    const user = m.sender
-
-    const cara = "cara"
-
-    const balance = await eco.balance(user, cara);
-
-    await replay(` ${pushname}'s geld in der Brieftasche:\n\n_💎${balance.wallet}_`);
-
-}
-
-break
-
-    	
-	case'bank':  case 'levee': {
-	if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)	
-
-		
-    const user = m.sender
-    const cara = "cara"
-    const balance = await eco.balance(user, cara); //Returns wallet, bank, and bankCapacity. Also creates a USer if it doesn't exist.
-    await replay(` ${pushname}'s Geld am konto:\n\n_💎${balance.bank}/${balance.bankCapacity}_`); 
-}
-break
-		
-		
-		case'capacity':  case 'bankup12': {
-
-	//if (!isCreator) return replay(mess.botowner)
-	if (!text) return replay(`💴 Bank-capacity 💳\n\n1 | 1000 sp = 💎100\n\n2 | 10000 sp = 💎1000\n\n3 | 100000 sp = 💎10000\n\nExample- ${prefix}capacity 1 OR ${prefix}bankupgrade 1000`)	
-	if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-        const user = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
-	const cara = "cara"
-	let value = text.trim();
-	let k = parseInt(value)
-	const balance  = await eco.balance(user, cara) 
-  switch (value) {
-          case '1000':
-          case '1':
-          if (k > balance.wallet ) return replay(`You need to pay 💎100 to increase bank capacity ~ 1000 sp`);
-            const deduct1 = await eco.deduct(user, cara, 100);
-            const add1 = eco.giveCapacity(user, cara, 1000); 
-                await replay(`1000 💎diamond storage has been added in ${pushname} bank`)
-         case '10000':
-          case '2':
-          if (k > balance.wallet ) return replay(`You need to pay 💎1000 to increase bank capacity ~ 10000 sp`);
-            const deduct2 = await eco.deduct(user, cara, 1000);
-            const add2 = eco.giveCapacity(user, cara, 10000); 
-                await replay(`10000 💎diamond storage has been added in ${pushname} bank`)
-         case '100000':
-          case '3':
-          if (k > balance.wallet ) return replay(`You need to pay 💎10000 to increase bank capacity ~ 100000 sp`);
-            const deduct3 = await eco.deduct(user, cara, 10000);
-            const add3 = eco.giveCapacity(user, cara, 100000); 
-                await replay(`100000 💎diamond storage has been added in ${pushname} bank`)
-          }
-            }
-                break
-		
-		
-		  
-		  
-	case'deposit':  case 'pay-in': {
-        if (isBan) return reply(mess.banned)
-		
-        if (m.quoted?.sender) m.mentionedJid.push(m.quoted.sender)
-		if (!text) return replay("Provide the amount you want to deposit!");
-		const texts = text.trim();
-		const user = m.sender;
-		const cara = 'cara'
-        const deposit = await eco.deposit(user, cara, texts);
-            if(deposit.noten) return replay('You can\'t deposit what you don\'t have.'); //if user states more than whats in his wallet
-             replay(`Successfully Deposited 💎${deposit.amount} to your bank.`)
-		
-}
-break	
 */
 /*
-
-	this.game = this.game ? this.game : {}
-            let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'PLAYING')
-            if (room) {
-            let ok
-            let isWin = !1
-            let isTie = !1
-            let isSurrender = !1
-            //reply(`[DEBUG]\n${parseInt(m.text)}`)
-            if (!/^([1-9]|(me)?give up|surr?ender|off|skip)$/i.test(m.text)) return
-            isSurrender = !/^[1-9]$/.test(m.text)
-            if (m.sender !== room.game.currentTurn) { 
-            if (!isSurrender) return !0
-            }
-            if (!isSurrender && 1 > (ok = room.game.turn(m.sender === room.game.playerO, parseInt(m.text) - 1))) {
-            reply({
-            '-3': 'Game Has Ended',
-            '-2': 'Invalid',
-            '-1': 'Invalid Position',
-            0: 'Invalid Position',
-            }[ok])
-            return !0
-            }
-            if (m.sender === room.game.winner) isWin = true
-            else if (room.game.board === 511) isTie = true
-            let arr = room.game.render().map(v => {
-            return {
-            X: '❌',
-            O: '⭕',
-            1: '1️⃣',
-            2: '2️⃣',
-            3: '3️⃣',
-            4: '4️⃣',
-            5: '5️⃣',
-            6: '6️⃣',
-            7: '7️⃣',
-            8: '8️⃣',
-            9: '9️⃣',
-            }[v]
-            })
-            if (isSurrender) {
-            room.game._currentTurn = m.sender === room.game.playerX
-            isWin = true
-            }
-            let winner = isSurrender ? room.game.currentTurn : room.game.winner
-            let str = `Room ID: ${room.id}
-    ${arr.slice(0, 3).join('')}
-    ${arr.slice(3, 6).join('')}
-    ${arr.slice(6).join('')}
-    ${isWin ? `@${winner.split('@')[0]} Won!` : isTie ? `Game Over` : `Turn ${['❌', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split('@')[0]})`}
-    ❌: @${room.game.playerX.split('@')[0]}
-    ⭕: @${room.game.playerO.split('@')[0]}
-    Typed *surrender* to surrender and admited defeat`
-            if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
-            room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-            if (room.x !== room.o) await A17.sendText(room.x, str, m, { mentions: parseMention(str) } )
-            await A17.sendText(room.o, str, m, { mentions: parseMention(str) } )
-            if (isTie || isWin) {
-            delete this.game[room.id]
-            }
-            }
-	
-		
-		
-
 case 'ttc': case 'ttt': case 'tictactoe': {
     if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
@@ -1978,8 +1630,8 @@ ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 Waiting @${room.game.currentTurn.split('@')[0]}
 Type *surrender* to surrender and admit defeat`
-    if (room.x !== room.o) await  Chisato.sendText(room.x, str, m, { mentions: parseMention(str) } )
-    await   Chisato.sendText(room.o, str, m, { mentions: parseMention(str) } )
+    if (room.x !== room.o) await Miku.sendText(room.x, str, m, { mentions: parseMention(str) } )
+    await  Miku.sendText(room.o, str, m, { mentions: parseMention(str) } )
     } else {
     room = {
     id: 'tictactoe-' + (+new Date),
@@ -1994,23 +1646,23 @@ Type *surrender* to surrender and admit defeat`
     }
     }
     break	
-		
 */
-		/*
-  case 'banchat': case 'bangroup':{
+
+
+case 'banchat': case 'bangroup':{
 if (isBan) return reply(mess.banned)	 			
 if (!isCreator) return replay(mess.botowner)
 if (args[0] === "on") {
 if (isBanChat) return replay('This Group is Already Banned from using me!')
 banchat.push(from)
 replay('This Group has been banned from using me!')
-var groupe = await  Chisato.groupMetadata(from)
+var groupe = await Miku.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
- Chisato.sendMessage(from, {text: `\`\`\`「 Notice 」\`\`\`\n\nThis group is banned from using bot. So, here nobody can use me anymore!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+Miku.sendMessage(from, {text: `\`\`\`「 Notice 」\`\`\`\n\nThis group is banned from using bot. So, here nobody can use me anymore!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!isBanChat) return replay('This Group is Already Banned from using me!')
 let off = banchat.indexOf(from)
@@ -2021,288 +1673,664 @@ replay('This Group has been *unbanned* from using me!')
   { buttonId: `${prefix}bangroup on`, buttonText: { displayText: 'Ban' }, type: 1 },
   { buttonId: `${prefix}bangroup off`, buttonText: { displayText: 'Unban' }, type: 1 }
   ]
-  await  Chisato.sendButtonText(m.chat, buttonsntnsfw, `Please choose any Button below.\n\n *On / Off*`, `${global.BotName }`, m)
+  await Miku.sendButtonText(m.chat, buttonsntnsfw, `Please choose any Button below.\n\n *On / Off*`, `${global.BotName }`, m)
   }
   }
   break
-*/
-
-case 'banchat': case 'bangroup':{
-  if (isBan) return reply(mess.banned)
-  if (!isCreator) return replay(mess.botowner)
-  if (args[0] === "on") {
-    if (isBanChat) return replay('This Group is Already Banned from using me!')
-    banchat.push(from)
-    replay('This Group has been banned from using me!')
-    var groupe = await Chisato.groupMetadata(from)
-    var members = groupe['participants']
-    var mems = []
-    members.map(async adm => {
-      mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
-    })
-    Chisato.sendMessage(from, {text: `\`\`\`「 Notice 」\`\`\`\n\nThis group is banned from using bot. So, here nobody can use me anymore!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
-  } else if (args[0] === "off") {
-    if (!isBanChat) return replay('This Group is Already Banned from using me!')
-    let off = banchat.indexOf(from)
-    banchat.splice(off, 1)
-    replay('This Group has been *unbanned* from using me!')
-  } else {
-    let buttonsntnsfw = [
-      { buttonId: `${prefix}bangroup on`, buttonText: { displayText: 'Ban' }, type: 1 },
-      { buttonId: `${prefix}bangroup off`, buttonText: { displayText: 'Unban' }, type: 1 }
-    ]
-    await Chisato.sendButtonText(m.chat, buttonsntnsfw, `Please choose any Button below.\n\n *On / Off*`, `${global.BotName}`, m)
-  }
-}
-break
 
 
-		
 case 'nsfwmenu':
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
     if (!AntiNsfw) return reply(mess.nonsfw)
-        reply(` *━━━〈  📛 NSFW Menu 📛  〉━━━*\n\n${prefix}ass\n${prefix}ꜱᴘʀᴇᴀᴅᴘᴜꜱꜱʏ\n${prefix}cum\n${prefix}glasses\n${prefix}pussy\n${prefix}yuri\n${prefix}loli\n${prefix}blonde\n${prefix}tree\n${prefix}food\n${prefix}nude\n${prefix}sex\n${prefix}foxgirl\n${prefix}twogirls\n${prefix}genshin\n${prefix}bed\n${prefix}schooluniform\n${prefix}twogirls\n${prefix}dress\n${prefix}horns\n${prefix}blowjobgif\n${prefix}hentaivideo\n${prefix}trap\n${prefix}hneko\n${prefix}hwaifu\n\nversuche den befehl mal mit (${prefix}gig (befehl) )`)
+        reply(` *━━━〈  📛 NSFW Menu 📛  〉━━━*\n\nahegao , ass , bdsm ,  cuckold , ero , femdom , gangbang , foot , glasses , hentai , masturbation , orgy , panties , pussy , tentacles , things , yuri , nsfwloli , blowjobgif, hentaivideo, trap, hneko, hwaifu, versuche den befehl mal mit (!gig (befehl) )`)
     break
 
 case 'reaction': case 'react': case 'reactions': case 'r':
         if (isBan) return reply(mess.banned)	 			
         if (isBanChat) return reply(mess.bangc)
-            reply(` *━━━〈  📍 Reactions 📍  〉━━━*\n\n${prefix}bonk\n${prefix}cry\n${prefix}bully\n${prefix}cuddle\nhug\n${prefix}kiss\n${prefix}lick\n${prefix}pat\n${prefix}smug\n${prefix}yeet\n${prefix}blush\n${prefix}smile\n${prefix}wave\n${prefix}highfive\n${prefix}handhold\n${prefix}nom\n${prefix}glomp\n${prefix}bite\n${prefix}slap\n${prefix}kill\n${prefix}happy\n${prefix}wink\n${prefix}poke\n${prefix}dance\n${prefix}cringe`)
-        break   
+            reply(` *━━━〈  📍 Reactions 📍  〉━━━*\n\nbonk, cry, bully, cuddle, hug, kiss, lick, pat, smug, yeet, blush, smile, wave, highfive, handhold, nom, glomp, bite, slap, kill, happy, wink, poke, dance, cringe`)
+        break
     
-
-case 'p':
-case 'a':
-  if (isBan) {
-    return reply(mess.banned);
-  }	 			
-  if (isBanChat) {
-    return reply(mess.bangc);
-  }
-  Chisato.sendMessage(from, { react: { text: "⚙️" , key: m.key }})
-  reply(`*「 System Info 」*\n\nSpeed: ${latensie.toFixed(4)}ms
-            
-Uptime: ${runtime(process.uptime())}
-
-Bot Name: ${global.BotName}
-                
-Owner Name: ${global.OwnerName}
-		
-Total Users: ${Object.keys(global.db.users).length}`);
-  break;
-
-
-
-		
-case 'killal': case '%kill': case 'killall': case 'kil':
+case 'ping': case 'a2': case 'p': case 'a': case 'a3': case 'aping': case 'ping1': case 'p1': case 'p2': case 'p3':
         if (isBan) return reply(mess.banned)	 			
         if (isBanChat) return reply(mess.bangc)
-            reply(`wa.me/4915779423278 spielt die nuke und verstrahlt alle Gruppenmitglieder ☢️⚰️🪦`)
-        break
-
-		
-case 'ping': case 'a2': case 'p': case 'a':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(` *「 System Info 」*\n
-Speed : ${latensie.toFixed(4)} 
-Up Time : ${runtime(process.uptime())} 
-Bot Name : ${global.BotName}
-Owner Name : ${global.OwnerName}
-𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}`)
-        break
-
-
-case 'oz': case 'time': case 'ut': case 'a3':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(`Online:${runtime(process.uptime())}`)
-	break 
-
-
-case 'team': case 't': case 'tem': case 'tam':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-	if (!isCreator) return replay(mess.botowner)
-            reply(`Das Mk&A-Team: 
-
-Inhaber/in:
-
-1.  +491766927731 
-2. +4917770628225
-3. +436764242454 
-
-Stlv. Inhaber/in:
-
-1.  +493023180366 
-
-Manager/in:
-
-1.  +491632225167
-
-Supporter/in:
-
-1.  +494916093444217
-2.  +491788781873
-
-Hoster/in:
-
-1.  +4916093444217
-2. +49 177 7108553`)
-	break
-		
-		
-case 'schäm': case 'schem': case 'scham': case 'sch':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(`${pushname} geht in die ecke und schämt sich `)
-        break
-
-
-
-case 'lv': case 'l': case 'lvl': case 'level': case 'xp':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(`*「  LEVEL  」*\n\n*User Name* : ${pushname}\n*Level* : ${levelMenu}\n*Exp* : ${xpMenu} out of ${reqXp}\n`)
-        break
-
-
-
-
-
-case 'lul4': case 'lul3': case 'lul2': case 'lul':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-
-         Chisato.sendMessage(`436764242454@s.whatsapp.net`, {text:`── 「 REPORT 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
-        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
-
-	  Chisato.sendMessage(`491632225167@s.whatsapp.net`, {text:`── 「 REPORT 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
-        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
-
-	 Chisato.sendMessage(`493023180366@s.whatsapp.net`, {text:`── 「 REPORT 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
-        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
-        break
-
-
+            reply(` *「 System Info 」*
+	    
+                Speed : ${latensie.toFixed(4)}		
+                Up Time : ${runtime(process.uptime())}		
+                Bot Name : ${global.BotName}		
+                Owner Name : ${global.OwnerName}		
+		𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}		
+                Session ID: *${global.sitzung}* `)	
+        break             
 	
+case 'uptime': case 'ut': case 'oz': case 'onlinezeit':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+            reply(` Online : ${runtime(process.uptime())} `)
+break
+		
+case 'online':
+        if (isBan) return reply(mess.banned)
+        if (isBanChat) return reply(mess.bangc)
+            reply(` Hi *${pushname}* , ich bin derzeit online,
+	            Ich bin auch online seit:
+		    ${runtime(process.uptime())} `)
+break 
+		
+case 'skript': case 'script': case 'sc': case 'sk':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Den Skript des Bots findest du hier:\n${global.skript} `)		
+break
+		
+case 'ownergruppen': case 'teamgruppen': case 'og': case 'ow': case 'tgr':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply (` Meine Ownergruppen:\n\nMkM Ankündigsgruppe:\n${global.ankundigung}\n\nChatgruppe:\n${global.chatgr}\nSupport:\n${global.supportgrp}\nMkM Werbegruppe:\n${global.werbunggr}\n\nMkM NSFW-Gruppe:\n${global.nsfwgr}\n\nMkM Bewerbungen:\n${global.bewerbunggrp}\n\nMkM Test-1:\n${global.test1}\n\nMkM Test-2:\n${global.test2}\n\nAnime-Family:\n${global.animefchatgrp} `)
+break
+		
+case 'chatgruppe': case 'chatgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Chatgruppe:\n${global.chatgr} `)		
+break
+		
+case 'supportgruppe': case 'supgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(`MkM,Miku Supportgruppe:\n${global.support} `)	
+break
+		
+case 'werbegruppe': case 'werbegrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(`MkM Werbegruppe:\n${global.werbunggr} `)
+break
+		
+case 'nsfwgruppe': case 'nsfwgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+if (!isRegistered) return reply (global.register)
+reply(`MkM NSFW-Gruppe:\n${global.nsfwgr} `)		
+break
+		
+case 'bewerbunggruppe': case 'bewerbegruppe': case 'bewerbunggrp': case 'teamanfragegrp': case 'teambewerbunggruppe': case 'teambewerbunggrp': case 'teamanfragegruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(`MkM Bewerbungen:\n${global.bewerbung} `)		
+break
+		
+case 'test1gruppe': case 'test1grp': case 'botest1grp': case 'bottest1gruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(`MkM Test-1:\n${global.test1} `)		
+break
+		
+case 'test2gruppe': case 'test2grp': case 'botest2grp': case 'bottest2gruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(`MkM Test-2:\n${global.test2} `)
+break
+		
+case 'teamgruppe': case 'teamgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-Teamgruppe:\n${global.teamgr} `)
+break
+		
+case 'mikuontop': case 'mikuot':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Mikuontopgruppe:\n${global.mikuot} `)
+break
+		
+case 'betatest': case 'botbetatest': case 'bbt':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM,Miku_Beta-Testgruppe:\n${global.betatest} `)
+break
+		
+case 'botsgruppe': case 'botsgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-Botsgruppe:\n${global.botsgr} `)
+break
+
+case 'suprqgrp': case 'supportanfragegruppe': case 'supportrequestgruppe': case 'suprequestgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-SupportAnfragegruppe:\n${global.supportanfragegr} `)
+break
+		
+case 'commandgrp': case 'commandsgrp': case 'befehlgruppe': case 'mcgrp': case 'mikucgrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-Commandgruppe:\n${global.mikucommand} `)
+break
+
+case 'ochatgrp': case 'ownerchatgrp': case 'ownerchatgruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-OwnerChatgruppe:\n${global.ownerchatgr} `)
+break
+		
+case 'ideengrp': case 'ideengruppe': case 'ideagrp':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` MkM-Ideen:\n${global.ideen} `)
+break
+		
+case 'animechatgrp': case 'animechat': case 'animechatgruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Anime-Chatgruppe:\n\n${global.animefchatgrp} `)
+break
+		
+case 'Umfragegr': case 'Umfragegrp': case 'Umfrageruppe':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` MkM-Umfragegruppe:\n\n${global.umfragengrp} `)
+break
+
+case 'allgrouplinks': case 'allgrplinks': case 'allgrpl': case 'agl':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Alle Eingetragn Gruppenlinks:\n\nMkM-Chatgruppe:\n\n${global.chatgrp}\n\nMkM-Ankündigung:\n\n${global.ankundigung}\n\nMkM-Werbegruppe:\n\n${global.werbunggrp}\n\nsfw-gruppe:\n\n${global.nsfwgrp}\n\nMkM-Broadcast:\n\n${global.broadcastgrp}\n\nSupport-Gruppe:\n\n${global.supportgrp}\n\nMkM-Bewerbung:\n\n${global.bewerbunggrp}\n\nMkM-Test_1:\n\n${global.test1}\n\nMkM-Test_2:\n\n${global.test2}\n\nMkM-Beta_Test:\n\n${global.betatest}\n\nMkM-MikuOnTop:\n\n${global.mikuot}\n\nMkM-TeamGruppe:\n\n${global.teamgrp}\n\nMkM-BotsGruppe:\n\n${global.botsgrp}\n\nMkM-SupportAnfragen:\n\n$[global.supportanfragengrp}\n\nMkM-Miku_Command,Befehl:\n\n${global.mikucommand}\n\nMkM-OwnerChatGruppe:\n\n${global.ownerchatgrp}\n\nMkM-IdeenGruppe:\n\n${global.ideengrp}\n\nAnime-Gruppe:\n\n${global.animefchatgrp}\n\nMkM-Umfragen:\n\n${global.umfragengrp} `)
+break
 		
 
-case 'limituser': case 'userlimit': case 'limit':
-            if (isBan) return reply(mess.banned)	 			
-            if (isBanChat) return reply(mess.bangc)
-            {      
-               let txt = `「 *All User Limit* 」\n\n`
-                 for (let i of _limit){
-                 txt += ` *User ID :* @${i.id.split("@")[0]}\n➸ *Limit* : ${i.limit}\n`
-                 }
-                reply(txt)       
-              }
+		
+
+		
+case 'idee': case 'idea': case 'ideeanfrage': case 'ia': case 'ir': case 'idearequest':
+	 if (isBan) return reply(mess.banned)	 			        
+	if (isBanChat) return reply(mess.bangc)
+
+        Miku.sendMessage(`120363079632648987@g.us`, {text:`*── 「 Idee 」 ──*\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}`})
+
+        replay(`Ich habe deine Idee Weitergeleitet . Das MkM Bot-Team bedankt sich für deine Anfrage `)
+break
+		
+case 'i': case 'selflink': case 'whatsapplink': case 'walink': case '@link':
+ if (isBan) return reply(mess.banned)	 			        
+if (isBanChat) return reply(mess.bangc)
+reply(` 「 Links 」\n wa.me:\n\nwa.me//${m.sender}\n\nmit"@"\n\n@+${m.sender} `)
+break
+
+case'xp':
+        if (isBan) return reply(mess.banned)	 			      
+	if (isBanChat) return reply(mess.bangc)
+            reply(`*「  LEVEL  」*\n\n*User Name* : ${pushname}\n*Level* : ${levelMenu}\n*Exp* : ${xpMenu} out of ${reqXp}\n`)
+break
+		
+case 'groupp': case 'gruppe': case 'ggroup': case 'grpp': case 'ggrp':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+if (!m.isGroup) return replay(mess.grouponly)
+reply(` 「 Group 」
+name: ${metadata.subject}
+
+Beschreibung: ${metadata.desc} `)		
+break 
+
+case 'userbank': case 'userb': case 'buser': case 'bankuser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` 「 User Bank 」
+
+    User Balance : ${uangku}
+    Iron : ${getBesi(m.sender)}
+    Gold : ${getEmas(m.sender)}
+    Emarald : ${getEmerald(m.sender)}
+    Potion : ${getPotion(m.sender)} `)
+break
+		
+case 'userbalance': case 'userba': case 'ubalance':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply (` User Balance: ${uangku} `)		
+break 
+		
+case 'uiron': case 'useriron': case 'ironuser': case 'inuser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply (` User Iron: ${getBesi(m.sender)} `)		
+break 
+	
+case 'ugold': case 'usergold': case 'golduser': case 'gduser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` User Gold: ${getEmas(m.sender)} `)		
+break
+		
+case 'uemarald': case 'useremarald': case 'emaralduser': case 'emuser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` User Emarald: ${getEmerald(m.sender)} `)		
+break
+		
+case 'upotion': case 'userpotion': case 'potionuser': case 'ptuser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` User Potion: ${getPotion(m.sender)} `)
+break
+		
+case 'userl': case 'userlvl': case 'userlevel': case 'luser': case 'lvluser': case 'leveluser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply (` User Level: ${levelMenu} `)		
+break
+		
+case 'userxp': case 'uxp': case 'xpu': case 'xpuser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` User XP: ${xpMenu} \ ${reqXp} `)		
+break 
+
+case 'userrole': case 'urole': case 'roleuser': case 'ruser':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` User-Role: ${role} `)	
+break
+
+case 'userinfo': case 'useri': case 'infouser': case 'iuser': case 'userinfos':
+if(isBan) return reply(mess.banned)
+if(isBanChat) return reply(mess.bangc)
+reply(` 「 User Info 」
+
+    User Level: ${levelMenu}
+    User XP : ${xpMenu} \ ${reqXp}
+    User Role : ${role} `)
+break
+
+case'l': case 'lvl': case 'level':
+        if (isBan) return reply(mess.banned)	 			       	
+	if (isBanChat) return reply(mess.bangc)
+            reply(`*「  LEVEL  」*\n\n*User Name* : ${pushname}\n*Level* : ${levelMenu}\n*Exp* : ${xpMenu} out of ${reqXp}\n`)
+
+        break
+
+	case 'bn': case 'botname': case 'botn': case 'bname':
+      if (isBan) return reply(mess.banned)
+      if (isBanChat) return reply(mess.bangc)
+           reply (` Hallo, ich mein Name ist\n\n*${global.BotName}*\n\nNote:\n"ed" bedeutet Edition. `)
+break 
+		
+case 'Bweb': case 'Bwebsite': case 'BWS': case 'ownerweb': case 'oweb': case 'ownerwebsite': case 'owebsite':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Die B-Website meines owners bzw. Inhabers ist:\n\nbumpee.co/adv8w9mnho `)
+break
+		
+case 'session': case 'sessionid': case 'sitzung':
+if(isBan) return reply (mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Die Session-Id, des Bots ist: *${global.sitzung}* `)
+break
+
+case 'Gweb': case 'Gwebsite': case 'GWS': case 'oweb': case 'ownerwebsite': case 'owebsite':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Die Google-Website meines owners bzw. Inhabers ist:\n\nhttps://sites.google.com/view/max2-community-website `)
+break
+
+case 'sup': case 'support': case 'frage': case '!': case 'supportanfrage': case 'sa':
+
+        if (isBan) return reply(mess.banned)	 			        
+	if (isBanChat) return reply(mess.bangc)
+
+        Miku.sendMessage(`120363076992082059@g.us`, {text:`*── 「 REPORT 」 ──*\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}`})
+
+        replay(`Ich habe deine Frage an die Supportgruppe weitergegeben. Bitte warte bis sie deine Frage beantwortet haben, die Antwort siehst du hier :https://chat.whatsapp.com/DOnXPARAhdg3qptwUlPuye`)
+break
+	
+case 'asup': case 'asupport': case 'afrage': case 'a!': case 'asupportanfrage': case 'asa':
+
+        if (isBan) return reply(mess.banned)	 			        
+	if (isBanChat) return reply(mess.bangc)
+
+        Miku.sendMessage(`120363076992082059@g.us`, {text:`*── 「 REPORT Answer 」 ──*\n\n*Message*: ${q}\n\n\n*Eure/r*:\n${pushname}`})
+
+        replay(` Antwort erfolgreich gesendet! `)		
+break
+		
+
+		
+case 'Bug': case 'bugreport': case 'report': case 'bgre': case 'br': case 'bra':
+
+        if (isBan) return reply(mess.banned)	 			        	
+	if (isBanChat) return reply(mess.bangc)
+        Miku.sendMessage(`120363076992082059@g.us`, {text:`*── 「 Bug-Report 」 ──*\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}`})
+        replay(`Ich habe deine Fehlermeldung an die Gruppe der Besitzer weitergeleitet. Das Team bedankt sich für deine Fehlermeldung `)
+break
+	
+case 'team': case 'listt': case 'tlist': case 'teamlist':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Das MkM-Team:\n\n\n Inhaber:\n\n1. ${global.owner1}\n2. ${global.owner2}\n3. ${global.owner3}\n\nStlv.Inhaber/In:\n\n1. ${global.owner4}\n\nManage:\n\n1. ${global.manage}\n\nSupport:\n\n1. ${global.support1}\n2. ${global.support2}\n3. ${global.support3}\n4. ${global.support4}\n5. ${global.support5}\n6. ${global.support6}\n\nHost:\n\n1. ${global.host1}`)
+break
+
+case 'botowner': case 'botowners': case 'ownerlist': case 'listowner':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply (` Die MkM-Owner:\n\n1.  ${global.owner1}\n2. ${global.owner2}\n3. ${global.owner3}\n4. ${global.owner4} `)
+break 
+
+case 'manager': case 'managerin': case 'tmanage': case 'manageteam': case 'maanaget':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Der Manager des MkM-Teams ist derzeit:\n\n ${global.manage} `)
+break
+
+case 'supporter': case 'supporterin': case 'tsup': case 'supt': case 'supteam': case 'supportteam': case 'lsup': case 'listsup': case 'suplist':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply (` Supporter/in:\n\n1. ${global.support1}\n2. ${global.support2}\n3. ${global.support3}\n4. ${global.support4} `)
+break 
+		
+case 'developer': case 'developerin': case 'devs': case 'tdev': case 'ldev': case 'devteam': case 'developerteam': case 'listdev': case 'devlist':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply (` Developer/in:\n\n${global.dev} `)
+break
+		
+case 'ankündigungen': case 'ankündigung':
+if (isBan) return reply(mess.banned)	 			        
+if (isBanChat) return reply(mess.bangc)
+reply (` Ankündigung(-en) werden hier rein gesendet:\n\nchat.whatsapp.com/G0nG2wuUtug4dI12WgXWNt\n\nVielen Dank `)
+break
+		
+case'lul': case 'chatowner': case 'ochat': case 'chatt': case 'chatrq': case 'chatrequest': case 'crq': case 'chatanfrage': case 'ca':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+
+        Miku.sendMessage(`493023180366@s.whatsapp.net`, {text:`── 「 Chat-Anfrage 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
+        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
+        break
+		
+case 'chatgruppe': case 'chatgroup': case 'cgr': case 'chatgr':
+if (isBan) return reply(mess.banned)	
+if (isBanChat) return reply(mess.bangc)
+reply (` Den Link zur Chatgruppe findest du hier:\n\n${global.chatgr}\n\nVielen Dank `)
+break 
+	
+case 'supchat': case 'chatgruppesupport': case 'supch': case 'chatsup':
+if (isBan) return reply(mess.banned)	
+if (isBanChat) return reply(mess.bangc)
+reply (` Den Link zum Support-Chat findest du hier:\n\n${global.support}\n\nVielen Dank `)	
+break
+		
+case 'kontakt': case 'contact': case 'kowner': case 'cowber':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Die Website meines Owners ist:\n\nbumpee.co/adv8w9mnho\n\nDie Google-Website meines Owners lautet:\n\nsites.google.com/view/max2-community-website\n\nDer Telegram Account meines Inhabers lautet:\nhttps://t.me/Anonymeradmin\n\nDer Tiktok Account meines Owners ist:\nhttps://www.tiktok.com/@T_x_m_x_2\n\n\nDie E-Mail meines Owners ist:\nMax.public.community@gmail.com\n\nVielen Dank für deine Anfrage :) `)
+break 
+		
+case 'welcome':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hey ${pushname} , ich bin ${global.sitzung}  `)
+break
+		
+case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas':
+case 'deepsea': case 'scifi': case 'rainbow2': case 'waterpipe': case 'spooky': 
+case 'pencil': case 'circuit': case 'discovery': case 'metalic': case 'fiction': case 'demon': 
+case 'transformer': case 'berry': case 'thunder': case '.': case '3dstone2': 
+case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
+case 'watercolor': case 'multicolor': case 'neondevil': case 'underwater': case 'graffitibike':
+ case 'snow': case 'cloud': case 'honey': case 'ice': case 'fruitjuice': case 'biscuit': case 'wood': 
+case 'chocolate': case 'strawberry': case 'matrix': case 'blood': case 'dropwater': case 'toxic': 
+case 'lava': case 'rockart': case 'bloodglas': case 'halloween': case 'darkgold': case 'joker': case 'wicker':
+ case 'firework': case 'skeleton': case 'blackpinkart': case 'sand': case 'glue': case '1917': case 'leaves': case 'demon': 
+case '3dneon': case '3dspace': case '3dstone': case 'bookeh': case 'carbon': case 'curcuit': case 'glitch2': case 'glitch3':
+case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case 'thunder': case 'thunder2': case 'wall':
+	case 'grunge': case '3dpaint': case 'pinggold': case 'liquid': case 'burger':
+	case 'cage': case 'party': case 'comic': case 'topography': case 'orange': case 'valentine':
+	case 'lightglow': case 'thor': case '3d_deepsea': case 'm_black': case 'graffititext':
+	case 'neonlightgalaxy': case '3dmarvel': case 'marvelstudiometal': case 'marvelstudio':
+	case 'roadwarning': case 'advancedglow': case 'brakewall': case 'glitch3': case '3dbox': case 'waterdrop':
+	case 'lion3': case 'papercut2': case 'transformer2': case 'harrypot2': case 'window2': case 'blackpinkneon2':
+	case 'pornhub3': case 'blackpink4': case 'glitch4': case 'glitch5': case 'glitch6': case '3dspace2': case 'lion4':
+	case '3dneon3': case 'neon4': case 'holographic3': case 'bear3': case 'wolf3': case 'joker3': case 'dropwater3':
+	case 'summertime3': case 'neonlight5': case 'thewall3': case 'natural2': case 'carbon3': case 'pencil3': case 'textmaker3':
+	case 'textmaker4': case 'hooror2': case 'whitebear3': case 'thunder4': case 'neon6': case 'matrix4': case 'sky3': case 'magma4':
+	case 'sand4': case 'pencil5': case 'metallic3': case 'graffititext5': case 'steel3': case 'harrypotter6': case 'underwater4':
+	case 'luxury3': case 'glue5': case 'fabric3': case 'neonlight7': case 'lava5': case 'toxic3': case 'ancient3': case 'chrismas4':
+	case 'scifi4': case 'rainbow4': case 'classic3': case 'watercolor5': case 'halloween4': case 'halloweenfire3': case 'foggy3':
+	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':{
+             if (!q) throw `Example : ${prefix + command} ${global.ownername}`
+             reply( `${mess.waiting} `)
+             let link
+             if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
+             if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
+             if (/3dchristmas/.test(command)) link = 'https://textpro.me/3d-christmas-text-effect-by-name-1055.html'
+             if (/sparklechristmas/.test(command)) link = 'https://textpro.me/sparkles-merry-christmas-text-effect-1054.html'
+             if (/deepsea/.test(command)) link = 'https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html'
+             if (/scifi/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
+             if (/rainbow/.test(command)) link = 'https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html'
+             if (/waterpipe/.test(command)) link = 'https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html'
+             if (/spooky/.test(command)) link = 'https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html'
+             if (/pencil/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
+             if (/circuit/.test(command)) link = 'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
+             if (/discovery/.test(command)) link = 'https://textpro.me/create-space-text-effects-online-free-1042.html'
+             if (/metalic/.test(command)) link = 'https://textpro.me/creat-glossy-metalic-text-effect-free-online-1040.html'
+             if (/fiction/.test(command)) link = 'https://textpro.me/create-science-fiction-text-effect-online-free-1038.html'
+             if (/demon/.test(command)) link = 'https://textpro.me/create-green-horror-style-text-effect-online-1036.html'
+             if (/transformer/.test(command)) link = 'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
+             if (/berry/.test(command)) link = 'https://textpro.me/create-berry-text-effect-online-free-1033.html'
+             if (/thunder/.test(command)) link = 'https://textpro.me/online-thunder-text-effect-generator-1031.html'
+             if (/magma/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
+             if (/3dstone2/.test(command)) link = 'https://textpro.me/create-a-3d-stone-text-effect-online-for-free-1073.html'
+             if (/neonlight/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
+             if (/glitch/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
+             if (/harrypotter/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
+             if (/brokenglass/.test(command)) link = 'https://textpro.me/broken-glass-text-effect-free-online-1023.html'
+             if (/papercut/.test(command)) link = 'https://textpro.me/create-art-paper-cut-text-effect-online-1022.html'
+             if (/watercolor/.test(command)) link = 'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
+             if (/multicolor/.test(command)) link = 'https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html'
+             if (/neondevil/.test(command)) link = 'https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html'
+             if (/underwater/.test(command)) link = 'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
+             if (/graffitibike/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
+             if (/snow/.test(command)) link = 'https://textpro.me/create-snow-text-effects-for-winter-holidays-1005.html'
+             if (/cloud/.test(command)) link = 'https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html'
+             if (/honey/.test(command)) link = 'https://textpro.me/honey-text-effect-868.html'
+             if (/ice/.test(command)) link = 'https://textpro.me/ice-cold-text-effect-862.html'
+             if (/fruitjuice/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
+             if (/biscuit/.test(command)) link = 'https://textpro.me/biscuit-text-effect-858.html'
+             if (/wood/.test(command)) link = 'https://textpro.me/wood-text-effect-856.html'
+             if (/chocolate/.test(command)) link = 'https://textpro.me/chocolate-cake-text-effect-890.html'
+             if (/strawberry/.test(command)) link = 'https://textpro.me/strawberry-text-effect-online-889.html'
+             if (/matrix/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
+             if (/blood/.test(command)) link = 'https://textpro.me/horror-blood-text-effect-online-883.html'
+             if (/dropwater/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
+             if (/toxic/.test(command)) link = 'https://textpro.me/toxic-text-effect-online-901.html'
+             if (/lava/.test(command)) link = 'https://textpro.me/lava-text-effect-online-914.html'
+             if (/rockart/.test(command)) link = 'https://textpro.me/rock-text-effect-online-915.html'
+             if (/bloodglas/.test(command)) link = 'https://textpro.me/blood-text-on-the-frosted-glass-941.html'
+             if (/halloween/.test(command)) link = 'https://textpro.me/halloween-fire-text-effect-940.html'
+             if (/darkgold/.test(command)) link = 'https://textpro.me/metal-dark-gold-text-effect-online-939.html'
+             if (/joker/.test(command)) link = 'https://textpro.me/create-logo-joker-online-934.html'
+             if (/wicker/.test(command)) link = 'https://textpro.me/wicker-text-effect-online-932.html'
+             if (/firework/.test(command)) link = 'https://textpro.me/firework-sparkle-text-effect-930.html'
+             if (/skeleton/.test(command)) link = 'https://textpro.me/skeleton-text-effect-online-929.html'
+             if (/blackpinkart/.test(command)) link = 'https://textpro.me/create-blackpink-logo-style-online-1001.html'
+             if (/sand/.test(command)) link = 'https://textpro.me/write-in-sand-summer-beach-free-online-991.html'
+             if (/glue/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
+             if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
+                if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'   
+	        if (/3dneon/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
+		if (/3dspace/.test(command)) link = 'https://textpro.me/create-space-3d-text-effect-online-985.html'
+		if (/3dstone/.test(command)) link = 'https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html'
+		if (/bookeh/.test(command)) link = 'https://textpro.me/bokeh-text-effect-876.html'
+		if (/carbon/.test(command)) link = 'https://textpro.me/carbon-text-effect-833.html'
+		if (/circuit/.test(command)) link = 'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
+		if (/glitch2/.test(command)) link = 'https://textpro.me/create-a-glitch-text-effect-online-free-1026.html'
+		if (/glitch3/.test(command)) link = 'https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html'
+		if (/lion/.test(command)) link = 'https://textpro.me/create-lion-logo-mascot-online-938.html'
+		if (/magma/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
+		if (/matrix/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
+		if (/neongreen/.test(command)) link = 'https://textpro.me/green-neon-text-effect-874.html'
+		if (/scifi/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
+		if (/thunder/.test(command)) link = 'https://textpro.me/online-thunder-text-effect-generator-1031.html'
+		if (/thunder2/.test(command)) link = 'https://textpro.me/create-thunder-text-effect-online-881.html'
+		if (/wall/.test(command)) link = 'https://textpro.me/break-wall-text-effect-871.html'
+		if (/grunge/.test(command)) link = 'https://textpro.me/grunge-metallic-3d-text-effect-online-1115.html'
+		if (/3dpaint/.test(command)) link = 'https://textpro.me/create-3d-multicolor-paint-text-effect-online-1114.html'
+		if (/pinkgold/.test(command)) link = 'https://textpro.me/create-pink-soft-gold-text-effect-online-1113.html'
+		if (/liquid/.test(command)) link = 'https://textpro.me/create-3d-liquid-metal-text-effect-1112.html'
+		if (/burger/.test(command)) link = 'https://textpro.me/create-burger-3d-text-effect-1111.html'
+		if (/cage/.test(command)) link = 'https://textpro.me/create-cage-text-effect-online-1110.html'
+		if (/party/.test(command)) link = 'https://textpro.me/party-text-effect-with-the-night-event-theme-1105.html'
+		if (/comic/.test(command)) link = 'https://textpro.me/create-3d-comic-text-effects-online-1091.html'
+		if (/topography/.test(command)) link = 'https://textpro.me/create-artistic-typography-online-1086.html'
+		if (/orange/.test(command)) link =  'https://textpro.me/create-a-3d-orange-juice-text-effect-online-1084.html'
+		if (/valentine/.test(command)) link = 'https://textpro.me/create-realistic-golden-text-effect-on-red-sparkles-online-1082.html'
+		if (/lightglow/.test(command)) link = 'https://textpro.me/create-light-glow-sliced-text-effect-online-1068.html'
+		if (/thor/.test(command)) link = 'https://textpro.me/create-thor-logo-style-text-effect-online-1064.html'
+		if (/3d_deepsea/.test(command)) link = 'https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html'
+		if (/m_black/.test(command)) link = 'https://textpro.me/create-a-metallic-text-effect-free-online-1041.html'
+		if (/graffititext/.test(command)) link = 'https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html'
+		if (/neonlightgalaxy/.test(command)) link = 'https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html'
+		if (/3dmarvel/.test(command)) link = 'https://textpro.me/create-3d-avengers-logo-online-974.html'
+		if (/marvelstudiometal/.test(command)) link = 'https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html'
+		if (/marvelstudio/.test(command)) link = 'https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html'
+		if (/roadwarning/.test(command)) link = 'https://textpro.me/road-warning-text-effect-878.html'
+		if (/advancedglow/.test(command)) link = 'https://textpro.me/free-advanced-glow-text-effect-873.html'
+		if (/brakewall/.test(command)) link = 'https://textpro.me/break-wall-text-effect-871.html'
+		if (/glitch3/.test(command)) link = 'https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html'
+		if (/3dbox/.test(command)) link = 'https://textpro.me/3d-box-text-effect-online-880.html'
+		if (/waterdrop/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
+		if (/lion3/.test(command)) link = 'https://textpro.me/create-lion-logo-mascot-online-938.html'
+		if (/papercut2/.test(command)) link = 'https://textpro.me/create-art-paper-cut-text-effect-online-1022.html'
+		if (/tranformer2/.test(command)) link = 'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
+		if (/harrypot2/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
+		if (/window2/.test(command)) link = 'https://textpro.me/write-text-on-foggy-window-online-free-1015.html'
+		if (/blackpinkneon2/.test(command)) link = 'https://textpro.me/create-neon-light-blackpink-logo-text-effect-online-1081.html'
+		if (/pornhub3/.test(command)) link = 'https://textpro.me/pornhub-style-logo-online-generator-free-977.html'
+		if (/blackpink4/.test(command)) link = 'https://textpro.me/create-blackpink-logo-style-online-1001.html'
+		if (/glitch4/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
+		if (/glitch5/.test(command)) link = 'https://textpro.me/create-a-glitch-text-effect-online-free-1026.html'
+		if (/glitch6/.test(command)) link = 'https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html'
+		if (/3dspace2/.test(command)) link = 'https://textpro.me/create-space-3d-text-effect-online-985.html'
+		if (/lion4/.test(command)) link = 'https://textpro.me/create-lion-logo-mascot-online-938.html'
+		if (/3dneon3/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
+		if (/neon4/.test(command)) link = 'https://textpro.me/neon-text-effect-online-879.html'
+		if (/holographic3/.test(command)) link = 'https://textpro.me/holographic-3d-text-effect-975.html'
+		if (/bear3/.test(command)) link = 'https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html'
+		if (/wolf3/.test(command)) link = 'https://textpro.me/create-wolf-logo-galaxy-online-936.html'
+		if (/joker3/.test(command)) link = 'https://textpro.me/create-logo-joker-online-934.html'
+		if (/dropwater3/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
+		if (/summertime3/.test(command)) link = 'https://textpro.me/create-a-summer-neon-light-text-effect-online-1076.html'
+		if (/neonlight5/.test(command)) link = 'https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html'
+		if (/thewall3/.test(command)) link = 'https://textpro.me/break-wall-text-effect-871.html'
+		if (/natural2/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
+		if (/carbon3/.test(command)) link = 'https://textpro.me/carbon-text-effect-833.html'
+		if (/pencil3/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
+		if (/textmaker3/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
+		if (/textmaker4/.test(command)) link = 'https://textpro.me/create-light-glow-sliced-text-effect-online-1068.html'
+		if (/hooror2/.test(command)) link = 'https://textpro.me/horror-blood-text-effect-online-883.html'
+		if (/whitebear3/.test(command)) link = 'https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html'
+		if (/thunder4/.test(command)) link = 'https://textpro.me/create-thunder-text-effect-online-881.html'
+		if (/neon6/.test(command)) link = 'https://textpro.me/neon-light-text-effect-online-882.html'
+		if (/matrix4/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
+		if (/sky3/.test(command)) link = 'https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html'
+		if (/magma4/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
+		if (/sand4/.test(command)) link = 'https://textpro.me/sand-writing-text-effect-online-990.html'
+		if (/pencil5/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
+		if (/metallic3/.test(command)) link = 'https://textpro.me/create-a-metallic-text-effect-free-online-1041.html'
+		if (/graffititext5/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
+		if (/steel3/.test(command)) link = 'https://textpro.me/steel-text-effect-online-921.html'
+		if (/harrypotter6/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
+		if (/underwater4/.test(command)) link = 'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
+		if (/luxury3/.test(command)) link = 'https://textpro.me/3d-luxury-gold-text-effect-online-1003.html'
+		if (/glue5/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
+		if (/fabric3/.test(command)) link = 'https://textpro.me/fabric-text-effect-online-964.html'
+		if (/neonlight7/.test(command)) link ='https://textpro.me/neon-light-glitch-text-generator-online-1063.html'
+		if (/lava5/.test(command)) link = 'https://textpro.me/lava-text-effect-online-914.html'
+		if (/toxic3/.test(command)) link = 'https://textpro.me/toxic-text-effect-online-901.html'
+		if (/ancient3/.test(command)) link = 'https://textpro.me/3d-golden-ancient-text-effect-online-free-1060.html'
+		if (/chrismas4/.test(command)) link = 'https://textpro.me/sparkles-merry-christmas-text-effect-1054.html'
+		if (/scifi4/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
+		if (/rainbow4/.test(command)) link = 'https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html'
+		if (/classic3/.test(command)) link = 'https://textpro.me/video-game-classic-8-bit-text-effect-1037.html'
+		if (/watercolor5/.test(command)) link = 'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
+		if (/halloween4/.test(command)) link = 'https://textpro.me/create-a-spooky-halloween-text-effect-online-1046.html'
+		if (/halloweenfire3/.test(command)) link = 'https://textpro.me/sand-writing-text-effect-online-990.html'
+		if (/foggy3/.test(command)) link = 'https://textpro.me/write-text-on-foggy-window-online-free-1015.html'
+		if (/marvel6/.test(command)) link = 'https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html'
+		if (/skeleton4/.test(command)) link = 'https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html'
+		if (/sketch3/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
+		if (/wonderful3/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
+		if (/batman3/.test(command)) link = 'https://textpro.me/make-a-batman-logo-online-free-1066.html'
+		if (/juice4/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
+             let anutexpro = await maker.textpro(link, q)
+                Miku.sendMessage(m.chat, { image: { url: anutexpro }, caption: `Made by *${global.botname}*\n_Official MkM Bot Inc._` }, { quoted: m })
+             }
              break
 		
-
-case 'hentaigroup': case 'hent': case 'sus': case 'LUL':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(`*Hentai gruppe*
-	          https://chat.whatsapp.com/FMDqCkfLfbkHA3oaxtuAc9`)
-        break
-
-
-
-
-case 'lv': case 'l': case 'lvl': case 'level': case 'xp':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-            reply(`*「  LEVEL  」*\n\n*User Name* : ${pushname}\n*Level* : ${levelMenu}\n*Exp* : ${xpMenu} out of ${reqXp}\n`)
-        break
-
-
-
-
-
-case 'lul4': case 'lul3': case 'lul2': case 'lul':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-
-         Chisato.sendMessage(`436764242454@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
-        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
-
-	  Chisato.sendMessage(`491632225167@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
-
-	 Chisato.sendMessage(`493023180366@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
- break
-
-
-
-
-case 'grr': case 'ka': case 'magic': case 'ma':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-         Chisato.sendMessage(`120363048485755289@g.us`, {text:`── 「 magic 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n `})
-        replay(`Ich habe deine nachricht in magics gruppe weitergeleitet `)
-        break
-	
-		number = number.replace(/[^0-9]/g, '')
-            let njid = number + '@s.whatsapp.net'
-case 'ide': case 'i': case 'idee': case 'ideee':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-         Chisato.sendMessage(`4367764810346@c.us`, {text:`── 「 Idee 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n *geantwortet von* : `})
-     Chisato.sendMessage(`436764242454@c.us`, {text:`── 「 Idee 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n *geantwortet von* : `})
-        replay(`Ich habe deine Idee an meine Besitzer weitergegeben.`)
-        break
-
-case 'affe':
-	if (isBan) return reply(mess.banned) 
-        if (isBanChat) return reply(mess.bangc)
-	let fetch = require('node-fetch')
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ?  Chisato.user.jid : m.sender
- Chisato.sendMessage(from, { react: { text: "🙉" , key: m.key }})
-
-  await  Chisato.sendMessage(m.chat, {
-    text: `Hallo @${await m.sender.split('@')[0]}\n\nIch konnte bisher noch keinen Affen sichten...\n\nIch werde weiter nach einen Affen suchen und dich informieren, wenn ich einen sehe....`,
-    mentions: [m.sender]
-  })
-
-  setTimeout(async () => {
-    await  Chisato.sendMessage(m.chat, {
-      text: `Es sind jetzt 20 Minuten vergangen seit deinem letzten Affenpost, @${await m.sender.split('@')[0]}!\n\nIch habe jetzt einen Affen Gesehen.🙊`,
-      mentions: [m.sender]
-    })
-  }, 20 * 60 * 1000) 
-	
-break		
-
-case 'katze':
-	if (isBan) return reply(mess.banned) 
-        if (isBanChat) return reply(mess.bangc)
-	let fettch = require('node-fetch')
-  let whoo = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.frommMe ?  Chisato.user.jid : m.sender
- Chisato.sendMessage(from, { react: { text: "😺" , key: m.key }})
-
-  await  Chisato.sendMessage(m.chat, {
-    text: `Hallo @${await m.sender.split('@')[0]}\n\nIch konnte bisher noch keine Katze  sichten...\n\nIch werde weiter nach eine Katze suchen und dich informieren, wenn ich einen sehe....`,
-    mentions: [m.sender]
-  })
-
-  setTimeout(async () => {
-    await  Chisato.sendMessage(m.chat, {
-      text: `Es sind jetzt 1 Minute vergangen seit deinem letzten Katzenpost, @${await m.sender.split('@')[0]}!\n\nIch habe jetzt eine Katze Gesehen.🙀`,
-      mentions: [m.sender]
-    })
-  }, 120000) 
-	
-break		
-
-case 'sup': case 'support': case 'frage': case 'bot':
-        if (isBan) return reply(mess.banned)	 			
-        if (isBanChat) return reply(mess.bangc)
-         Chisato.sendMessage(`120363043511491681@g.us`, {text:`── 「 REPORT 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n *geantwortet von* : `})
-        replay(`Ich habe deine Frage an meine Besitzer weitergegeben. Bitte warte bis sie deine Frage beantwortet haben, die Antwort siehst du hier :https://chat.whatsapp.com/DOnXPARAhdg3qptwUlPuye`)
-        break
+case 'bctext2': case 'broadcasttext2': case 'bc2':
+  if (!isCreator) throw mess.owner
+  if (!text) throw `Enter text`
+    var data = await store.chats.all()
+ for (let i of data) {
+  Miku.sendMessage(i.id, {text: `${global.OwnerName}'s Broadcast\n\nMessage : ${q}` })
+                               await sleep(1000)
+               }
+break
 		
+case 'owners': case 'mods':
+if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+reply(`     🧣  *${global.BotName} Mods*  🧣
+
+
+〽️ ${global.owner1}
+
+〽️ ${global.owner2}
+
+〽️ ${global.owner3}
+
+〽️ ${global.owner4}
+
+
+📛 *Don't Spam them to avoid Blocking !*
+
+🎀 For any help, type *${prefix}support* and ask in group.
+
+*💫 Thanks for Using ${global.BotName}. 💫* `)
+break
+		
+case 'purge':{mess
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)     
+if (!m.isGroup) return replay(mess.grouponly)     
+if (!isBotAdmins) return replay(mess.botadmin)     
+if (!isAdmins && !isCreator) return replay(mess.useradmin)
+const delay = time => new Promise(res=>setTimeout(res,time));let mentioned = participants.map(v => v.jid)
+for (let member of mentioned) {           Miku.groupParticipantsUpdate(m.chat, [member], 'remove')      }    }
+break
 		
 case 'ringtone': {
     if (isBan) return reply(mess.banned)	 			
@@ -2311,12 +2339,13 @@ case 'ringtone': {
         let { ringtone } = require('./lib/scraper')
 		let anu = await ringtone(text)
 		let result = anu[Math.floor(Math.random() * anu.length)]
-		 Chisato.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
+		Miku.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
 	    }
 	    break
 
 
-case 'film': case 'movie': case 'moviesearch':
+
+case 'film': case 'movie': case 'moviesearch': case 'filmsuche':
 if (isBan) return reply(mess.banned)
 	if (isBanChat) return reply(mess.bangc)
 	reply(mess.waiting)
@@ -2327,12 +2356,9 @@ xfarrapi.Film(q)
 			    for (let i of data) {
                 krl += (`-----------------------------------------------------------------------------\n\n\n*Movie Name:* ${i.judul}\n *Quality :* ${i.quality}\n *Type : ${i.type}*\n *Uploaded on :* ${i.upload}\n *Source URL :* ${i.link}\n\n\n`)
                 }
-                Chisato.sendMessage(from, { image: { url: data[0].thumb}, caption: krl }, { quoted: fdocs })
+               Miku.sendMessage(from, { image: { url: data[0].thumb}, caption: krl }, { quoted: fdocs })
 });
 break
-
-
-		
 
 
 case 'wallpaper': case 'animewallpaper': case 'animewall': case 'wal': {
@@ -2356,7 +2382,7 @@ let buttons = [
             buttons: buttons,
             headerType: 4
         }
-         Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+        Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
     }
     break
 
@@ -2378,7 +2404,7 @@ if (isBanChat) return reply(mess.bangc)
             buttons: buttons,
             headerType: 4
         }
-         Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+        Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
     }
     break
 
@@ -2387,7 +2413,7 @@ if (isBan) return reply(mess.banned)
 if (isBanChat) return reply(mess.bangc)
 				   let cok = await fetchJson(`http://api.lolhuman.xyz/api/random/quotesimage?apikey=${lolkey}`)
 				   reply(mess.waiting)
-				   Chisato.sendMessage(m.chat, { image: { url: cok }, caption: 'Here it is...' }, { quoted: m })
+				  Miku.sendMessage(m.chat, { image: { url: cok }, caption: 'Here it is...' }, { quoted: m })
 				  break
 
 case 'quotesanime': case 'quoteanime': case 'animequote': case 'animequotes':{
@@ -2399,13 +2425,645 @@ case 'quotesanime': case 'quoteanime': case 'animequote': case 'animequotes':{
         ]
         let buttonMessage = {
             text: `_${hasil.quotes}_\n\nBy '${hasil.karakter}', ${hasil.anime}\n\n- ${hasil.up_at}`,
-            footer: ' Chisato',
+            footer: 'Miku',
             buttons: buttons,
             headerType: 2
         }
-         Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+        Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
     }
     break
+		
+    /*
+  case 'write1':
+    const fs = require('fs')
+    Miku.sendMessage(m.chat, {
+    	react: {
+    		text: ${command},
+    		key: m.key
+    	}
+    })
+
+    reply(`
+┌〔 Liste schreiben 〕
+├ document
+├ text
+└────
+`).trim()
+    if (!args[0]) throw teks
+    if (args[0] === 'document') {
+        if(!args[1]) throw `Beispiel: ${prefix + command} document plugins/haruno.js`
+        let saveas = await m.text.replace(`${usedPrefix + command} document ${args[1]} `, '')
+        fs.writeFileSync(`./${args[1]}`, saveas)
+        Miku.sendButton(m.chat, `Erfolgreich gespeichert als ${args[1]}`, wm, 'Neustart', '.restart')
+    } else if (args[0] === 'text') {
+        if (!args[1]) throw `Geben Sie einen Dateinamen und ein Ziel ein.\n${usedPrefix + command} plugins/join.js`
+        require('fs').writeFileSync(`./${args[1]}`, m.text)
+        Miku.sendButton(m.chat, `Erfolgreich gespeichert als ${args[1]}.`, wm, 'Neustart', '.restart')
+    } else {
+        throw teks
+    }
+break
+
+
+
+
+/*case 'lul4': case 'lul3': case 'lul2': case 'lul':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+
+        Miku.sendMessage(`436764242454@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
+        replay(`ich habe diese nachricht an mein owner weitergeleitet`)
+
+	 Miku.sendMessage(`491632225167@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
+
+	Miku.sendMessage(`493023180366@s.whatsapp.net`, {text:`── 「 owner report 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* :`})
+ break
+
+case 'grr': case 'ka': case 'magic': case 'ma':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+        Miku.sendMessage(`120363048485755289@g.us`, {text:`── 「 magic 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n `})
+        replay(`Ich habe deine nachricht in magics gruppe weitergeleitet `)
+        break
+	
+		
+case 'ide': case 'i': case 'idee': case 'ideee':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+        Miku.sendMessage(`120363079632648987@g.us`, {text:`── 「 Idee 」 ──\n\n*Von*: ${pushname}\n*nummer*:  wa.me//${m.sender}\n*Message*: ${q}\n *Antwort* : \n *geantwortet von* : `})
+        replay(`Ich habe deine Idee an meine Besitzer weitergegeben.`)
+        break
+        */
+  /*
+  case 'ow': case 'ownergruppen': case 'og': case 'gruppen':
+        if (isBan) return reply(mess.banned)	 			
+        if (isBanChat) return reply(mess.bangc)
+	if (!isBotAdmins) return replay(mess.botadmin)
+            reply(`*MkM Gruppen*
+		Chatt: https://chat.whatsapp.com/HaH0LDojg3MC5Lgz17BDSS 
+		Werbe: https://chat.whatsapp.com/JlO7hNBJcsX2qOhMjpKul8
+ 		Support: https://chat.whatsapp.com/DOnXPARAhdg3qptwUlPuye`)
+        break
+  */
+		
+
+            case 'bcgc': case 'bcgroup': {
+                if (!isCreator) return replay(`${mess.owner}`)
+                if (!text) return replay(`Where Is The Text?\n\nExample : ${prefix + command} Nexus Handsome`)
+                let getGroups = await Miku.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                reply(`Sent Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} Seconds`)
+                for (let i of anu) {
+                    await sleep(1500)
+                      let txt = `「 GOJO-SATORU HERE🎉 」\n\n${text}`
+                      Miku.sendMessage(i, txt, Miku.user.name, global.thumb, btn)
+                    }
+                reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
+            }
+            break
+            */
+		
+case 'afk3': {
+                let user = global.db.data.users[m.sender]
+                user.afkTime = + new Date
+                user.afkReason = text
+                reply(`${m.pushName} Has Gone Afk/Offline${text ? ': ' + text : ''}`)
+            }
+break
+
+case 'shutdown':
+        if (!isCreator) return reply(mess.botowner);
+        reply(`Bye...`);
+        await sleep(3000);
+        process.exit();
+break
+
+ case 'bcgrup':
+        if (!isOwner) return reply(mess.owner);
+        if (!q) return reply(`Teks Nya Bang?`);
+        try {
+          anu = await store.chats.all().map((v) => v.id);
+          for (let yoi of anu) {
+            if (yoi.includes('@g.us')) {
+              das.sendMessage(yoi, {
+                text: `\n\n${q}`,
+              });
+            }
+          }
+          reply(`Succes`);
+        } catch (error) {
+          sendCreator(JSON.stringify(error.message, null, 2));
+          sendCreator(JSON.stringify(error, null, 2));
+        }
+        reply(`Succes`);
+        break
+		
+  case 'bcgrup':
+        if (!isOwner) return reply(mess.owner);
+        if (!q) return reply(`Teks Nya Bang?`);
+        try {
+          anu = await store.chats.all().map((v) => v.id);
+          for (let yoi of anu) {
+            if (yoi.includes('@g.us')) {
+              das.sendMessage(yoi, {
+                text: `\n\n${q}`,
+              });
+            }
+          }
+          reply(`Succes`);
+        } catch (error) {
+          sendCreator(JSON.stringify(error.message, null, 2));
+          sendCreator(JSON.stringify(error, null, 2));
+        }
+        reply(`Succes`);
+break
+
+case 'addmsg': case 'savemsg': {
+            	if (isBan) return reply(mess.ban)
+	            if (isBanChat) return reply(mess.bangc)
+                if (!m.quoted) return reply(`Reply Message You Want To Save In Database`)
+                if (!text) return reply(`Example : ${prefix + command} File Name`)
+                let msgs = global.db.data.database
+                if (text.toLowerCase() in msgs) return reply(`'${text}' Has Been Registered In The Message List`)
+                msgs[text.toLowerCase()] = quoted.fakeObj
+reply(`Successfully Added Message In Message List As '${text}'
+    
+Access With ${prefix}getmsg ${text}
+View List Of Messages With ${prefix}listmsg`)
+            } 
+break
+
+case 'getmsg': case 'getsave': {
+            	if (isBan) return reply(mess.banned)
+	if (isBanChat) return reply(mess.bangc)
+                if (!text) return reply(`Example : ${prefix + command} file name\n\nView Message List With ${prefix}listmsg`)
+                let msgs = global.db.data.database
+                if (!(text.toLowerCase() in msgs)) return reply(`'${text}' Not Listed In The Message List`)
+                Miku.copyNForward(m.chat, msgs[text.toLowerCase()], true)
+            }
+break
+
+ case 'listmsg': case 'listsave': {
+            	if (isBan) return reply(mess.banned)
+	if (isBanChat) return reply(mess.bangc)
+                let msgs = JSON.parse(fs.readFileSync('./database/saving.json'))
+	        let seplit = Object.entries(global.db.data.database).map(([nama, isi]) => { return { nama, ...isi } })
+		let teks = '「 DATABASE LIST 」\n\n'
+		for (let i of seplit) {
+		    teks += `${themeemoji} *Name :* ${i.nama}\n${themeemoji} *Type :* ${getContentType(i.message).replace(/Message/i, '')}\n────────────────────────\n\n`
+	        }
+	        reply(teks)
+	    }
+break
+
+case 'delmsg': case 'deletemsg': {
+            	if (isBan) return reply(mess.banned)
+	if (isBanChat) return reply(mess.bangc)
+	        let msgs = global.db.data.database
+	        if (!(text.toLowerCase() in msgs)) return reply(`'${text}' Not Listed In The Message List`)
+		delete msgs[text.toLowerCase()]
+		reply(`Delete Successfully '${text}' From The Message list`)
+            }
+break
+		
+case 'listonline': case 'listaktif': case 'here':{
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly)
+ let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
+ let online = [...Object.keys(store.presences[id]), botNumber]
+ let liston = 1
+ Miku.sendText(m.chat, '  「 *Online Members* 」\n\n' + online.map(v => `${liston++} . @` + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+ }
+ break
+
+
+case'tagadmins': case 'admins': case 'admin': case 'tag': {
+   if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly) 
+ Miku.sendMessage(from, { react: { text: "🗿" , key: m.key }})
+ if (!text) return replay(`*Bitte schreiben sie eine nachricht für die admins.*`)
+ let teks = `*「 Tag Admins 」*
+  
+ *Message : ${text}*\n\n`
+ for (let mem of groupAdmins) {
+ teks += `🗿 @${mem.split('@')[0]}\n`
+ }
+ Miku.sendMessage(m.chat, { text: teks, mentions: groupAdmins}, { quoted: m })
+ }
+ break
+
+case 'tagme': {
+if (isBan) return reply(mess.banned)	 			
+if (isBanChat) return reply(mess.bangc)
+Miku.sendMessage(m.chat, {text:`@${m.sender.split("@")[0]}`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
+}
+break
+		
+case 'bchatinfo': {
+   if (isBan) return reply(mess.banned)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!m.quoted) replay('Reply Message')
+let msg = await m.getQuotedObj()
+if (!m.quoted.isBaileys) return replay('The message was not sent by a bot!')
+let teks = ''
+for (let i of msg.userReceipt) {
+let read = i.readTimestamp
+let unread = i.receiptTimestamp
+let waktu = read ? read : unread
+teks += `${global.themeemoji} @${i.userJid.split('@')[0]}\n`
+teks += ` ┗━${global.themeemoji} *Time :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} ${global.themeemoji} *Status :* ${read ? 'Read' : 'Sent'}\n\n`
+}
+Miku.sendTextWithMentions(m.chat, teks, m)
+}
+break
+
+case 'abcgc': case 'abcgroup': {
+   if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!isCreator) return replay(mess.owner)
+if (!args.join(" ")) return replay(`Where is the text?\n\nExample : ${prefix + command} ${global.ownername}`)
+let getGroups = await Miku.groupFetchAllParticipating()
+let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+let anu = groups.map(v => v.id)
+replay(`Send broadcast to ${anu.length} group chat, time's up ${anu.length * 1.5} second`)
+for (let i of anu) {
+await sleep(1500)
+let btn = [{
+urlButton: {
+displayText: 'YouTube 🍓',
+url: `${global.owner2}`
+}
+}, {
+urlButton: {
+displayText: 'Script 🍜',
+url: `${global.script}`
+}
+}, {
+quickReplyButton: {
+displayText: 'Bot Status 🚀',
+id: 'ping'
+}
+}, {
+quickReplyButton: {
+displayText: 'Menu 🐰',
+id: 'menu'
+}  
+}, {
+quickReplyButton: {
+displayText: 'Owner 😈',
+id: 'owner'
+}
+}]
+let txt = `*「 ${global.ownername}'s Broadcast」*\n\n${text}`
+Miku.send5ButImg(i, txt, `${global.botname}`, log0, btn, thum)
+}
+replay(`Successfully Sent Broadcast To ${anu.length} Group`)
+}
+break
+		
+case 'asetppbot': case 'asetbotpp': {
+   if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!isCreator) return replay(mess.owner)
+if (!quoted) return replay(`Send/Reply Image With Caption ${prefix + command}`)
+if (!/image/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
+if (/webp/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
+let media = await Miku.downloadAndSaveMediaMessage(quoted)
+await Miku.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+reply("${mess.waiting}")
+}
+break
+
+case 'aautoblock': {
+    if (!isCreator) throw mess.owner
+    if (args[0] === "on") {
+    if (db.settings[botNumber].autoblock) return reply(`*Autoblock already on okay*`)
+    db.settings[botNumber].autoblock = true
+    reply(`*Autoblock on*`)
+    } else if (args[0] === "off") {
+    if (!db.settings[botNumber].autoblock) return reply(`*Autoblock Already off okay*`)
+    db.settings[botNumber].autoblock = false
+    reply(`*Autoblock off*`)
+    } else {
+     let drips = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+      ]
+      await Miku.sendButtonText(m.chat, drips, `*▊▊ _AUTOBLOCK_ ▊▊*`, Miku.user.name, m)
+    }
+      } 
+  break
+
+case 'ablock': {
+        	if (isBan) return reply(mess.ban)	 			
+          if (isBanChat) return reply(mess.banChat)
+		if (!isCreator) return replay(`${mess.owner}`)
+		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+		await Miku.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+	}
+break
+
+ case 'aunblock': {
+        	if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+		if (!isCreator) return replay(`${mess.owner}`)
+		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+		await Miku.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+	}
+break
+
+    /*
+ case 'speedtest': {
+            	   if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python speed.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+*/
+		
+ case 'cbcgc': case 'cbcgroup': {
+if (!isCreator) throw mess.owner
+if (!text) throw `Text ?\n\nExample : ${prefix + command} Text`
+let getGroups = await Miku.groupFetchAllParticipating()
+let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+let anu = groups.map(v => v.id)
+m.reply(`Sendet Broadcast in  ${anu.length} Group Chat, ~~~ ${anu.length * 1.5} detik`)
+for (let i of anu) {
+await sleep(1500)
+let txt = `「 Broadcast Bot 」\n\n${text}`
+let buttons = [{ buttonId: 'donasi', buttonText: { displayText: 'a' }, type: 1 },{ buttonId: 'rules', buttonText: { displayText: 'b' }, type: 1 }]
+await Miku.sendButtonText(i, buttons, txt, nyoutube, m, {quoted: fkontak})
+}
+m.reply(`Send Broadcast in ${anu.length} Group`)
+}
+break
+
+case 'hahaha': {
+                reactionMessage = {
+                    react: {
+                        text: '❤',
+                        key: m.key
+                    }
+                }
+                Miku.sendMessage(m.chat, reactionMessage)
+            }
+break
+
+case 'myip': {
+                if (!isCreator) throw mess.owner
+                var http = require('http')
+                http.get({
+                    'host': 'api.ipify.org',
+                    'port': 80,
+                    'path': '/'
+                }, function(resp) {
+                    resp.on('data', function(ip) {
+                      reply("🔎 My public IP address is: " + ip);
+                    })
+                })
+            }
+break
+
+case 'myip2': {
+                if (!isCreator) throw mess.owner
+                var http = require('http')
+                http.get({
+                    'host': 'api.ipify.org',
+                    'port': 80,
+                    'path': '/'
+                }, function(resp) {
+                    resp.on('data', function(ip) {
+                        reply("🔎 My public IP address is: " + ip);
+                    })
+                })
+            }
+break
+
+case 'tagme2': {
+            if (!m.isGroup) throw mess.group
+            let me = m.sender
+            let jawab = `*@${me.split('@')[0]}*`
+            let ments = [me]
+            let buttons = [{ buttonId: 'rules', buttonText: { displayText: '❗Rules' }, type: 1 }]
+            Miku.sendMessage(m.chat, {react: {text: kloadq,key: m.key}})
+            await Miku.sendButtonText(m.chat, buttons, jawab, nyoutube, m, {mentions: ments, quoted: fkontak})
+            }
+break
+
+case 'kick2': {
+		if (!m.isGroup) throw mess.group
+                if (!isBotAdmins) throw mess.botAdmin
+                if (!isAdmins) throw mess.admin
+		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+		await Miku.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+	}
+break
+
+case 'add2': {
+		if (!m.isGroup) throw mess.group
+                if (!isBotAdmins) throw mess.botAdmin
+                if (!isAdmins) throw mess.admin
+		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+		await Miku.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+	}
+break
+		
+cpu.total).toFixed(2)}%`).join('\n')}
+_CPU Core(s) Usage (${cpus.length} Core CPU)_
+${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
+                `.trim()
+                m.reply(respon)
+            }
+break
+
+ case 'emojimix3': {
+			 if (!isRegistered) return m.reply('Sie haben sich noch nicht registriert! Bitte registriere dich mit ${prefix}registriername|alter!')
+		let [emoji1, emoji2] = text.split`+`
+		if (!emoji1) throw `Example : ${prefix + command} 😅+🤔`
+		if (!emoji2) throw `Example : ${prefix + command} 😅+🤔`
+		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
+		for (let res of anu.results) {
+		    let encmedia = await Miku.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    await fs.unlinkSync(encmedia)
+		}
+	    }
+break
+
+case 'emojimix4': {
+			if (!isRegistered) return m.reply('Sie haben sich noch nicht registriert! Bitte registriere dich mit ${prefix}registriername|alter!')
+	    if (!text) throw `Example : ${prefix + command} 😅`
+		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(text)}`)
+		for (let res of anu.results) {
+		    let encmedia = await Miku.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    await fs.unlinkSync(encmedia)
+		}
+	    }
+break
+
+/*
+case 'aspeedtest': {
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python Speed1.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+
+case 'bspeedtest': {
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python Speed2.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+
+case 'cspeedtest': {
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python Speed3.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+
+
+case 'dspeedtest': {
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python Speed4.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+
+
+case 'espeedtest': {
+            reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python Speed5.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) reply(stdout)
+        if (stderr.trim()) reply(stderr)
+            }
+            }
+break
+*/
+
+
+  /*
+  case 'addowner': case 'delowner': {
+
+    const json = JSON.parse(fs.readFileSync('./src/owner.json'))
+    let who
+    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : args[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+    else who = args[0] ? args[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
+    if (json.includes(who)) throw `${await Miku.getName(who)} ist noch kein owner!`
+    let index = json.findIndex(v => (v.replace(/[^0-9]/g, '') + '@s.whatsapp.net') === (who.replace(/[^0-9]/g, '') + '@s.whatsapp.net'))
+    json.splice(index, 1)
+    fs.writeFileSync('./src/owner.json', JSON.stringify(json))
+    m.reply(`${await Miku.getName(who)} ist kein owner mehr!`)
+
+    delete require.cache[require.resolve('../config')]
+    require('../config')
+
+}
+break
+*/
+
+/*
+case 'delete': case 'del':{
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.quoted) return
+ let { chat, fromMe, id, isBaileys } = m.quoted
+ if (!isBaileys) return replay('How can i delete messages of other person? Baka!')
+ Miku.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+ }
+ break
+*/
+
+ case 'deleteall': case 'delall': case 'delete': case 'del': case 'd': {
+ if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!isBotAdmins) return replay(mess.botadmin)
+ if (!isAdmins && !isCreator) return replay(mess.useradmin)
+ if (!m.quoted) return reply('Please mention a message baka!')
+ let { chat, fromMe, id} = m.quoted
+
+const key = {
+    remoteJid: m.chat,
+    fromMe: false,
+    id: m.quoted.id,
+    participant: m.quoted.sender
+}
+
+await Miku.sendMessage(m.chat, { delete: key })
+ }
+ break
+
+
+
 
 
 case 'animestory': { 
@@ -2428,7 +3086,7 @@ let sections = []
      }
      sections.push(list)   
      }
-  const sendm =   Chisato.sendMessage(
+  const sendm =  Miku.sendMessage(
       from, 
       {
        text: "Anime Search",
@@ -2452,7 +3110,7 @@ if (isBanChat) return reply(mess.bangc)
             let comm = [`group close`,`leveling off`,`antilinkgc off`,`antilinktg off`,`antilinktt off`,`antilinkytch off`,`antilinkytvid off`,`antilinkig on`,`antilinkfb off`,`antilinktwit off`,`antilinkall off`,`antiwame off`]
             let listnya = [`Group open/close`,`Leveling on/off`,`Antilink Group on/off`,`Antilink Telegram on/off`,`Antilink Tiktok on/off`,`Antilink Youtube Channel on/off`,`Antilink Youtube Video on/off`,`Antilink Instagram on/off`,`Antilink Facebook on/off`,`Antilink Twitter on/off`,`Antilink All on/off`,`Anti Wame on/off`]
             let suruh = [`Enable`, `Disable`]
-            let fiturname = [`Group`,`Leveling`,`Antilink Group`,`Antilink Telegram`,`Antilink Tiktok`,`Antilink Youtube Channel`,`Antilink Youtube Video`,`Antilink Instagram`,`Antilink Facebook`,`Antilink Twitter`,`Antilink All`,`Anti Wame`,`Auto Revoke`]
+            let fiturname = [`Group`,`Leveling`,`Auto Sticker`,`Antilink Group`,`Antilink Telegram`,`Antilink Tiktok`,`Antilink Youtube Channel`,`Antilink Youtube Video`,`Antilink Instagram`,`Antilink Facebook`,`Antilink Twitter`,`Antilink All`,`Anti Wame`,`Auto Revoke`]
             let startnum = 0; let startnu = 0; let startn = 0;let start = 0
             let startnumm = 1
             for (let x of com) {
@@ -2471,7 +3129,7 @@ if (isBanChat) return reply(mess.bangc)
            }
                 sections.push(yy)
             }
-            const sendm =   Chisato.sendMessage(
+            const sendm =  Miku.sendMessage(
 from, 
 {
 text: "Group Settings",
@@ -2484,16 +3142,16 @@ sections
 }
 break
 
-		
+/*
 case 'animesearchxxx': case 'anime':{
     await fetchJson(`https://api.jikan.moe/v4/anime/${q}`)
     .then((res) => {
     let txt = `   _Anime Search Engine_ \n\n*Title:* *${res.data.title}*\n*English:* *${res.data.title_english}*\n*Japanese:* *${res.data.title_japanese}*\n*Anime Type:* *${res.data.type}*\n*Adaptation:* *${res.data.source}*\n*Total Episode:* *${res.data.episodes}*\n*Status:* *${res.data.status}*\n*Ongoing:* *${res.data.airing ? 'Yes' : 'No'}*\n*Aired:* *${res.data.aired.string}*\n*Duration:* *${res.data.duration}*\n*Rating:* *${res.data.rating}*\n*Score:* *${res.data.score}*\n*Rank:* *${res.data.rank}*\n*Main Producer:* *${res.data.producers.name}*\n*Studio:* *${res.data.studios[0].name}* `
-     Chisato.sendMessage(from, { image : { url : res.data.images.jpg.image_url}, caption : txt}, {quoted :m }) 
+    Miku.sendMessage(from, { image : { url : res.data.images.jpg.image_url}, caption : txt}, {quoted :m }) 
     })
     }
     break
-		
+*/
 
 case 'coffee': case 'kopi': {
         if (isBan) return reply(mess.banned)	 			
@@ -2508,7 +3166,7 @@ case 'coffee': case 'kopi': {
                         buttons: buttons,
                         headerType: 4
                     }
-                     Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+                    Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
                 }
                 break
 
@@ -2521,7 +3179,7 @@ if (!q) reply(`*Example :* ${prefix + command} 🦉+🤣`)
 let [emoji1, emoji2] = q.split`+`
 let kuntuh = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 for (let res of kuntuh.results) {
-let encmedia = await  Chisato.sendImageAsSticker(from, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+let encmedia = await Miku.sendImageAsSticker(from, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
 await fs.unlinkSync(encmedia)
 }
 }
@@ -2544,8 +3202,8 @@ break
 if (isBanChat) return reply(mess.bangc)
 if (!args.join(" ")) return reply('Wo ist das Emoji?')
 emoji.get(args.join(" ")).then(async(emoji) => {
-let mese = await  Chisato.sendMessage(m.chat, {image:{url:emoji.images[4].url}, caption: `Hier ist es ...`}, {quoted:m})
-await  Chisato.sendMessage(from, {text:"Antworten Sie mit -s auf dieses Bild, um einen Aufkleber zu erstellen"}, {quoted:mese})
+let mese = await Miku.sendMessage(m.chat, {image:{url:emoji.images[4].url}, caption: `Hier ist es ...`}, {quoted:m})
+await Miku.sendMessage(from, {text:"Antworten Sie mit -s auf dieses Bild, um einen Aufkleber zu erstellen"}, {quoted:mese})
 })
 }
 break
@@ -2557,7 +3215,7 @@ case 'delete': case 'del':{
  if (!m.quoted) return
  let { chat, fromMe, id, isBaileys } = m.quoted
  if (!isBaileys) return replay('How can i delete messages of other person? Baka!')
-  Chisato.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+ Miku.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
  }
  break
 */
@@ -2577,32 +3235,33 @@ const key = {
     participant: m.quoted.sender
 }
 
-await  Chisato.sendMessage(m.chat, { delete: key })
+await Miku.sendMessage(m.chat, { delete: key })
  }
  break
 
 
 
- case 'listpc': {
+ case 'listpc': case 'pmuser': case 'pruser': case 'pmus': case 'pmchats': case 'chats': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!isCreator) return replay(mess.botowner)
  let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v)
- let teks = ` 「   Chisato's pm user list  」\n\nTotal ${anu.length} users are using  Chisato in personal chat.`
+ let teks = ` 「  Miku's pm user list  」\n\nTotal ${anu.length} users are using Miku in personal chat.`
  for (let i of anu) {
   teks += `\n\nProfile : @${i.id.split('@')[0]}\nChat : ${i.unreadCount}\nLastchat : ${moment(i.conversationTimestamp * 1000).tz("Asia/Kolkata").format("DD/MM/YYYY HH:mm:ss")}`
  }
-  Chisato.sendTextWithMentions(m.chat, teks, m)
+ Miku.sendTextWithMentions(m.chat, teks, m)
  }
  break
 
- case 'listgc': {
+ case 'listgc': case 'gruppen': case 'groups': case 'gruppenchats': case 'grc': case 'grpc': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
+ if (!isCreator) return replay(mess.botowner)
  let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
- let teks = ` 「   Chisato's group user list  」\n\nTotal ${anu.length} users are using bot in Groups.`
+ let teks = ` 「  Miku's group user list  」\n\nTotal ${anu.length} users are using bot in Groups.`
  for (let i of anu) {
-  let metadata = await  Chisato.groupMetadata(i)
+  let metadata = await Miku.groupMetadata(i)
   if (metadata.owner === "undefined") {
   loldd = false
   } else {
@@ -2610,17 +3269,17 @@ await  Chisato.sendMessage(m.chat, { delete: key })
   }
   teks += `\n\nName : ${metadata.subject ? metadata.subject : "undefined"}\nOwner : ${loldd ? '@' + loldd.split("@")[0] : "undefined"}\nID : ${metadata.id ? metadata.id : "undefined"}\nMade : ${metadata.creation ? moment(metadata.creation * 1000).tz('Asia/Kolkata').format('DD/MM/YYYY HH:mm:ss') : "undefined"}\nMember : ${metadata.participants.length ? metadata.participants.length : "undefined"}`
  }
-  Chisato.sendTextWithMentions(m.chat, teks, m)
+ Miku.sendTextWithMentions(m.chat, teks, m)
  }
  break
 
- case 'afk': {
+ case 'afk': case 'wvw': case 'bye': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  let user = global.db.users[m.sender]
  user.afkTime = + new Date
  user.afkReason = args.join(" ")
- replay(`${m.pushName} ist jetzt weg von whatsApp.\nAFK Reason : ${args.join(" ") ? args.join(" ") : ''}`)
+ replay(`${m.pushName} ist jetzt weg von WhatsApp.\nAFK Reason : ${args.join(" ") ? args.join(" ") : ''}`)
  }
  break
 
@@ -2667,134 +3326,38 @@ await  Chisato.sendMessage(m.chat, { delete: key })
  } 
  break
 
+ case 'antilinkgc': {
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly)
+ if (!isBotAdmins) return replay(mess.botadmin)
+ if (!isAdmins && !isCreator) return replay(mess.useradmin)
+ if (args[0] === "on") {
+ if (AntiLink) return replay('Already activated')
+ ntilink.push(from)
+ replay('Activated _Antilink_ in this group.')
+ var groupe = await Miku.groupMetadata(from)
+ var members = groupe['participants']
+ var mems = []
+ members.map(async adm => {
+ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
+ })
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ } else if (args[0] === "off") {
+ if (!AntiLink) return replay('Already deactivated!')
+ let off = ntilink.indexOf(from)
+ ntilink.splice(off, 1)
+ replay('Deactivated _Antilink_ in this group!')
+ } else {
+   let buttonsntilink = [
+   { buttonId: `${prefix}antilinkgc on`, buttonText: { displayText: 'On' }, type: 1 },
+   { buttonId: `${prefix}antilinkgc off`, buttonText: { displayText: 'Off' }, type: 1 }
+   ]
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   }
+   }
+   break
 
-	case 'anticrash1': {
-			
-if (antiVirtex) {
-    if (budy.length > 3500) {
-    reply(`*Caution!*\n\n`.repeat(300))
-    reply(`\`\`\`Virus Detected !!\`\`\`\n\nRevoving sender...`)
-    if (!isBotAdmins) return reply(mess.botAdmin)
-     Chisato.group	
-if (antiVirtex) {
-    if (budy.length > 3500) {
-    reply(`*Caution!*\n\n`.repeat(300))
-    reply(`\`\`\`Virus Detected !!\`\`\`\n\nRevoving sender...`)
-    if (!isBotAdmins) return reply(mess.botAdmin)
-     Chisato.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-    }
-    }
-ParticipantsUpdate(m.chat, [m.sender], 'remove')
-    }
-    }
-	}
-		
-
-/*		
-case 'welcome': {
-if (isBan) return reply(mess.banned)	 			
-if (isBanChat) return reply(mess.bangc)
-if (!m.isGroup) return replay(mess.grouponly)
-if (!isAdmins && !isCreator) return reply(mess.useradmin)	 
-const mongoose = require("mongoose");
-const { mk } = require("../../Database/dataschema.js");
-return Chisato.sendButtonText(
-          m.from,
-          {
-            text: `*${pushName}* must be *Admin* to turn ON/OFF *Welcome/Goodbye* mesages !`,
-          },
-          { quoted: m }
-        );
-  
-      let checkdata = await mk.findOne({ id: m.from });
-      var groupe = await Chisato.groupMetadata(m.from);
-      var members = groupe["participants"];
-      var mems = [];
-      members.map(async (adm) => {
-        mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
-      });
-
-      if (args[0] === "on") {
-        if (!checkdata) {
-          await new mk({ id: m.from, switchWelcome: "true" }).save();
-          Chisato.sendMessage(
-            m.from,
-            {
-              text: `*Welcome/Goodbye* messages has been *Activated* in this group!`,
-              contextInfo: { mentionedJid: mems },
-            },
-            { quoted: m }
-          );
-          return Chisato.sendMessage(
-            m.from,
-            { text: `*Welcome/Goodbye* messages has been *Activated* in this group!` },
-            { quoted: m }
-          );
-        } else {
-          if (checkdata.switchWelcome == "true")
-            return Chisato.sendMessage(
-                m.from,
-                { text: `*Welcome/Goodbye* messages is already *Activated* in this group!` },
-                { quoted: m }
-              );
-          await mk.updateOne({ id: m.from }, { switchWelcome: "true" });
-          return Chisato.sendMessage(
-            m.from,
-            { text: `*Welcome/Goodbye* messages has been *Activated* in this group!` },
-            { quoted: m }
-          );
-        }
-      } else if (args[0] === "off") {
-        if (!checkdata) {
-          await new mk({ id: m.from, switchWelcome: "false" }).save();
-          return Chisato.sendMessage(
-            m.from,
-            { text: `*Welcome/Goodbye* messages has been *De-Activated* in this group!` },
-            { quoted: m }
-          );
-        } else {
-          if (checkdata.switchWelcome == "false") return Chisato.sendMessage(
-            m.from,
-            { text: `*Welcome/Goodbye* is not *Activated* in this group!` },
-            { quoted: m }
-          );
-          await mk.updateOne({ id: m.from }, { switchWelcome: "false" });
-          return Chisato.sendMessage(
-            m.from,
-            { text: `*Welcome/Goodbye* messages has been *De-Activated* in this group!` },
-            { quoted: m }
-          );
-        }
-      } else {
-        let buttonsntilink = [
-          {
-            buttonId: `${prefix}welcome on`,
-            buttonText: { displayText: "On" },
-            type: 1,
-          },
-          {
-            buttonId: `${prefix}welcome off`,
-            buttonText: { displayText: "Off" },
-            type: 1,
-          },
-        ];
-        let bmffg = {
-          image: {url : botImage2} ,
-          caption: `\nPlease click the button below\n*On / Off*\n`,
-          footer: `*${botName}*`,
-          buttons: buttonsntilink,
-          headerType: 4,
-        };
-        await Chisato.sendMessage(m.from, bmffg, { quoted: m });
-}
-break
-*/
-
-
-	
-
-
-		
 
    case 'antilinkyoutubevideo': case 'antilinkyoutubevid': case 'antilinkytvid': {
     if (isBan) return reply(mess.banned)	 			
@@ -2806,13 +3369,13 @@ break
  if (AntiLinkYoutubeVid) return replay('Already activated')
  ntilinkytvid.push(from)
  replay('Activated youtube video antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkYoutubeVid) return replay('Already deactivated')
  let off = ntilinkytvid.indexOf(from)
@@ -2823,12 +3386,12 @@ break
    { buttonId: `${prefix}antilinkyoutubevideo on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkyoutubevideo off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
    }
    }
    break
-		
-		
+
+
 
      case 'antilinkyoutubech': case 'antilinkyoutubechannel': case 'antilinkytch': {
     if (isBan) return reply(mess.banned)	 			
@@ -2840,13 +3403,13 @@ break
  if (AntiLinkYoutubeChannel) return replay('Already activated')
  ntilinkytch.push(from)
  replay('Activated youtube channel antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkYoutubeChannel) return replay('Already deactivated')
  let off = ntilinkytch.indexOf(from)
@@ -2857,7 +3420,7 @@ break
    { buttonId: `${prefix}antilinkyoutubech on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkyoutubech off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
    }
    }
    break
@@ -2873,13 +3436,13 @@ break
  if (AntiLinkInstagram) return replay('Already activated')
  ntilinkig.push(from)
  replay('Activated instagram antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkInstagram) return replay('Already deactivated')
  let off = ntilinkig.indexOf(from)
@@ -2890,7 +3453,7 @@ break
    { buttonId: `${prefix}antilinkinstagram on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkinstagram off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
    }
    }
    break
@@ -2905,13 +3468,13 @@ break
  if (AntiLinkFacebook) return replay('Already activated')
  ntilinkfb.push(from)
  replay('Activated facebook antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkFacebook) return replay('Already deactivated')
  let off = ntilinkfb.indexOf(from)
@@ -2922,7 +3485,7 @@ break
    { buttonId: `${prefix}antilinkfacebook on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkfacebook off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off `, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off `, `${global.BotName}`, m)
    }
    }
    break
@@ -2938,13 +3501,13 @@ break
  if (AntiLinkTelegram) return replay('Already activated')
  ntilinktg.push(from)
  replay('Activated telegram antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkTelegram) return replay('Already deactivated')
  let off = ntilinkig.indexOf(from)
@@ -2955,7 +3518,7 @@ break
    { buttonId: `${prefix}antilinktelegram on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinktelegram off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off `, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off `, `${global.BotName}`, m)
    }
    }
    break
@@ -2971,13 +3534,13 @@ break
  if (AntiLinkTiktok) return replay('Already activated')
  ntilinktt.push(from)
  replay('Activated tiktok antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkTiktok) return replay('Already deactivated')
  let off = ntilinktt.indexOf(from)
@@ -2988,7 +3551,7 @@ break
    { buttonId: `${prefix}antilinktiktok on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinktiktok off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
    }
    }
    break
@@ -3003,13 +3566,13 @@ break
  if (AntiLinkTwitter) return replay('Already activated')
  ntilinktwt.push(from)
  replay('Activated twitter antilink in this group !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkTwitter) return replay('Already deactivated')
  let off = ntilinktwt.indexOf(from)
@@ -3020,7 +3583,7 @@ break
    { buttonId: `${prefix}antilinktwt on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinktwt off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
    }
    }
    break
@@ -3036,13 +3599,13 @@ break
  if (AntiLinkTwitter) return replay('Already activated')
  ntilinkall.push(from)
  replay('Enabled all antilink !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiLinkAll) return replay('Already deactivated')
  let off = ntilinkall.indexOf(from)
@@ -3053,7 +3616,7 @@ break
    { buttonId: `${prefix}antilinkall on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkall off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
    }
    }
    break
@@ -3069,13 +3632,13 @@ break
  if (antiWame) return replay('Already activated')
  ntwame.push(from)
  replay('Activated antiwame !')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`*「  Warning  」*\`\`\`\n\nAntilink is enabled!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`*「  Warning  」*\`\`\`\n\nAntilink is enabled!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!antiWame) return replay('Already deactivated')
  let off = nttoxic.indexOf(from)
@@ -3086,13 +3649,13 @@ break
    { buttonId: `${prefix}antiwame on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antiwame off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
    }
    }
    break
 
 
-   case 'nsfw': {
+   case 'nsfw': case 'u18': case 'u13': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!m.isGroup) return replay(mess.grouponly)
@@ -3102,13 +3665,13 @@ break
  if (AntiNsfw) return replay('Bereits aktiviert')
  ntnsfw.push(from)
  replay('Aktivierte NSFW-Befehle!')
- var groupe = await  Chisato.groupMetadata(from)
+ var groupe = await Miku.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
-  Chisato.sendMessage(from, {text: `\`\`\`「 Notice 」\`\`\`\n\Die NSFW-Funktion (not safe for work) wurde in dieser Gruppe aktiviert, was bedeutet, dass jeder hier auf die Befehle für Erwachsene zugreifen kann!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ Miku.sendMessage(from, {text: `\`\`\`「 Notice 」\`\`\`\n\Die NSFW-Funktion (not safe for work) wurde in dieser Gruppe aktiviert, was bedeutet, dass jeder hier auf die Befehle für Erwachsene zugreifen kann!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!AntiNsfw) return replay('Already deactivated')
  let off = ntnsfw.indexOf(from)
@@ -3119,7 +3682,7 @@ break
    { buttonId: `${prefix}nsfw on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}nsfw off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await  Chisato.sendButtonText(m.chat, buttonsntnsfw, `Bitte klicken Sie auf die Schaltfläche unten\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
+   await Miku.sendButtonText(m.chat, buttonsntnsfw, `Bitte klicken Sie auf die Schaltfläche unten\n\nOn to enable\nOff to disable`, `${global.BotName}`, m)
    }
    }
    break
@@ -3129,7 +3692,7 @@ break
     if (isBan) return reply(mess.banned)	 			
 if (isBanChat) return reply(mess.bangc)
 if (!isCreator) return replay(mess.botowner)
-if (!args[0]) return replay(`Wählen Sie „add“ oder „del“ (zum Sperren hinzufügen, zum Entsperren löschen). Zum Beispiel: Antworten Sie mit *${prefix}ban add* auf den Benutzer, den Sie sperren möchten.`)
+if (!args[0]) return replay(`Wählen Sie „Hinzufügen“ oder „Entfernen“ (zum Sperren hinzufügen, zum Entsperren löschen). Zum Beispiel: Antworten Sie mit *${prefix}ban add* auf den Benutzer, den Sie sperren möchten.`)
 if (args[1]) {
 orgnye = args[1] + "@s.whatsapp.net"
 } else if (m.quoted) {
@@ -3159,27 +3722,35 @@ case 'listonline': case 'listaktif': case 'here':{
  let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
  let online = [...Object.keys(store.presences[id]), botNumber]
  let liston = 1
-  Chisato.sendText(m.chat, '  「 *Online Members* 」\n\n' + online.map(v => `${liston++} . @` + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+ Miku.sendText(m.chat, '  「 *Online Members* 」\n\n' + online.map(v => `${liston++} . @` + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
  }
  break
 
-
-		case'tagadmins': case 'admins': case 'admin': {
+ case 'ban': {
     if (isBan) return reply(mess.banned)	 			
- if (isBanChat) return reply(mess.bangc)
- if (!m.isGroup) return replay(mess.grouponly) 
-  Chisato.sendMessage(from, { react: { text: "🗿" , key: m.key }})
- if (!text) return replay(`*Bitte schreiben sie eine nachricht für die admins.*`)
- let teks = `*「 Tag Admins 」*
-  
- *Message : ${text}*\n\n`
- for (let mem of groupAdmins) {
- teks += `🗿 @${mem.split('@')[0]}\n`
- }
-  Chisato.sendMessage(m.chat, { text: teks, mentions: groupAdmins}, { quoted: m })
- }
- break
-		
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+if (!args[0]) return replay(`Select add or del (add to ban, del to unban), For Example: Reply *${prefix}ban add* to the user you want to ban.`)
+if (args[1]) {
+orgnye = args[1] + "@s.whatsapp.net"
+} else if (m.quoted) {
+orgnye = m.quoted.sender
+}
+const isBane = banUser.includes(orgnye)
+if (args[0] === "add") {
+if (isBane) return ads('Benutzer wurde bereits gesperrt.')
+banUser.push(orgnye)
+replay(`Der Benutzer wurde erfolgreich gesperrt`)
+} else if (args[0] === "del") {
+if (!isBane) return ads('Benutzer wurde bereits entbannt.')
+let delbans = banUser.indexOf(orgnye)
+banUser.splice(delbans, 1)
+replay(`Der Benutzer wurde erfolgreich entbannt.`)
+} else {
+replay("Error")
+}
+}
+break
 
 
 case 'happymod': {
@@ -3203,7 +3774,7 @@ case 'happymod': {
  buttons: buttons,
  headerType: 4
  }
-  Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+ Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
  })
  }
  break
@@ -3220,18 +3791,18 @@ case 'happymod': {
  for (let i of search.all) {
  teks += `Result No : ${no++}\n\nTitle : ${i.title}\n\nViews : ${i.views}\n\nDuration : ${i.timestamp}\n\nUploaded : ${i.ago}\n\nAuthor : ${i.author.name}\n\nUrl : ${i.url}\n\n\n-----------------------------------------------------------------------------\n\n\n`
  }
-  Chisato.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+ Miku.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
  }
  break
 
- case 'setname': case 'setsubject': {
+ case 'setname': case 'setsubject': case 'newname': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!m.isGroup) return replay(mess.grouponly)
  if (!isBotAdmins) return replay(mess.botadmin)
  if (!isAdmins && !isCreator) return replay(mess.useradmin)
  if (!text) return replay('Bitte geben Sie -setname <Neuer Gruppenname> ein, um diesen Gruppennamen zu ändern')
- await  Chisato.groupUpdateSubject(m.chat, text).then((res) => replay(mess.jobdone)).catch((err) => replay(jsonformat(err)))
+ await Miku.groupUpdateSubject(m.chat, text).then((res) => replay(mess.jobdone)).catch((err) => replay(jsonformat(err)))
  }
  break
 
@@ -3240,7 +3811,7 @@ case 'block': {
 if (isBanChat) return reply(mess.bangc)
      if (!isCreator) return reply(mess.botowner)
      let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await  Chisato.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+     await Miku.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
  }
  break
 
@@ -3249,7 +3820,7 @@ case 'unblock': {
 if (isBanChat) return reply(mess.bangc)
      if (!isCreator) return reply(mess.botowner)
      let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await  Chisato.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+     await Miku.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
  }
  break
 
@@ -3260,7 +3831,7 @@ if (isBanChat) return reply(mess.bangc)
  if (!isBotAdmins) return replay(mess.botadmin)
  if (!isAdmins && !isCreator) return replay(mess.useradmin)
  if (!text) return replay('Pls enter -setname <New Group Description>  to change this Group Description.')
- await  Chisato.groupUpdateDescription(m.chat, text).then((res) => replay(mess.jobdone)).catch((err) => replay(jsonformat(err)))
+ await Miku.groupUpdateDescription(m.chat, text).then((res) => replay(mess.jobdone)).catch((err) => replay(jsonformat(err)))
  }
  break
 
@@ -3273,43 +3844,71 @@ if (isBanChat) return reply(mess.bangc)
  if (!quoted) return replay(`Send/Reply Image With Caption ${prefix + command}`)
  if (!/image/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command} to change the Profile Pic of this group.`)
  if (/webp/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command} to change the Profile Pic of this group.`)
- let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
- await  Chisato.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
+ let media = await Miku.downloadAndSaveMediaMessage(quoted)
+ await Miku.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
  replay(mess.jobdone)
  }
  break
 
- case 'tag':
-case 'tagall':
-case 'all':
-case 'gutenmorgen':
-{
-  if (isBan) return reply(mess.banned);	 			
-  if (isBanChat) return reply(mess.bangc);
-  if (!m.isGroup) return reply(mess.grouponly);
-  if (!isAdmins && !isCreator) return reply(mess.useradmin);
-  let teks = `「 _Tag All_ 」
+ case 'tag': case 'tagall': case 'all': case 'evyo': case 'everyone':{
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly)
+ if (!isAdmins && !isCreator) return replay(mess.useradmin)
+ let teks = `「 _Tag All_ 」
   
-*Message : ${args.join(" ") ? args.join(" ") : 'no message'}*\n\n`;
-  for (let mem of participants) {
-    teks += `» @${mem.id.split('@')[0]}\n`;
-  }
-   Chisato.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m });
-}
-break;
+ *Message : ${args.join(" ") ? args.join(" ") : 'no message'}*\n\n`
+ for (let mem of participants) {
+ teks += `» @${mem.id.split('@')[0]}\n`
+ }
+ Miku.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+ }
+ break
 
+
+case'admin': case 'tgad': case 'tad': case 'ta': case 'alladmin': case 'aat': {
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly)
+ if (!text) return replay(`*Please quote or write a meaningful message to tag admins to*`)
+ let teks = `*「 Tag Admins 」*
+  
+ *Message : ${text}*\n\n`
+ for (let mem of groupAdmins) {
+ teks += `🤴 @${mem.split('@')[0]}\n`
+ }
+ Miku.sendMessage(m.chat, { text: teks, mentions: groupAdmins}, { quoted: m })
+ }
+ break
 
 
  case 'hidetag': {
-  if (isBan) return reply(mess.banned);
-  if (isBanChat) return reply(mess.bangc);
-  if (!m.isGroup) return reply(mess.grouponly);
-  if (!isAdmins && !isCreator) return reply(mess.useradmin);
-   Chisato.sendMessage(m.chat, { text : args.join(" ") ? args.join(" ") : '' , mentions: participants.map(a => a.id)}, { quoted: m });
-  break;
-}
+    if (isBan) return reply(mess.banned)	 			
+ if (isBanChat) return reply(mess.bangc)
+ if (!m.isGroup) return replay(mess.grouponly)
+ if (!isAdmins && !isCreator) return replay(mess.useradmin)
+ Miku.sendMessage(m.chat, { text : args.join(" ") ? args.join(" ") : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+ }
+ break
 
-		
+     case 'purge':{
+        if (isBan) return reply(mess.banned)	 			
+     if (isBanChat) return reply(mess.bangc)
+     if (!m.isGroup) return replay(mess.grouponly)
+     if (!isBotAdmins) return replay(mess.botadmin)
+     if (!isAdmins && !isCreator) return replay(mess.useradmin)
+
+        const delay = time => new Promise(res=>setTimeout(res,time));
+
+        let users = (await Miku.fetchGroupMetadataFromWA(m.chat)).participants.map(u => u.jid)
+        for (let user of users){
+
+            await Miku.groupParticipantsUpdate(m.chat, [user], 'remove')
+            await delay(3000)
+        }
+    }
+     break
+
 case 'purge':{mess
     if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
@@ -3319,11 +3918,12 @@ case 'purge':{mess
 const delay = time => new Promise(res=>setTimeout(res,time));
 let mentioned = participants.map(v => v.jid)
       for (let member of mentioned) {     
-      Chisato.groupParticipantsUpdate(m.chat, [member], 'remove')
+      Miku.groupParticipantsUpdate(m.chat, [member], 'remove')
       }
     }
 
-    break   
+    break
+
 
 
 
@@ -3347,8 +3947,6 @@ let mentioned = participants.map(v => v.jid)
             randomxx = 100
         } else if (random_length == 3) {
             randomxx = 1000
-        } else if (random_length == 4) {
-            randomxx = 10000
         }
         var nomerny = `*『 Liste der WhatsApp-Nummern 』*\n\n`
         var nobio = `\n*Bio:* || \nHey there! I am using WhatsApp.\n`
@@ -3369,11 +3967,11 @@ let mentioned = participants.map(v => v.jid)
         } else if (random_length == 4) {
         rndm = `${status1}${status2}${status3}${dom4}`
         }
-        var anu = await  Chisato.onWhatsApp(`${number0}${i}${number1}@s.whatsapp.net`);
+        var anu = await Miku.onWhatsApp(`${number0}${i}${number1}@s.whatsapp.net`);
         var anuu = anu.length !== 0 ? anu : false
         try {
         try {
-        var anu1 = await  Chisato.fetchStatus(anu[0].jid)
+        var anu1 = await Miku.fetchStatus(anu[0].jid)
         } catch {
         var anu1 = '401'
         }
@@ -3396,13 +3994,13 @@ let mentioned = participants.map(v => v.jid)
 
 
 
- case 'grouplink': case 'gclink': {
+ case 'grouplink': case 'gclink': case 'grlink': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!m.isGroup) return replay(mess.grouponly)
  if (!isBotAdmins) return replay(mess.botadmin)
- let response = await  Chisato.groupInviteCode(m.chat)
-  Chisato.sendMessage(m.chat, {text:`*Group Name:* *${groupMetadata.subject}* \n\n*Group Link :* \nhttps://chat.whatsapp.com/${response}l`, "contextInfo": {
+ let response = await Miku.groupInviteCode(m.chat)
+ Miku.sendMessage(m.chat, {text:`*Group Name:* *${groupMetadata.subject}* \n\n*Group Link :* \nhttps://chat.whatsapp.com/${response}l`, "contextInfo": {
  mimetype: "image/jpeg",
  text: `${global.OwnerName}`,
  "forwardingScore": 1000000000,
@@ -3433,21 +4031,21 @@ let mentioned = participants.map(v => v.jid)
     if (!m.isGroup) return replay(mess.grouponly)
     if (!isBotAdmins) return replay(mess.botadmin)
     if (!isAdmins && !isCreator) return replay(mess.useradmin)
-     Chisato.groupRevokeInvite(m.chat)
+    Miku.groupRevokeInvite(m.chat)
     }
     break
 
 
-    case 'group': case 'hzm': {
+    case 'group': case 'grup': {
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
      if (!m.isGroup) return replay(mess.grouponly)
      if (!isBotAdmins) return replay(mess.botadmin)
      if (!isAdmins && !isCreator) return replay(mess.useradmin)
      if (args[0] === 'close'){
-     await  Chisato.groupSettingUpdate(m.chat, 'announcement').then((res) => replay(`Gruppe wurde geschlossen!`)).catch((err) => replay(jsonformat(err)))
+     await Miku.groupSettingUpdate(m.chat, 'announcement').then((res) => replay(`Gruppe wurde geschlossen!`)).catch((err) => replay(jsonformat(err)))
      } else if (args[0] === 'open'){
-     await  Chisato.groupSettingUpdate(m.chat, 'not_announcement').then((res) => replay(`Gruppe wurde geöffnet!`)).catch((err) => replay(jsonformat(err)))
+     await Miku.groupSettingUpdate(m.chat, 'not_announcement').then((res) => replay(`Gruppe wurde geöffnet!`)).catch((err) => replay(jsonformat(err)))
      } else {
      let buttons = [
      { buttonId: `${prefix}group open`, buttonText: { displayText: 'Open' }, type: 1 },
@@ -3461,68 +4059,68 @@ let mentioned = participants.map(v => v.jid)
      buttons: buttons,
      headerType: 4
      }
-      Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+     Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
      }
      }
      break
 
-     case 'promote': {
+     case 'promote': case 'promoteuser': case 'puser': {
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
      if (!m.isGroup) return replay(mess.grouponly)
      if (!isBotAdmins) return replay(mess.botadmin)
      if (!isAdmins && !isCreator) return replay(mess.useradmin)
      let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await  Chisato.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => replay(jsonformat(res))).catch((err) => replay(jsonformat(err)))
+     await Miku.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => replay(jsonformat(res))).catch((err) => replay(jsonformat(err)))
      }
      break
 
-     case 'demote': {
+     case 'demote': case 'demoteuser': case 'duser': {
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
      if (!m.isGroup) return replay(mess.grouponly)
      if (!isBotAdmins) return replay(mess.botadmin)
      if (!isAdmins && !isCreator) return replay(mess.useradmin)
      let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await  Chisato.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => replay(jsonformat(res))).catch((err) => replay(jsonformat(err)))
+     await Miku.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => replay(jsonformat(res))).catch((err) => replay(jsonformat(err)))
      }
      break
 
-     case 'remove': case 'geh': case 'disrespectet': case 'tschüß': case 'hinfort': case 'flieg': case 'tschüss':{
+     case 'remove': case 'geh': case 'disrespectet': case 'tschüß': case 'hinfort': case 'flieg': case 'tschüss': case 'gehe': case 'fliege' :{
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
      if (!m.isGroup) return replay(mess.grouponly)
      if (!isBotAdmins) return replay(mess.botadmin)
      if (!isAdmins && !isCreator) return replay(mess.useradmin)
      let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await  Chisato.groupParticipantsUpdate(m.chat, [users], 'remove')
+     await Miku.groupParticipantsUpdate(m.chat, [users], 'remove')
      }
      break
 		
 		
      case 'add':{     			
-     if (!isCreator) return replay(mess.botowner)
      if (!m.isGroup) return replay(mess.grouponly)
      if (!isBotAdmins) return replay(mess.botadmin)
      let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
      if (users.length == 0) return replay(`Bitte geben Sie die Nummer der Person ein, die Sie zu dieser Gruppe hinzufügen möchten`)
-     await  Chisato.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => replay(`Benutzer erfolgreich hinzugefügt!`)).catch((err) => replay(`Cannot add that user to this group!`))
+     await Miku.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => replay(`Benutzer erfolgreich hinzugefügt!`)).catch((err) => replay(`Cannot add that user to this group!`))
      }
      break
 
 
-     case 'join': {
+     case 'join': case 'ajoin': case 'mjoin': case 'ojoin': {
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
+     if (!isCreator) return replay(mess.botowner)
      if (!args[0]) return replay(`Where's the link?`)
      vdd = args[0]
      let vcc = vdd.split("https://chat.whatsapp.com/")[1]
      if (!vcc) return replay("Link invalid!")
      if (isCreator) {
-     await  Chisato.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+     await Miku.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
      replay("Succes!")
      } else {
-      Chisato.query({
+     Miku.query({
      tag: "iq",
      attrs: {
      type: "get",
@@ -3532,11 +4130,11 @@ let mentioned = participants.map(v => v.jid)
      content: [{ tag: "invite", attrs: { code: vcc } }]
      }).then(async(res) => {
      sizny = res.content[0].attrs.size
-     if (sizny < 5) {
+     if (sizny < 20) {
      teks = `Tut mir leid, munimun 20 Mitglieder sind in einer Gruppe erforderlich, um einen Bot hinzuzufügen!`
      sendOrder(m.chat, teks, "667140254502463", fs.readFileSync('./Assets/pic7.jpg'), `${global.packname}`, `${global.BotName}`, "4915212908434@s.whatsapp.net", "AR6NCY8euY5cbS8Ybg5Ca55R8HFSuLO3qZqrIYCT7hQp0g==", "99999999999999999999")
      } else if (sizny > 20) {
-     await  Chisato.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+     await Miku.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
      replay("Joined !")
      } else {
      replay("Error")
@@ -3551,14 +4149,14 @@ let mentioned = participants.map(v => v.jid)
         if (isBan) return reply(mess.banned)	 			
      if (isBanChat) return reply(mess.bangc)
      if (!args.join(" ")) return reply(`Example: ${prefix + command} 10`)
-     media = await  Chisato.downloadAndSaveMediaMessage(quoted, "volume")
+     media = await Miku.downloadAndSaveMediaMessage(quoted, "volume")
      if (isQuotedAudio) {
      rname = getRandom('.mp3')
      exec(`ffmpeg -i ${media} -filter:a volume=${args[0]} ${rname}`, (err, stderr, stdout) => {
      fs.unlinkSync(media)
      if (err) return reply('Error!')
      jadie = fs.readFileSync(rname)
-      Chisato.sendMessage(from, {audio:jadie, mimetype: 'audio/mp4', ptt: true}, {quoted: m})
+     Miku.sendMessage(from, {audio:jadie, mimetype: 'audio/mp4', ptt: true}, {quoted: m})
      fs.unlinkSync(rname)
      })
      } else if (isQuotedVideo) {
@@ -3567,7 +4165,7 @@ let mentioned = participants.map(v => v.jid)
      fs.unlinkSync(media)
      if (err) return reply('Error!')
      jadie = fs.readFileSync(rname)
-      Chisato.sendMessage(from, {video:jadie, mimetype: 'video/mp4'}, {quoted: m})
+     Miku.sendMessage(from, {video:jadie, mimetype: 'video/mp4'}, {quoted: m})
      fs.unlinkSync(rname)
      })
      } else {
@@ -3581,14 +4179,14 @@ let mentioned = participants.map(v => v.jid)
         if (isBanChat) return reply(mess.bangc)
         if (!args.join(" ")) return reply(`Example: ${prefix + command} 10`)
         var req = args.join(' ')
-        media = await  Chisato.downloadAndSaveMediaMessage(quoted, "tempo")
+        media = await Miku.downloadAndSaveMediaMessage(quoted, "tempo")
         if (isQuotedAudio) {
         ran = getRandom('.mp3')
         exec(`ffmpeg -i ${media} -filter:a "atempo=1.0,asetrate=${req}" ${ran}`, (err, stderr, stdout) => {
         fs.unlinkSync(media)
         if (err) return reply('Error!')
         hah = fs.readFileSync(ran)
-         Chisato.sendMessage(from, {audio:hah, mimetype:'audio/mp4', ptt:true}, {quoted:m})
+        Miku.sendMessage(from, {audio:hah, mimetype:'audio/mp4', ptt:true}, {quoted:m})
         fs.unlinkSync(ran)
         })
         } else if (isQuotedVideo) {
@@ -3597,7 +4195,7 @@ let mentioned = participants.map(v => v.jid)
         fs.unlinkSync(media)
         if (err) return reply('Error!')
         hah = fs.readFileSync(ran)
-         Chisato.sendMessage(from, {video:hah, mimetype:'video/mp4'}, {quoted:m})
+        Miku.sendMessage(from, {video:hah, mimetype:'video/mp4'}, {quoted:m})
         fs.unlinkSync(ran)
         })
         } else {
@@ -3623,13 +4221,13 @@ let mentioned = participants.map(v => v.jid)
             if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
             if (/audio/.test(mime)) {
             reply(mess.waiting)
-            let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
+            let media = await Miku.downloadAndSaveMediaMessage(quoted)
             let ran = getRandom('.mp3')
             exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
             fs.unlinkSync(media)
             if (err) return reply(err)
             let buff = fs.readFileSync(ran)
-             Chisato.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+            Miku.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
             fs.unlinkSync(ran)
             })
             } else reply(`Pls mention any audio you want to modify _${prefix + command}_`)
@@ -3652,23 +4250,23 @@ reply(`\`\`\`「 _Calculator Tool_ 」\`\`\`\n\n*Input :* ${qsd}\n*Calculation R
 }
 break
 
-case 'public': {
+case 'public': case 'amode': case 'pmode': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!isCreator) return reply(mess.owner)
-  Chisato.public = true
+ Miku.public = true
  reply('Ich bin jetzt öffentlich zugänglich!')
-  Chisato.setStatus(`Mode : Public`)
+ Miku.setStatus(`Mode : Public`)
  }
  break
  
- case 'self': {
+ case 'self': case 'omode': case 'smode': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!isCreator) return reply(mess.botowner)
-  Chisato.public = false
+ Miku.public = false
  reply('Nur der Besitzer kann mich jetzt benutzen!')
-  Chisato.setStatus(`Mode : Self`)
+ Miku.setStatus(`Mode : Self`)
  }
  break
 
@@ -3679,13 +4277,13 @@ if (isBanChat) return reply(mess.bangc)
 if (!m.quoted) return reply('Reply Image')
 if (!/webp/.test(mime)) return reply(`Antwortaufkleber mit Bildunterschrift *${prefix + command}*`)
 reply(mess.waiting)
-let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
+let media = await Miku.downloadAndSaveMediaMessage(quoted)
 let ran = await getRandom('.png')
 exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 fs.unlinkSync(media)
 if (err) throw err
 let buffer = fs.readFileSync(ran)
- Chisato.sendMessage(m.chat, { image: buffer }, { quoted: m})
+Miku.sendMessage(m.chat, { image: buffer }, { quoted: m})
 fs.unlinkSync(ran)
 })
 }
@@ -3698,9 +4296,9 @@ case 'tomp4': case 'tovideo': {
  if (!/webp/.test(mime)) return reply(`Antwortaufkleber mit Bildunterschrift *${prefix + command}*`)
  reply(mess.waiting)
  let { webp2mp4File } = require('./lib/uploader')
- let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
+ let media = await Miku.downloadAndSaveMediaMessage(quoted)
  let webpToMp4 = await webp2mp4File(media)
- await  Chisato.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Here it is...' } }, { quoted: m })
+ await Miku.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Here it is...' } }, { quoted: m })
  await fs.unlinkSync(media)
  }
  break
@@ -3714,7 +4312,7 @@ case 'toaud': case 'toaudio': {
  let media = await quoted.download()
  let { toAudio } = require('./lib/converter')
  let audio = await toAudio(media, 'mp4')
-  Chisato.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+ Miku.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
  }
 break
 
@@ -3728,7 +4326,7 @@ case 'tomp3': {
  let media = await quoted.download()
  let { toAudio } = require('./lib/converter')
  let audio = await toAudio(media, 'mp4')
-  Chisato.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${global.BotName} (${m.id}).mp3`}, { quoted : m })
+ Miku.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${global.BotName} (${m.id}).mp3`}, { quoted : m })
  }
 break
 
@@ -3740,9 +4338,9 @@ case 'togif': case 'getgif':{
  if (!/webp/.test(mime)) return reply(`Antwortaufkleber mit Bildunterschrift *${prefix + command}*`)
  reply(mess.wait)
  let { webp2mp4File } = require('./lib/uploader')
- let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
+ let media = await Miku.downloadAndSaveMediaMessage(quoted)
  let webpToMp4 = await webp2mp4File(media)
- await  Chisato.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Konvertiert von Webp zu Gif' }, gifPlayback: true }, { quoted: m })
+ await Miku.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Konvertiert von Webp zu Gif' }, gifPlayback: true }, { quoted: m })
  await fs.unlinkSync(media)
  }
  break
@@ -3753,7 +4351,7 @@ case 'togif': case 'getgif':{
  if (isBanChat) return reply(mess.bangc)
  reply(mess.wait)
  let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
- let media = await  Chisato.downloadAndSaveMediaMessage(quoted)
+ let media = await Miku.downloadAndSaveMediaMessage(quoted)
  if (/image/.test(mime)) {
  let anu = await TelegraPh(media)
  reply(util.format(anu))
@@ -3765,96 +4363,16 @@ case 'togif': case 'getgif':{
  }
  break
 
-		case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas':
-case 'deepsea': case 'scifi': case 'rainbow': case 'waterpipe': case 'spooky': 
-case 'pencil': case 'circuit': case 'discovery': case 'metalic': case 'fiction': case 'demon': 
-case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dstone': 
-case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
-case 'watercolor': case 'multicolor': case 'neondevil': case 'underwater': case 'graffitibike':
- case 'snow': case 'cloud': case 'honey': case 'ice': case 'fruitjuice': case 'biscuit': case 'wood': 
-case 'chocolate': case 'strawberry': case 'matrix': case 'blood': case 'dropwater': case 'toxic': 
-case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': case 'joker': case 'wicker':
- case 'firework': case 'skeleton': case 'blackpink': case 'sand': case 'glue': case '1917': case 'leaves': {
-    
-    if (!q) return reply(`Example : ${prefix + command} ${global.OwnerName}`)
-    if (isBan) return reply(mess.banned)
-    if (isBanChat) return reply(mess.bangc)
-     
-    reply(mess.waiting)	
-
-             let link
-             if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
-             if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
-             if (/3dchristmas/.test(command)) link = 'https://textpro.me/3d-christmas-text-effect-by-name-1055.html'
-             if (/sparklechristmas/.test(command)) link = 'https://textpro.me/sparkles-merry-christmas-text-effect-1054.html'
-             if (/deepsea/.test(command)) link = 'https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html'
-             if (/scifi/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
-             if (/rainbow/.test(command)) link = 'https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html'
-             if (/waterpipe/.test(command)) link = 'https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html'
-             if (/spooky/.test(command)) link = 'https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html'
-             if (/pencil/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
-             if (/circuit/.test(command)) link = 'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
-             if (/discovery/.test(command)) link = 'https://textpro.me/create-space-text-effects-online-free-1042.html'
-             if (/metalic/.test(command)) link = 'https://textpro.me/creat-glossy-metalic-text-effect-free-online-1040.html'
-             if (/fiction/.test(command)) link = 'https://textpro.me/create-science-fiction-text-effect-online-free-1038.html'
-             if (/demon/.test(command)) link = 'https://textpro.me/create-green-horror-style-text-effect-online-1036.html'
-             if (/transformer/.test(command)) link = 'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
-             if (/berry/.test(command)) link = 'https://textpro.me/create-berry-text-effect-online-free-1033.html'
-             if (/thunder/.test(command)) link = 'https://textpro.me/online-thunder-text-effect-generator-1031.html'
-             if (/magma/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
-             if (/3dstone/.test(command)) link = 'https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html'
-             if (/neonlight/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
-             if (/glitch/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
-             if (/harrypotter/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
-             if (/brokenglass/.test(command)) link = 'https://textpro.me/broken-glass-text-effect-free-online-1023.html'
-             if (/papercut/.test(command)) link = 'https://textpro.me/create-art-paper-cut-text-effect-online-1022.html'
-             if (/watercolor/.test(command)) link = 'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
-             if (/multicolor/.test(command)) link = 'https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html'
-             if (/neondevil/.test(command)) link = 'https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html'
-             if (/underwater/.test(command)) link = 'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
-             if (/graffitibike/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
-             if (/snow/.test(command)) link = 'https://textpro.me/create-snow-text-effects-for-winter-holidays-1005.html'
-             if (/cloud/.test(command)) link = 'https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html'
-             if (/honey/.test(command)) link = 'https://textpro.me/honey-text-effect-868.html'
-             if (/ice/.test(command)) link = 'https://textpro.me/ice-cold-text-effect-862.html'
-             if (/fruitjuice/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
-             if (/biscuit/.test(command)) link = 'https://textpro.me/biscuit-text-effect-858.html'
-             if (/wood/.test(command)) link = 'https://textpro.me/wood-text-effect-856.html'
-             if (/chocolate/.test(command)) link = 'https://textpro.me/chocolate-cake-text-effect-890.html'
-             if (/strawberry/.test(command)) link = 'https://textpro.me/strawberry-text-effect-online-889.html'
-             if (/matrix/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
-             if (/blood/.test(command)) link = 'https://textpro.me/horror-blood-text-effect-online-883.html'
-             if (/dropwater/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
-             if (/toxic/.test(command)) link = 'https://textpro.me/toxic-text-effect-online-901.html'
-             if (/lava/.test(command)) link = 'https://textpro.me/lava-text-effect-online-914.html'
-             if (/rock/.test(command)) link = 'https://textpro.me/rock-text-effect-online-915.html'
-             if (/bloodglas/.test(command)) link = 'https://textpro.me/blood-text-on-the-frosted-glass-941.html'
-             if (/hallowen/.test(command)) link = 'https://textpro.me/halloween-fire-text-effect-940.html'
-             if (/darkgold/.test(command)) link = 'https://textpro.me/metal-dark-gold-text-effect-online-939.html'
-             if (/joker/.test(command)) link = 'https://textpro.me/create-logo-joker-online-934.html'
-             if (/wicker/.test(command)) link = 'https://textpro.me/wicker-text-effect-online-932.html'
-             if (/firework/.test(command)) link = 'https://textpro.me/firework-sparkle-text-effect-930.html'
-             if (/skeleton/.test(command)) link = 'https://textpro.me/skeleton-text-effect-online-929.html'
-             if (/blackpink/.test(command)) link = 'https://textpro.me/create-blackpink-logo-style-online-1001.html'
-             if (/sand/.test(command)) link = 'https://textpro.me/write-in-sand-summer-beach-free-online-991.html'
-             if (/glue/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
-             if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
-             if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
-             let anu = await maker.textpro(link, q)
-        Chisato.sendMessage(m.chat, { image: { url: anu }, caption: `Hier ist es...  🪄` }, { quoted: m })
-             }
-
-break		
 
  case 'owner': case 'creator': case 'mod': case 'mods':{
-     Chisato.sendContact(m.chat, global.Owner, m)
+    Miku.sendContact(m.chat, global.Owner, m)
     }
     break
 
 case 'translate': case 'trans': {
     if (isBan) return reply(mess.banned)
     if (!args.join(" ")) return replay("Pls enter any text to translate")
-    tes = await fetchJson (`https://megayaa.herokuapp.com/api/translate?to=de&kata=${args.join(" ")}`)
+    tes = await fetchJson (`https://megayaa.herokuapp.com/api/translate?to=en&kata=${args.join(" ")}`)
     Infoo = tes.info
     Detek = tes.translate
     replay(`Input : ${Detek}\nTranslation Results : ${Infoo}`)
@@ -3884,13 +4402,13 @@ buttons: buttons,
 headerType: 4,
 
 }
- Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
 })
 }
 break
 
 
-case 'google': case 'search': {
+case 'google': case 'search':case 'suche': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  if (!args[0]) return reply(`Example: ${prefix + command} <query>\nUses : ${prefix + command} apa arti cinta`)
@@ -3937,7 +4455,7 @@ case 'google': case 'search': {
  buttons: buttons,
  headerType: 4
  }
-  Chisato.sendMessage(from, buttonMessage, {quoted:m})
+ Miku.sendMessage(from, buttonMessage, {quoted:m})
  })
  } catch (err) {
  reply("An Error Occured!")
@@ -3949,9 +4467,9 @@ case 'google': case 'search': {
     if (isBan) return reply(mess.banned)	 			
 if (isBanChat) return reply(mess.bangc)
 if (args[0] === "mp4") {
- Chisato.sendMessage(from, {video:{url:args[1]}, caption:'Here it is...', mimetype:'video/mp4'}, {quoted:m})
+Miku.sendMessage(from, {video:{url:args[1]}, caption:'Here it is...', mimetype:'video/mp4'}, {quoted:m})
 } else if (args[0] === "jpg") {
- Chisato.sendMessage(from, {image:{url:args[1]}, caption:'Here it is...'}, {quoted:m})
+Miku.sendMessage(from, {image:{url:args[1]}, caption:'Here it is...'}, {quoted:m})
 } else {
 reply("Error! ")
 }
@@ -3963,7 +4481,7 @@ case 'mp4' : {
 if (isBanChat) return reply(mess.bangc)
 if (!args[0]) return reply(`Pls provide link!`)
 try {
- Chisato.sendMessage(from, {video:{url:args[0]}, caption:"Succes!", contextInfo:{externalAdReply:{
+Miku.sendMessage(from, {video:{url:args[0]}, caption:"Succes!", contextInfo:{externalAdReply:{
 title:`${global.BotName}`,
 body:`${global.OwnerName}`,
 thumbnail: BotLogo,
@@ -3982,24 +4500,13 @@ case 'jpeg': {
 if (isBanChat) return reply(mess.bangc)
  if (!args[0]) return reply(`Please provide link!`)
  try {
-  Chisato.sendMessage(from, {image:{url:args[0]}, caption:"Success!"}, {quoted:m})
+ Miku.sendMessage(from, {image:{url:args[0]}, caption:"Success!"}, {quoted:m})
  } catch {
  reply("Link error")
  }
  }
  break
-	
-case 'bctext2': case 'broadcasttext2': case 'bc2':
-  if (!isCreator) throw mess.owner
-  if (!text) throw `Enter text`
-    var data = await store.chats.all()
- for (let i of data) {
-  Chisato.sendMessage(i.id, {text: `${global.OwnerName}'s Broadcast\n\nMessage : ${q}` })
-                               await sleep(1000)
-               }
-      break
 
-		
  case 'igtv': {	            
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
@@ -4008,7 +4515,7 @@ case 'bctext2': case 'broadcasttext2': case 'bc2':
                  if (!isUrl(args[0]) && !args[0].includes('instagram.com')) return reply('*Invalid link!*')
                  instagramdlv3(`${text}`).then(async (data) => {            
                  var buf = await getBuffer(data[0].thumbnail)        
-                  Chisato.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${BotName}`}, { quoted: m })
+                 Miku.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${BotName}`}, { quoted: m })
                  }).catch((err) => {
                      reply(mess.error)
                  })
@@ -4030,9 +4537,9 @@ if (isBanChat) return reply(mess.bangc)
                     txt += `*URL :* ${data.url}\n\n`
                     txt += `*${BotName}*`
                 buf = await getBuffer(data.thumbnail)    
-                 Chisato.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })
+                Miku.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })
                 for (let i of data.medias) {
-                 Chisato.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*${text}*`}, { quoted: m })
+                Miku.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*${text}*`}, { quoted: m })
                 }
                 }).catch((err) => {
                     reply(mess.error)
@@ -4046,7 +4553,7 @@ if (isBanChat) return reply(mess.bangc)
              if (!text) return reply(`Please provide link!`)
                 if (!isUrl(args[0]) && !args[0].includes('twitter.com')) return reply(`*Invalid link!*`)
                 xfarrapi.Twitter(`${text}`).then(async (data) => {
-                 Chisato.sendMessage(m.chat, { audio: { url: data.medias[1].url }, mimetype: 'audio/mp4'}, { quoted: m })
+                Miku.sendMessage(m.chat, { audio: { url: data.medias[1].url }, mimetype: 'audio/mp4'}, { quoted: m })
                 }).catch((err) => {
                     reply(mess.reply)
                 })
@@ -4077,52 +4584,12 @@ buttons: buttons,
 headerType: 4,
 
 }
- Chisato.sendMessage(from, buttonMessage, {quoted:m})
+Miku.sendMessage(from, buttonMessage, {quoted:m})
 } catch {
 reply("Link Error!")
 }
 }
 break
-
-case 'gasm':
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-    if (!m.isGroup) return replay(mess.grouponly)
-    if (!AntiNsfw) return reply(mess.nonsfw)
-reply(mess.waiting)						
- waifudd = await axios.get(`https://nekos.life/api/v2/img/${command}`)
-                           var wbuttsss = [
-        {buttonId: `${prefix}gasm`, buttonText: {displayText: `>>`}, type: 1},
-        ]
-      let buttonsssMessages = {
-       image: {url:waifudd.data.url},
-       caption:  `Here it is...`,
-      footer: `${global.BotName}`,
-      buttons: wbuttsss,
-      headerType: 4
-      }     
-            await Chisato.sendMessage(m.chat, buttonsssMessages,{ quoted:m }).catch(err => {
-                    return('Error!')
-                })
-break  
-
-		
-case 'pornhub':{
-if (isBan) return reply(mess.banned)
-if (isBanChat) return reply(mess.bangc)
-    Chisato.sendMessage(from, { react: { text: "🪄" , key: m.key }})
-if(!q) return reply(`Example: ${prefix + command} Oh|No`)
-reply(mess.waiting)		
-
-  inilogo4 = args.join(" ")
-inilogo9 = args.join(" ")
-   var logo4 = inilogo4.split('|')[0]
-var logo9 = inilogo9.split('|')[1]
-    let anu = await textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [`${logo4}`,`${logo9}`])
-console.log(anu)
-Chisato.sendMessage(from,{image:{url:anu}, caption:"Here you go!"},{quoted:m})
-}
-break	
 
 case 'twddlxx': {
     if (isBan) return reply(mess.banned)	 			
@@ -4138,7 +4605,7 @@ case 'twddlxx': {
  headerType: 4,
 
  }
-  Chisato.sendMessage(from, buttonMessage, {quoted:m})
+ Miku.sendMessage(from, buttonMessage, {quoted:m})
  }
  break
 
@@ -4155,9 +4622,9 @@ case 'twddlxx': {
                      txt += `*Description:* ${data.description}\n`
                      txt += `*URL :* ${text}\n\n`
                  buf = await getBuffer(data.thumbnail)    
-                  Chisato.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })         
+                 Miku.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })         
                  for (let i of data.result) {     
-                  Chisato.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*Quality :* ${i.quality}`}, { quoted: m })
+                 Miku.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*Quality :* ${i.quality}`}, { quoted: m })
                  }          
                  }).catch((err) => {
                      reply(mess.error)
@@ -4172,7 +4639,7 @@ if (isBanChat) return reply(mess.bangc)
                   if (!isUrl(args[0]) && !args[0].includes('facebook.com')) return reply(`Invalid link!`)
   let noh = require('@bochilteam/scraper')                
   noh.savefrom(`${text}`).then(async (anu) => {  
-   Chisato.sendMessage(m.chat, { audio: { url: anu.url[0].url }, mimetype: 'audio/mp4' }, { quoted: m })      
+  Miku.sendMessage(m.chat, { audio: { url: anu.url[0].url }, mimetype: 'audio/mp4' }, { quoted: m })      
                 }).catch((err) => {
                     reply(mess.error)
                 })
@@ -4202,7 +4669,7 @@ buttons: buttons,
 headerType: 4,
 
 }
- Chisato.sendMessage(from, buttonMessage, {quoted:m})
+Miku.sendMessage(from, buttonMessage, {quoted:m})
 } catch {
 reply("Link invalid!")
 }
@@ -4223,7 +4690,7 @@ case 'fbddlxx': {
  headerType: 4,
 
  }
-  Chisato.sendMessage(from, buttonMessage, {quoted:m})
+ Miku.sendMessage(from, buttonMessage, {quoted:m})
  }
  break
 
@@ -4233,7 +4700,7 @@ case 'fbddlxx': {
 if (!q) return reply('Bitte geben Sie den Link an !')
 reply(mess.wait)
 if (!q.includes('tiktok')) return reply(`Ungültiger Tiktok-Link!`)
- const musim_rambutan = await  ChisatoTiktok(`${q}`).catch(e => {
+ const musim_rambutan = await MikuTiktok(`${q}`).catch(e => {
 reply(mess.error) 
 } )
  console.log(musim_rambutan)
@@ -4251,7 +4718,7 @@ buttons: buttons,
 headerType: 4,
 
 }
- Chisato.sendMessage(from, buttonMessage, {quoted:m})
+Miku.sendMessage(from, buttonMessage, {quoted:m})
 }
 break
 
@@ -4261,12 +4728,12 @@ case 'tiktoknowm': case 'ttnowm': case 'ttv':{
 if (!q) return reply('Bitte geben Sie den Link an !')
 reply(mess.wait)
 if (!q.includes('tiktok')) return reply(`Das ist kein Tiktok-Link!`)
- const musim_rambutan = await  ChisatoTiktok(`${q}`).catch(e => {
+ const musim_rambutan = await MikuTiktok(`${q}`).catch(e => {
 reply(mess.error) 
 } )
  console.log(musim_rambutan)
  const mikutiktoknowm = musim_rambutan.result.nowatermark
-   Chisato.sendMessage(from, { video: { url: mikutiktoknowm }, caption: "Hier ist es..." }, { quoted: m })
+  Miku.sendMessage(from, { video: { url: mikutiktoknowm }, caption: "Hier ist es..." }, { quoted: m })
  }
 break
 
@@ -4277,12 +4744,12 @@ case 'ttaud':{
     if (isBanChat) return reply(mess.bangc)
 if (!q) return reply('Where is the audio?')
 if (!q.includes('tiktok')) return reply(`Das ist kein Tiktok-Link!`)
- const musim_rambutan = await  ChisatoTiktok(`${q}`).catch(e => {
+ const musim_rambutan = await MikuTiktok(`${q}`).catch(e => {
 reply(mess.error) 
 } )
  console.log(musim_rambutan)
  const mikutiktokaudio = musim_rambutan.result.nowatermark
-   Chisato.sendMessage(from, { audio: { url: mikutiktokaudio }, mimetype: 'audio/mp4' }, { quoted: m })
+  Miku.sendMessage(from, { audio: { url: mikutiktokaudio }, mimetype: 'audio/mp4' }, { quoted: m })
  }
 break
 
@@ -4290,13 +4757,13 @@ break
 
               
 
-case 'music': case 'play': case 'song': case 'ytplay': {
+case 'music': case 'play': case 'song': case 'ytplay': case 'spiele': {
     if (isBan) return reply(mess.banned)	 			
  if (isBanChat) return reply(mess.bangc)
  const YT=require('./lib/ytdlcore')
  const { isUrl, fetchBuffer } = require('./lib/Function')
 
- if(!text) return  Chisato.sendMessage(from,{text:"Bitte geben Sie den zu spielenden Songnamen ein!"},{quoted:m})
+ if(!text) return Miku.sendMessage(from,{text:"Bitte geben Sie den zu spielenden Songnamen ein!"},{quoted:m})
  let yts = require("yt-search")
  let search = await yts(text)
  let anu = search.videos[0]
@@ -4307,7 +4774,7 @@ case 'music': case 'play': case 'song': case 'ytplay': {
  ]
  let buttonMessage = {
  image: { url: anu.thumbnail },
- caption: `「  _ Chisato Youtube Player 2.0_  」
+ caption: `「  _Miku Youtube Player 2.0_  」
 
 *Titel :* ${anu.title}
 
@@ -4321,7 +4788,7 @@ case 'music': case 'play': case 'song': case 'ytplay': {
  headerType: 4,
 
  }
-  Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+ Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
  }
  break
 
@@ -4339,8 +4806,8 @@ case 'music': case 'play': case 'song': case 'ytplay': {
           return;
         }
         let infoYt = await ytdl.getInfo(urlYt);
-        //100 MIN
-        if (infoYt.videoDetails.lengthSeconds >= 180000) {
+        //30 MIN
+        if (infoYt.videoDetails.lengthSeconds >= 1800) {
           reply(`❌ Video too big!`);
           return;
         }
@@ -4363,7 +4830,7 @@ case 'music': case 'play': case 'song': case 'ytplay': {
         let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
         console.log("Audio downloaded ! Size: " + fileSizeInMegabytes);
         if (fileSizeInMegabytes <= 4000000) {
-             Chisato.sendMessage(
+            Miku.sendMessage(
              m.chat,
             {
               audio: fs.readFileSync(`./${randomName}`),
@@ -4417,7 +4884,7 @@ break
         let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
         console.log("Video downloaded ! Size: " + fileSizeInMegabytes);
         if (fileSizeInMegabytes <= 1000) {
-         Chisato.sendMessage(
+        Miku.sendMessage(
             m.chat,
             {
               video: fs.readFileSync(`./${randomName}`),
@@ -4438,7 +4905,7 @@ break
  if (!args[0]) return reply(mess.nolink)
 
  const YT=require('./lib/ytdlcore')
- if(!text) return  Chisato.sendMessage(from,{text:"Bitte geben Sie einen gültigen YouTube-Link an!"},{quoted:m})
+ if(!text) return Miku.sendMessage(from,{text:"Bitte geben Sie einen gültigen YouTube-Link an!"},{quoted:m})
  let yts = require("yt-search")
  let search = await yts(text)
  let anu = search.videos[0]
@@ -4449,7 +4916,7 @@ break
  ]
  let buttonMessage = {
  image: { url: anu.thumbnail },
- caption: `「  _ Chisato Youtube Downloader 2.0_  」
+ caption: `「  _Miku Youtube Downloader 2.0_  」
 
 *Title :* ${anu.title}
 
@@ -4463,7 +4930,7 @@ break
  headerType: 4,
 
  }
-  Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+ Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
  }
  break
  case 'ytvd2': {
@@ -4472,8 +4939,8 @@ break
  const YT=require('./lib/ytdlcore')
     const ytmp4play2 = await YT.mp4(text)
     let vidduration =ytmp4play2.duration;
-    if (vidduration > 50000) return reply('Cant send videos longer than *300 min*')
-  Chisato.sendMessage(from, {video:{url:ytmp4play2.videoUrl}, mimetype:"video/mp4", caption:'Downloaded by * Chisato MD*',}, {quoted:m})
+    if (vidduration > 1800) return reply('Cant send videos longer than *300 min*')
+ Miku.sendMessage(from, {video:{url:ytmp4play2.videoUrl}, mimetype:"video/mp4", caption:'Downloaded by *Miku MD*',}, {quoted:m})
  }
  break
 
@@ -4485,8 +4952,8 @@ if (isBanChat) return reply(mess.bangc)
          reply(mess.waiting)
          let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
          let random = anu[Math.floor(Math.random() * anu.length)]
-          Chisato.sendMessage(m.chat, { image: { url: random.male }, caption: `Für ihm...` }, { quoted: m })
-          Chisato.sendMessage(m.chat, { image: { url: random.female }, caption: `Für sie...` }, { quoted: m })
+         Miku.sendMessage(m.chat, { image: { url: random.male }, caption: `Für ihm...` }, { quoted: m })
+         Miku.sendMessage(m.chat, { image: { url: random.female }, caption: `Für sie...` }, { quoted: m })
      }
  break
 
@@ -4510,13 +4977,42 @@ case 'pinterest': case 'pin': {
  headerType: 4,
  
  }
-  Chisato.sendMessage(m.chat, buttonMessage, { quoted: m })
+ Miku.sendMessage(m.chat, buttonMessage, { quoted: m })
  }).catch(_ => _)
  } catch {
  reply("Error")
  }
  }
  break
+
+
+
+case 'swm': case 'take': case 'stickerwm': case 'steal': case 'Meins':{
+    if (isBan) return reply(mess.banned)
+    if (isBanChat) return reply(mess.bangc)
+if (!args.join(" ")) return reply(`Use command: -steal Miku|By: sebastian`)
+const swn = args.join(" ")
+const pcknm = swn.split("|")[0];
+const atnm = swn.split("|")[1];
+if (m.quoted.isAnimated === true) {
+Miku.downloadAndSaveMediaMessage(quoted, "gifee")
+Miku.sendMessage(from, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
+} else if (/image/.test(mime)) {
+let media = await quoted.download()
+let encmedia = await Miku.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
+await fs.unlinkSync(encmedia)
+} else if (/video/.test(mime)) {
+if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds is allowed!')
+let media = await quoted.download()
+let encmedia = await Miku.sendVideoAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
+await fs.unlinkSync(encmedia)
+} else {
+reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 seconds is allowed!`)
+}
+}
+break
+
+
 
 
 case 'smeme': case 'stickermeme': case 'stickmeme': {
@@ -4527,39 +5023,32 @@ if (!text) return reply(`Send/Reply Photo With Caption ${prefix + command} *text
 if (text.includes('|')) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 if (!/image/.test(mime)) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 reply(mess.wait)
-mee = await  Chisato.downloadAndSaveMediaMessage(quoted)
+mee = await Miku.downloadAndSaveMediaMessage(quoted)
 mem = await TelegraPh(mee)
 meme = `https://api.memegen.link/images/custom/-/${text}.png?background=${mem}`
-memek = await  Chisato.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author })
+memek = await Miku.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author })
 await fs.unlinkSync(memek)
 }
 break
 
-case 'sad1': case 'mockingbird': case 'sad1': {
-    if (isBan) return reply(mess.banned)
-    if (isBanChat) return reply(mess.bangc)
-Chisato.sendMessage(m.chat,{video:fs.readFileSync('./sad1.mp4') })
-}	
-break
-		
 case 'sgif': case 'sticker': case 's': {
     if (isBan) return reply(mess.banned)
     if (isBanChat) return reply(mess.bangc)
  if (/image/.test(mime)) {
  let media = await quoted.download()
- let encmedia = await Chisato.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+ let encmedia = await Miku.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
  await fs.unlinkSync(encmedia)
  } else if (/video/.test(mime)) {
  if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
  let media = await quoted.download()
- let encmedia = await Chisato.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+ let encmedia = await Miku.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
  await fs.unlinkSync(encmedia)
  } else {
  reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`)
  }
  }
  break
-		
+
 case 'wiki':
     if (isBan) return reply(mess.banned)
     if (isBanChat) return reply(mess.bangc)
@@ -4568,17 +5057,17 @@ const res2 = await wikiSearch(q).catch(e => {
 return reply('Error Result nicht gefunden!') 
 }) 
 const result2 = `*Title :* ${res2[0].judul}\n*Wiki :* ${res2[0].wiki}`
- Chisato.sendMessage(from, { image : { url : res2[0].thumb }, caption : result2}) 
+Miku.sendMessage(from, { image : { url : res2[0].thumb }, caption : result2}) 
 break
 
-case 'earthquake':
+case 'earthquake': case 'erdbeben':
     if (isBan) return reply(mess.banned)
     if (isBanChat) return reply(mess.bangc)
 const tres = await Gempa()
 var { Waktu, Lintang, Bujur, Magnitude, Kedalaman, Wilayah, Map } = tres.result
 console.log(Map)
 const captt = `Zeit : ${Waktu}\nLatitude : ${Lintang}\nLongitude : ${Bujur}\nRegion : ${Wilayah}`
- Chisato.sendMessage(from, { image : { url : Map }, caption : captt})
+Miku.sendMessage(from, { image : { url : Map }, caption : captt})
 break
 
 case 'covidinfo':
@@ -4587,7 +5076,7 @@ case 'covid':
     if (isBanChat) return reply(mess.bangc)
 const c = await covid()
 var { kasus, kematian, sembuh } = c[0]
- Chisato.sendMessage(from, {text : `Case : ${kasus}\n\nDead : ${kematian}\n\nHealed : ${sembuh}`}, m)
+Miku.sendMessage(from, {text : `Case : ${kasus}\n\nDead : ${kematian}\n\nHealed : ${sembuh}`}, m)
 break
 
 
@@ -4604,7 +5093,7 @@ let menst = [orang, jodoh]
 let buttons = [
 { buttonId: '❤️', buttonText: { displayText: 'Glückwünsche ❤️' }, type: 1 }
 ]
-await  Chisato.sendButtonText(m.chat, buttons, jawab,  Chisato.user.name, m, {mentions: menst})
+await Miku.sendButtonText(m.chat, buttons, jawab, Miku.user.name, m, {mentions: menst})
 }
 break
 
@@ -4621,7 +5110,7 @@ let ments = [me, jodoh]
 let buttons = [
 { buttonId: '❤️', buttonText: { displayText: 'Sei mein Seelenverwandter ❤️' }, type: 1 }
 ]
-await  Chisato.sendButtonText(m.chat, buttons, jawab,  Chisato.user.name, m, {mentions: ments})
+await Miku.sendButtonText(m.chat, buttons, jawab, Miku.user.name, m, {mentions: ments})
 }
 break
 
@@ -4631,7 +5120,7 @@ case 'handsomecheck':
 				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @Fantox`)
 					const gan = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const teng = gan[Math.floor(Math.random() * gan.length)]
- Chisato.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${teng}%*` }, { quoted: m })
+Miku.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${teng}%*` }, { quoted: m })
 					break
 case 'beautifulcheck':
     if (isBan) return reply(mess.banned)
@@ -4639,7 +5128,7 @@ case 'beautifulcheck':
 				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @Fantox`)
 					const can = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const tik = can[Math.floor(Math.random() * can.length)]
- Chisato.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${tik}%*` }, { quoted: m })
+Miku.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${tik}%*` }, { quoted: m })
 					break
 
 case 'awesomecheck':
@@ -4656,7 +5145,7 @@ case 'awesomecheck':
 				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @nummer`)
 					const sangeh = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const sange = sangeh[Math.floor(Math.random() * sangeh.length)]
- Chisato.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange}%*` }, { quoted: m })
+Miku.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange}%*` }, { quoted: m })
 					break
 
 
@@ -4664,9 +5153,9 @@ case 'charactercheck':
     if (isBan) return reply(mess.banned)
     if (isBanChat) return reply(mess.bangc)
 					if (!text) return replay(`Tag Someone, Example : ${prefix + command} @nummer`)
-					const  Chisatotttt =['Mitfühlend','Großzügig','Mürrisch','Horny','Versöhnlich','Gehorsam','Gut','Einfach','Gutherzig','Geduldig','UwU','oben, ohnehin','Hilfreich']
-					const taky =  Chisatotttt[Math.floor(Math.random() *  Chisatotttt.length)]
-					 Chisato.sendMessage(from, { text: `Character Check : ${q}\nAnswer : *${taky}*` }, { quoted: m })
+					const Mikutttt =['Mitfühlend','Großzügig','Mürrisch','Horny','Versöhnlich','Gehorsam','Gut','Einfach','Gutherzig','Geduldig','UwU','oben, ohnehin','Hilfreich']
+					const taky = Mikutttt[Math.floor(Math.random() * Mikutttt.length)]
+					Miku.sendMessage(from, { text: `Character Check : ${q}\nAnswer : *${taky}*` }, { quoted: m })
 				     break
                    
  case 'dare':
@@ -4755,9 +5244,9 @@ case 'charactercheck':
           "put your father name on status for 5hrs",
           "send abusive words in any grup, excepting this grup, and send screenshot proof here"
      ]
-                   const  Chisatodareww = dare[Math.floor(Math.random() * dare.length)]
+                   const Mikudareww = dare[Math.floor(Math.random() * dare.length)]
                    buffer = await getBuffer(`https://wallpapercave.com/wp/wp10524609.jpg`)
-                    Chisato.sendMessage(from, { image: buffer, caption: '*You have chosen Dare*\n\n'+  Chisatodareww }, {quoted:m})
+                   Miku.sendMessage(from, { image: buffer, caption: '*You have chosen Dare*\n\n'+ Mikudareww }, {quoted:m})
                    break
                        
 
@@ -4770,7 +5259,7 @@ case 'truth':
                  "apa ketakutan terbesar kamu?",
                  "Have you ever liked someone and felt that person likes you too?",
                  "What is the name of your friend's ex-girlfriend that you used to secretly like?",
-                 "Have you ever stolen xp from your father or mom? The reason?",
+                 "Have you ever stolen money from your father or mom? The reason?",
                  "What makes you happy when you're sad?",
                  "Ever had a one sided love? if so who? how does it feel bro?", 
                  "been someone's mistress?",
@@ -4820,7 +5309,7 @@ case 'truth':
                  "do you have gf/bf','what is your biggest fear?",
                  "have you ever liked someone and felt that person likes you too?",
                  "What is the name of your ex boyfriend of your friend that you once liked quietly?",
-                 "ever did you steal your mothers xp or your fathers xp",
+                 "ever did you steal your mothers money or your fathers money",
                  "what makes you happy when you are sad",
                  "do you like someone who is in this grup? if you then who?",
                  "have you ever been cheated on by people?",
@@ -4857,29 +5346,31 @@ case 'truth':
              ]
                            const mikutruthww = truth[Math.floor(Math.random() * truth.length)]
                            buffer = await getBuffer(`https://wallpapercave.com/wp/wp10524609.jpg`)
-                            Chisato.sendMessage(from, { image: buffer, caption: '*You have chosen Truth*\n'+ mikutruthww }, {quoted:m})
+                           Miku.sendMessage(from, { image: buffer, caption: '*You have chosen Truth*\n'+ mikutruthww }, {quoted:m})
                            break
                        
  /////////NSFW comm/////////////////                          
 
 //let bjif = await GIFBufferToVideoBuffer(bjf) 
 
-case 'loli2' :  {
+case 'nsfwloli' :  {
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
+    if (!m.isGroup) return replay(mess.grouponly)
+    if (!AntiNsfw) return reply(mess.nonsfw)
     
 reply(mess.waiting)
- waifudhgd = await getBuffer(`https://fantox-apis.vercel.app/loli  `)     
+ waifudhgd = await getBuffer(`https://api-reysekha.herokuapp.com/api/wallpaper/${command}?apikey=APIKEY  `)     
  let nsfwapireply = [
     {buttonId: `${prefix}${command}`, buttonText: {displayText: `>>`}, type: 1},
     ]
   let nsfwapimess = {
-   image: {url:waifudhgd.data.url},
+   image: waifudhgd,
    caption:  `Here it is...`,
   buttons: nsfwapireply,
   headerType: 1
   }     
-            await  Chisato.sendMessage(m.chat, nsfwapimess, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, nsfwapimess, { quoted:m }).catch(err => {
                     return('Error!')
                 })
             }
@@ -4908,52 +5399,11 @@ case 'blonde' : case 'ass' : case 'tree' :  case 'food' :  case 'cum' : case 'sq
       buttons: nsfwapireply,
       headerType: 1
       }     
-                await  Chisato.sendMessage(m.chat, nsfwapimess, { quoted:m }).catch(err => {
+                await  Miku.sendMessage(m.chat, nsfwapimess, { quoted:m }).catch(err => {
                         return('Error!')
                     })
                 }
     break
-
-case 'spank':
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-    if (!m.isGroup) return replay(mess.grouponly)
-    if (!AntiNsfw) return reply(mess.nonsfw)
-reply(mess.waiting)
-spankd = await axios.get(`https://nekos.life/api/v2/img/spank`)                                   
-  let spbuff = await getBuffer(spankd.data.url)
-let spgif = await GIFBufferToVideoBuffer(spbuff)   
-        await Chisato.sendMessage(m.chat,{video: spgif, gifPlayback:true},{ quoted:m }).catch(err => {
-                    return reply('Error!')
-                                    })
-break
-
-
-case 'blowjobgif': case 'bj' :
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-    if (!m.isGroup) return replay(mess.grouponly)
-    if (!AntiNsfw) return reply(mess.nonsfw)
-reply(mess.waiting)
-bjd = await axios.get(`https://api.waifu.pics/nsfw/blowjob`)         
-  let bjf = await getBuffer(bjd.data.url)
-let bjif = await GIFBufferToVideoBuffer(bjf)   
-        await  Chisato.sendMessage(m.chat,{video: bjif, gifPlayback:true},{ quoted:m }).catch(err => {
-                    return reply('error..')
-                                    })
-break
-
-case 'hentaivid': case 'hentaivideo': case 'hv': {
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-    if (!m.isGroup) return replay(mess.grouponly)
-    if (!AntiNsfw) return reply(mess.nonsfw)
-reply(mess.waiting)
-anu = await hentai()
-result912 = anu[Math.floor(Math.random(), anu.length)]
- Chisato.sendMessage(m.chat, { video: { url: result912.video_1 }, caption: `Title : ${result912.title}\nCategory : ${result912.category}\n$Mimetype : ${result912.type}\nViews : ${result912.views_count}\nShares : ${result912.share_count}\nSource : ${result912.link}\nMedia Url : ${result912.video_1}` }, { quoted: m })
-}
-break
 
 case 'trap' :
     if (isBan) return reply(mess.banned)	 			
@@ -4971,17 +5421,11 @@ reply(mess.waiting)
   buttons: trapbot,
   headerType: 1
   }     
-            await  Chisato.sendMessage(m.chat, button2Messages, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button2Messages, { quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
 
-
-
-
-
-
-		
 case 'hentai-neko' :
 case 'hneko' :
 case 'hn' :
@@ -5000,7 +5444,7 @@ reply(mess.waiting)
   buttons: hnekobot,
   headerType: 1
   }      
-            await  Chisato.sendMessage(m.chat, button3Messages, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button3Messages, { quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5023,7 +5467,7 @@ reply(mess.waiting)
   buttons: nwaifubot,
   headerType: 1
   }      
-            await  Chisato.sendMessage(m.chat, button4Messages, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button4Messages, { quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5047,12 +5491,12 @@ reply(mess.waiting)
       buttons: wbuttsss,
       headerType: 4
       }     
-            await  Chisato.sendMessage(m.chat, button1ssMessages,{ quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button1ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
 
-case 'foxgirls' :
+case 'foxgirl' :
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
     if (!m.isGroup) return replay(mess.grouponly)
@@ -5068,7 +5512,7 @@ reply(mess.waiting)
       buttons: wbuttsss,
       headerType: 4
       }     
-            await  Chisato.sendMessage(m.chat, button12ssMessages,{ quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button12ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
 break   
@@ -5088,7 +5532,7 @@ reply(mess.waiting)
   buttons: xxhnekobot,
   headerType: 1
   }      
-            await  Chisato.sendMessage(m.chat, xx1button3Messages, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, xx1button3Messages, { quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5109,7 +5553,7 @@ reply(mess.waiting)
       buttons: wbuttsss,
       headerType: 4
       }     
-            await  Chisato.sendMessage(m.chat, button112ssMessages,{ quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button112ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5124,14 +5568,14 @@ case 'crossplay': case 'crosplay': case 'cosplay':
         {buttonId: `${prefix}crossplay`, buttonText: {displayText: '>>'}, type: 1},
             ]               
         const cosplybutton = {
-        image: {url: 'https://fantox-cosplay-api.onrender.com/'},
+        image: {url: 'https://hanzz-web.herokuapp.com/api/randomimage/cosplay'},
         caption: "Guess who am i...",
         footer: `${global.BotName}`,
         buttons: buttons,
         headerType: 4
         }
                   
-        await  Chisato.sendMessage(m.chat,cosplybutton, { quoted:m }).catch(err => {
+        await Miku.sendMessage(m.chat,cosplybutton, { quoted:m }).catch(err => {
             return('Error!')
         })  
 
@@ -5156,7 +5600,7 @@ reply(mess.waiting)
       buttons: wbutsss,
       headerType: 4
       }
-            await  Chisato.sendMessage(m.chat,buttonssMessage, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat,buttonssMessage, { quoted:m }).catch(err => {
                     return('Error!')
                 })               
                 break
@@ -5181,7 +5625,7 @@ reply(mess.waiting)
       buttons: wbuttsss,
       headerType: 4
       }     
-            await  Chisato.sendMessage(m.chat, buttonssMessages,{ quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, buttonssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5220,7 +5664,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5257,7 +5701,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5294,7 +5738,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5332,7 +5776,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5372,7 +5816,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5414,7 +5858,7 @@ console.log(musers)
         const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
         const buffer = Buffer.from(response.data, "utf-8")
 		var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-		 Chisato.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+		Miku.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
     } catch (error) {
         console.log(error);
     }
@@ -5425,7 +5869,7 @@ break
 
 
 
-
+/*
 
 case 'cry': case 'kill': case 'hug': case 'pat': case 'lick': case 'kiss': case 'bite': case 'yeet':
 case 'bully': case 'bonk': case 'wink': case 'poke': case 'nom': case 'slap': case 'smile':
@@ -5439,12 +5883,12 @@ case 'cringe': case 'cuddle': case 'highfive': case 'handhold': case 'kick':
 resggh = await axios.get(`https://nekos.life/api/v2/img/${command}`)         
 let resffj = await getBuffer(resggh.data.url)
 let resmain = await GIFBufferToVideoBuffer(resffj)   
-      await  Chisato.sendMessage(m.chat,{video: resmain, gifPlayback:true},{ quoted:m }).catch(err => {
+      await Miku.sendMessage(m.chat,{video: resmain, gifPlayback:true},{ quoted:m }).catch(err => {
                   return reply('error..')
                                   })
 break
 
-
+*/
 
 
 
@@ -5465,7 +5909,7 @@ var wbutsss = [
           buttons: wbutsss,
      headerType: 4
                       }
-await  Chisato.sendMessage(m.chat,buttonzMessage, { quoted:m }).catch(err => {
+await Miku.sendMessage(m.chat,buttonzMessage, { quoted:m }).catch(err => {
      return('Error!')
     })               
 break     
@@ -5486,7 +5930,7 @@ case 'awoo':
   buttons: wbuttsss,
   headerType: 2
   }       
-            await  Chisato.sendMessage(m.chat, button1Messages, { quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, button1Messages, { quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -5516,7 +5960,7 @@ var walb = [
       buttons: walb,
       headerType: 4
       }     
-            await  Chisato.sendMessage(m.chat, wal,{ quoted:m }).catch(err => {
+            await Miku.sendMessage(m.chat, wal,{ quoted:m }).catch(err => {
                     return('Error!')
                 })          
 break
@@ -5563,7 +6007,7 @@ const { Anime } =require("@shineiichijo/marika")
     if (result.background !== null)
       details += `*Background:* ${result.background}\n\n`;
 
- Chisato.sendMessage(m.chat,{image:{url:result.images.jpg.large_image_url},caption:details},{quoted:m})   
+Miku.sendMessage(m.chat,{image:{url:result.images.jpg.large_image_url},caption:details},{quoted:m})   
 break
 
 case 'manga':
@@ -5598,7 +6042,7 @@ let srh = await manga.searchManga(q)
       /\[Written by MAL Rewrite]/g,
       ""
     )}`;
- Chisato.sendMessage(m.chat,{image:{url:srh.data[0].images.jpg.large_image_url},caption:mang},{quoted:m})   
+Miku.sendMessage(m.chat,{image:{url:srh.data[0].images.jpg.large_image_url},caption:mang},{quoted:m})   
 break
 
 
@@ -5619,7 +6063,7 @@ reply(mess.waiting)
         headerType: 4
          }     
                                   
-    await  Chisato.sendMessage(m.chat, button4Messagess, { quoted:m }).catch(err => {
+    await Miku.sendMessage(m.chat, button4Messagess, { quoted:m }).catch(err => {
         return('error..')
         })
 break
@@ -5640,13 +6084,13 @@ reply(mess.waiting)
         headerType: 2
          }     
                                   
-    await  Chisato.sendMessage(m.chat, buttonMessagessf, { quoted:m }).catch(err => {
+    await Miku.sendMessage(m.chat, buttonMessagessf, { quoted:m }).catch(err => {
         return('error..')
         })
 break
 
 
-case 'loli1' :
+case 'loli' :
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
     if (!m.isGroup) return replay(mess.grouponly)
@@ -5662,7 +6106,7 @@ reply(mess.waiting)
         headerType: 2
          }     
                                   
-    await  Chisato.sendMessage(m.chat, buttonMessagessfgr, { quoted:m }).catch(err => {
+    await Miku.sendMessage(m.chat, buttonMessagessfgr, { quoted:m }).catch(err => {
         return('error..')
         })
 break
@@ -5686,8 +6130,7 @@ reply(`
 `.trim())
 }
 break
-	
-		
+
 
 case "zitate" :
     if (isBan) return reply(mess.banned)	 			
@@ -5707,16 +6150,16 @@ case "darkjoke":
     if (!m.isGroup) return replay(mess.grouponly)
 var res = await Darkjokes()
 teks = "\nDarkjokes"
- Chisato.sendMessage(m.chat, { image : { url : res }, caption: teks }, { quoted : m })
+Miku.sendMessage(m.chat, { image : { url : res }, caption: teks }, { quoted : m })
 break
 
-case 'leavegc': case 'leavegroup': case 'bye': case 'verlasse': {
+case 'leavegc': case 'leavegroup': case 'bye': case 'verlasse': case 'lgr': case 'lgrp': {
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
     if (!m.isGroup) return replay(mess.grouponly)
         reply(mess.waiting)
                     if (!isCreator) return replay(`${mess.botowner}`)
-                    await  Chisato.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    await Miku.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 }
                 break
 
@@ -5742,469 +6185,918 @@ id: '-owner'
 }
 }]
 let txt = `「 *${global.OwnerName}'s Broadcast* 」\n\n${text}`
- Chisato.send5ButImg(yoi, txt, `${global.BotName}`, BotLogo, btn, Thumb)
+Miku.send5ButImg(yoi, txt, `${global.BotName}`, BotLogo, btn, Thumb)
 }
 replay('Sendung gesendet !')
 }
-break  
-		
-  case 'beta':
-    case 'hm':{
-        if (isBan) return reply(mess.banned)	 			
-if (isBanChat) return reply(mess.bangc)
-            let sections = []
-            let com = [`self`,`bangroup on`,`h`,`awoo`,`waifu3`,`feed`,`loli1`,`antilinkig `,`antilinkfb `,`neko`,`animenom`,`nsfw on`]
-	    let comm = [`public`,`bangroup off`,`help`,`foxgirls`,`pb`,`tickle`,`waifu`,`antilinkig `,`antilinkfb`,`neko2`,`megumin`,`nsfw off`]
-            let listnya = [`self/public`,`ban gruppe,unban gruppe`,`help`,`foxgirl`,`wauifu,pb`,`feed,tickle`,`loli,waifu`,`nicht drücken`,`nicht drücken`,`neko,neko2`,`animenom,megumin`,`nsfw`]
-	    let suruh = [`1😁`, `2😁`]
-            let fiturname = [`self/public`,`ban gruppe`,`menü`,`foxgirl`,`wauifu,pb`,`feed,tickle`,`loli,waifu`,`nicht drücken`,`nicht drücken`,`neko,neko2`,`animenom,megumin`,`nsfw`,`Auto Revoke`]
-            let startnum = 0; let startnu = 0; let startn = 0;let start = 0
-            let startnumm = 1
-            for (let x of com) {
-                const yy = {title: `${listnya[startnum++]}`,
-            rows: [
-               {
-                title: `${suruh[0]}`,
-                description: ` ${fiturname[startnu++]}`,
-                rowId: `${prefix}${x}`
-              },{
-                title: `${suruh[1]}`,
-                description: ` ${fiturname[startn++]}`,
-                rowId: `${prefix}${comm[start++]}`
-              }
-            ]
-           }
-                sections.push(yy)
-            }
-            const sendm =   Chisato.sendMessage(
-from, 
-{
-text: "anime bilder und weiteres",
-footer: BotName,
-title: "hier kannst du anime bilder mit einem klick kriegen",
-buttonText: "Click Button",
-sections
-}, { quoted : m }
-)  
-}
-break
-
-		
+break    
 
 
-case 'help': case 'h': case 'menu': case 'allmenu': case 'listmenu': case 'hilfe':{
+case 'help': case 'h': case 'menu': case 'allmenu': case 'listmenu': case 'hilfe': case 'mu':{
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
-	        if(time2 < "23:59:00"){
+    reply (` Konichiwa *${pushname}* Senpai,
 
-        var ucapanWaktu = 'Gute Nacht 🌌'
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
 
-}
+Ich befinde mich derzeit in der Version 4, Edition 1.
 
-        if(time2 < "19:00:00"){
-
-        var ucapanWaktu = 'Guten Nachmittag 🌆'
-
-}
-
-        if(time2 < "18:00:00"){
-
-        var ucapanWaktu = 'Guten Nachmittag 🌇'
-
-}
-
-        if(time2 < "15:00:00"){
-
-        var ucapanWaktu = 'Guten Nachmittag 🏞'
-
-}
-
-        if(time2 < "11:00:00"){
-
-        var ucapanWaktu = 'Guten morgen 🌅'
-
-}
-
-        if(time2 < "05:00:00"){
-
-        var ucapanWaktu = 'Gute nacht 🏙'
-
-}
-      
- const helpmenu = `Konichiwa *${pushname}* Senpai,
-
-Ich bin *Nishikigi Chisato*, ein von *Sebastian* entwickelter Bot.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
 
 🔰 Mein Präfix ist:  ${prefix}
 
 Hier ist die Liste meiner Befehle.
-*━━━〈  heute  〉━━━*
 
-*Time* : ${time2}
-*Date* : ${Chisatodate} 
-*${ucapanWaktu}*
-*━━━〈  neues Menü  〉━━━*
+Eigene Befehle(v5):
 
+*━━━〈  Own/New(Beta)  〉━━━*
 
-${prefix}beta
-${prefix}hm
+ _Register_:
+ ee: ${prefix}register Name|Age
+ 
+ checkregister 
+ registercheck
+ 
 
+ _Bot_:
+ bn , botname
+ 
+ _Idee_:
+ idee , idea , ia
+ ideeanfrage , ir
+ idearequest
+ 
+ mm
+ mmenu
+ makerm
+ makermenu
+ 
+ i
+ selflink
+ whatsapplink
+ walink
+ @link
+ 
+ *━━━〈  User  〉━━━*
+ 
+ _Userbank:_
+ userbank
+ buser , bankuser
+ 
+ uiron , useriron
+ ironuser , inuser
+ ugold , gduser
+ golduser , usergold
+ emaralduser , emuser
+ 
+ upotion , userpotion
+ potionuser  , ptuser
+ 
+ userbalance
+ userba , ubalance
+ 
+ _Level:_
+ userxp , uxp
+ xpu , xpuser
+ userl , userlvl
+ userlevel , luser
+ lvluser , leveluser
+ lvl , l , xp , level
+ 
+ _Benutzer:_
+ userinfo , useri
+ iuser , user
+ userinfos
+ userrole , urole
+ roleuser , ruser
+ 
+ *━━━〈  😎 Bot 😎 〉━━━*
+
+  a , a2 , a3
+  p , p1
+  p2 , p3
+  online , uptime
+  ping , aping
+  session , sessionid
+  sitzung , oz
+  onlinezeit , ut
+
+*━━━ 〈 👥️ Gruppen👥️  〉━━━*
+
+ grc , grpc
+ gruppe , groupp
+ ggroup , ggrp
+ grpp
+ 
+ *━━━〈  Gruppenlinks 〉━━━*
+ 
+ ownergruppen , og
+ ow , teamgruppen
+ 
+ ankündigung , ankündigungen
+ 
+ chatgruppe , chatgroup
+ cgr , chatgr
+ 
+ supchat , supch
+ chatgruppesupport
+ 
+ _Support_:
+ supgrp
+ supportgruppe
+ 
+ _Werbegruppe_:
+ werbegruppe
+ werbegrp
+ 
+ Umfragegr
+ Umfragegrp
+ Umfrageruppe
+ 
+ _Teambewerbung_:
+ bewerbunggruppe
+ bewerbegruppe
+ bewerbunggrp
+ teamanfragegrp
+ teambewerbunggrp
+
+ _Bot-Test_:
+ test1gruppe
+ test1grp
+ bottest1grp
+ bottest1gruppe
+ 
+ *━━━〈  ❓️ Support ❓️  〉━━━*
+ 
+ sup , support
+ frage ,sa
+ supportanfrage
+ bug , bgr
+ bugreport
  
  
  *━━━〈  🎆 Core 🎆  〉━━━*
 
-${prefix}Afk
-${prefix}speak
-${prefix}miku
-${prefix}stalk
-${prefix}profile
-${prefix}help
-${prefix}delete
-${prefix}deleteall
-${prefix}listgc
-${prefix}listpc
-${prefix}welcome
-${prefix}admin 
+ afk , speak
+ miku, stalk
+ profile , help
+ delete , deleteall
+ welcome , admin
  
- *━━━〈  🎀 Owner 🎀  〉━━━*
-
-${prefix}self
-${prefix}public
-${prefix}ban
-${prefix}bangroup
-${prefix}verlasse
-${prefix}join
-${prefix}block
-${prefix}unblock
-${prefix}broadcast 
-
  *━━━〈  ⭕ Group ⭕  〉━━━*
  
-${prefix}promote
-${prefix}demote
-${prefix}revoke
-${prefix}remove
-${prefix}tagall
-${prefix}hidetag
-${prefix}groupsetting
-${prefix}grouplink
-${prefix}setgcpp
-${prefix}setname
-${prefix}setdesc
-${prefix}group
-${prefix}nsfw
-${prefix}remove 
+ promote , demote, 
+ revoke , remove
+ tagall , hidetag
+ groupsetting, tag
+ grouplink , geh
+ setgcpp , setname
+ setdesc , group
+ nsfw , remove 
+ 
 
  *━━━〈  ➰ Anti Link ➰  〉━━━*
  
-${prefix}antilinkgc
-${prefix}antilinktg
-${prefix}antilinktt
-${prefix}antilinkytch
-${prefix}antilinkytvid
-${prefix}antilinkig
-${prefix}antilinkfb
-${prefix}antilinktwit
-${prefix}antilinkall
-${prefix}antiwame
+ antilinkgc , antilinktg
+ antilinktt , antilinkytch
+ antilinkytvid , antilinkig
+ antilinkfb , antilinktwit
+ antilinkall , antiwame
 
  *━━━〈  🔍 Search 🔍  〉━━━*
 
-${prefix}play
-${prefix}ytmp3
-${prefix}ytmp4
-${prefix}yts
-${prefix}lyrics
-${prefix}google
-${prefix}gimage
-${prefix}pinterest
-${prefix}image
-${prefix}weather
-${prefix}movie
-${prefix}wallpaper
-${prefix}searchgc
-${prefix}happymod
-${prefix}wikimedia
-${prefix}ringtone
-${prefix}anime
-${prefix}animestory
-${prefix}manga
-${prefix}ringtone  
-
- *━━━〈   support   〉━━━*
-${prefix}sup
-${prefix}support
-${prefix}frage
-
+ play , ytmp3
+ tmp4 , yts
+ lyrics , google
+ gimage , pinterest
+ image , weather , wt
+ movie , wallpaper 
+ searchgc , happymod
+ wikimedia , ringtone
+ anime , animestory
+ manga , ringtone 
+ 
  *━━━〈  🔰 Convert 🔰  〉━━━*
 
-${prefix}sticker
-${prefix}toimg
-${prefix}tovideo
-${prefix}togif
-${prefix}steal
-${prefix}stickermeme
-${prefix}emojimix
-${prefix}tourl
-${prefix}tomp3
-${prefix}toaudio
+sticker , toimg
+tovideo , togif
+steal , stickermeme 
+emojimix , tourl
+tomp3 , toaudio
 
  *━━━〈  🔉 Audio 🔉  〉━━━*
 
-${prefix}bass
-${prefix}tempo
-${prefix}blown
-${prefix}deep
-${prefix}earrape
-${prefix}fast
-${prefix}fat
-${prefix}nightcore
-${prefix}reverse
-${prefix}robot
-${prefix}slow
-${prefix}squirrel
+bass , tempo
+blown , deep
+earrape , fast
+fat , nightcore 
+reverse , robot
+slow , squirrel
 
  *━━━〈  📍 Reactions 📍  〉━━━*
 
-${prefix}bonk
-${prefix}cry
-${prefix}bully
-${prefix}cuddle
-${prefix}hug
-${prefix}kiss
-${prefix}lick
-${prefix}pat
-${prefix}smug
-${prefix}yeet
-${prefix}blush
-${prefix}smile
-${prefix}wave
-${prefix}highfive
-${prefix}handhold
-${prefix}nom
-${prefix}glomp
-${prefix}bite
-${prefix}slap
-${prefix}kill
-${prefix}happy
-${prefix}wink
-${prefix}poke
-${prefix}dance
-${prefix}cringe
+bonk , cry
+bully , cuddle
+hug , kiss
+lick , pat
+smug , yeet
+blush , smile
+wave , highfive
+handhold , nom 
+glomp , bite
+slap , kill
+happy , wink
+poke , dance
+cringe
 
  *━━━〈  🌌 Downloader 🌌  〉━━━*
 
-${prefix}play
-${prefix}ytmp3
-${prefix}ytmp4
-${prefix}ytvideo
-${prefix}mediafire
-${prefix}instagram
-${prefix}igtv
-${prefix}facebook
-${prefix}fbmp3
-${prefix}twitter
-${prefix}twittermp3
-${prefix}tiktok
-${prefix}tiktokaudio
-${prefix}tiktoknowm
-${prefix}mediafire  
+play , ytmp3
+ytmp4 , ytvideo
+instagram , igtv
+facebook , fbmp3
+twitter , twittermp3
+tiktok , tiktokaudio 
+tiktoknowm , mediafire
 
  *━━━〈  🈴 Weeb 🈴  〉━━━*
 
-${prefix}crosplay
-${prefix}waifu
-${prefix}loli
-${prefix}neko
-${prefix}ppcouple
-${prefix}feed
-${prefix}foxgirl
-${prefix}feed
-${prefix}meow
-${prefix}tickle
-${prefix}wallpaper
-${prefix}coffee
-${prefix}animenom
-${prefix}waifu3
-${prefix}neko2
-${prefix}feed
-${prefix}meow
-${prefix}tickle
-${prefix}migumin
-${prefix}awoo
-${prefix}animewallpaper2
-${prefix}anime
-${prefix}manga
+crosplay , waifu
+loli , neko , ppcouple
+feed , foxgirl , feed
+meow , tickle , wallpaper
+coffee , animenom , waifu3
+neko2 , feed , meow
+tickle , migumin , awoo
+animewallpaper2 , anime 
+manga
 
- *━━━〈  bilder mit selbst eingefügter schrift  〉━━━*
- 
-${prefix}candy
-${prefix}christmas
-${prefix}3dchristmas
-${prefix}sparklechristmas
-${prefix}deepsea
-${prefix}scifi
-${prefix}rainbow
-${prefix}waterpipe
-${prefix}spooky
-${prefix}pencil
-${prefix}circuit
-${prefix}discovery
-${prefix}metalic
-${prefix}fiction
-${prefix}demon
-${prefix}3dstone
-${prefix}magma
-${prefix}thunder
-${prefix}berry
-${prefix}transformer
-${prefix}neonlight
-${prefix}glitch
-${prefix}harrypotter
- 
  *━━━〈  ♨️ Informative ♨️  〉━━━*
 
-${prefix}animequote
-${prefix}quote
-${prefix}covid
-${prefix}earthquake
-${prefix}wiki
+animequote , quote
+covid , earthquake
+wiki
 
  *━━━〈  🎗 Others 🎗  〉━━━*
 
-${prefix}stickermeme
-${prefix}quotes
-${prefix}darkjoke 
+quotes
+stickermeme
+darkjoke 
 
  *━━━〈  🎐 Fun 🎐  〉━━━*
 
-${prefix}schäm
-${prefix}reaction
-${prefix}truth
-${prefix}dare
-${prefix}couple
-${prefix}soulmate
-${prefix}handsomecheck
-${prefix}beautifulcheck
-${prefix}awesomecheck
-${prefix}greatcheck
-${prefix}gaycheck
-${prefix}cutecheck
-${prefix}lesbiancheck
-${prefix}hornycheck
-${prefix}prettycheck
-${prefix}lovelycheck
-${prefix}uglycheck
-${prefix}charactercheck
+reaction , truth
+dare , couple
+soulmate , handsomecheck
+beautifulcheck , awesomecheck 
+greatcheck , gaycheck 
+cutecheck , lesbiancheck
+hornycheck , prettycheck 
+lovelycheck , uglycheck
+charactercheck
 
  *━━━〈  🪁 Essentials 🪁  〉━━━*
 
- ${prefix}say
- ${prefix}translate
- ${prefix}fliptext
- ${prefix}toletter
- ${prefix}Wetter
+ say , translate 
+ fliptext , toletter
+ wetter , wt
 
  *━━━〈  💥 NSFW 💥  〉━━━*
- 
-Wir haben ne hentai gruppe wenn du da rein willst dan mach ${prefix}sus dan kommt der link bitte beachtet das der bot nicht gekick wird
 
-Geben Sie " *${prefix}nsfw* " ein und aktivieren Sie dann NSFW (nur Administrator!)
+🍁 Geben Sie " *${prefix}nsfw* " ein und aktivieren Sie dann NSFW (nur Administrator!)
+
+🍁Geben Sie dann „*${prefix}nsfwmenu*“ ein, um eine vollständige Liste der NSFW-Befehle zu erhalten.
 
 
-
-    「 System Info 」
+       「 System Info 」
     
-Speed : ${latensie.toFixed(4)} miliseconds
-
-Up Time : ${runtime(process.uptime())}
-
-Bot Name : ${global.BotName}
-
-Owner Name : ${global.OwnerName}
-
-𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : XAIOMI 12 T Pro 〈Userland〉
-
-𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}
+    Speed : ${latensie.toFixed(4)} miliseconds
+    Up Time : ${runtime(process.uptime())}
+    Bot Name : Miku-Max_v3-ed_1
+    Owner Name : ${global.OwnerName}
+    𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : Amazon AWS
+    𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.users).length}
     
     
-    *「 User Info 」*
-Use Name: : ${pushname} 
+       「 User Info 」
+    
+    User Level: ${levelMenu}
+    User XP : ${xpMenu} \ ${reqXp}
+    User Role : ${role}
+    
+    
+       「 User Bank 」
+    
+    User Balance : ${uangku}
+    Iron : ${getBesi(m.sender)}
+    Gold : ${getEmas(m.sender)}
+    Emarald : ${getEmerald(m.sender)}
+    Potion : ${getPotion(m.sender)}
 
-User Level: ${levelMenu}
-
-User XP : ${xpMenu} \ ${reqXp}
-
-User Role : ${role}
 
 
- 『  *${global.BotName}*  』
-Powered by: *Sebastian*
+
+ 『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
 
  🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
- " *${prefix}<Befehlsname>* ".`
-    
+ " *${prefix}<Befehlsname>* ".
+ 
 
- let buttonshelpm = [
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+	
+	
+
+let buttonshelpm = [
     {buttonId: `${prefix}owner`, buttonText: {displayText: 'Bot Owner'}, type: 1}
     ]
                 let buttonMessage = {
-                    image:fs.readFileSync('./Assets/Nishikigi.Chisato.600.3752321.jpg'),
+                    video:fs.readFileSync('./system/miku2.mp4'),gifPlayback:true,
                     caption: helpmenu,
                     footer: `${BotName}`,
                     buttons: buttonshelpm,
                     headerType: 4
-                    
+
                 }
-             Chisato.sendMessage(m.chat, buttonMessage,{ quoted:m })
+            Miku.sendMessage(m.chat, buttonMessage,{ quoted:m })
                 }
 break
-/*
-case 'statusbot': case 'server':{
-                const used = process.memoryUsage()
-                const cpus = os.cpus().map(cpu => {
-                    cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0)
-			        return cpu
-                })
-                const cpu = cpus.reduce((last, cpu, _, { length }) => {
-                    last.total += cpu.total
-                    last.speed += cpu.speed / length
-                    last.times.user += cpu.times.user
-                    last.times.nice += cpu.times.nice
-                    last.times.sys += cpu.times.sys
-                    last.times.idle += cpu.times.idle
-                    last.times.irq += cpu.times.irq
-                    return last
-                }, {
-                    speed: 0,
-                    total: 0,
-                    times: {
-			            user: 0,
-			            nice: 0,
-			            sys: 0,
-			            idle: 0,
-			            irq: 0
-                }
-                })
-                let timestamp = speed()
-                let latensi = speed() - timestamp
-                neww = performance.now()
-                oldd = performance.now()
-                respon = `
-Response Speed ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : ${runtime(process.uptime())}
-» Chisatos Server Info 
-RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
-_NodeJS Memory Usaage_
-${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}
-${cpus[0] ? `_Total CPU Usage_
-${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}
-_CPU Core(s) Usage (${cpus.length} Core CPU)_
-${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
-                `.trim()
-                m.reply(respon)
-            }
-            break
-	*/
+		
+case 'mm': case 'mmenu': case 'makerm': case 'makermenu':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+Hier eine Lister der Miku:\Makermenu Befehle,\nbzw. Eine Liste der Befehle:
+
+1. ${prefix}mm1
+1. ${prefix}makermenu1
+
+2. ${prefix}mm2
+2. ${prefix}makermenu2
+
+3. ${prefix}mm3
+3. ${prefix}makermenu3
+
+4. ${prefix}mm4
+4. ${prefix}makermenu4
+
+5. ${prefix}mm5
+5. ${prefix}makermenu5
+
+6. ${prefix}mm6
+6. ${prefix}makermenu6
+
+7. ${prefix}mm7
+7. ${prefix}makermenu7
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm1': case 'mmenu1': case 'makerm1': case 'makermenu1':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+1. candy       <text>
+2. 3dneon      <text>
+3. 3dspace     <text>
+4. 3dstone     <text>
+5. christmas   <text>
+6. 3dchristmas <text>
+7. sparklechristmas <text>
+8. deepsea     <text>
+9. scifi       <text>
+10. rainbow2   <text>
+11 . waterpipe <text>
+12. spooky     <text>
+13. pencil     <text>
+14. circuit    <text>
+15. discovery  <text>
+16. metalic    <text>
+17. fiction    <text>
+18. demon      <text>
+19. transformer <text>
+20. berry      <text>
+21. thunder    <text>
+22. 3dstone2   <text>
+23. neonlight  <text>
+24. glitch     <text>
+25. harrypotter  <text>
+26. brokenglass <text>
+27. papercut    <text>
+28. watercolor  <text>
+29. multicolor  <text>
+30. neondevil   <text>
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm2': case 'mmenu2': case 'makerm2': case 'makermenu2':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu_2 Befehle:
+
+31. underwater    <text>
+32. graffitibike  <text>
+33. snow          <text>
+34. cloud         <text>
+35. honey         <text>
+36. ice           <text>
+37. fruitjuice    <text>
+38. biscuit       <text>
+39. wood          <text>
+40. chocolate     <text>
+41. strawberry    <text>
+42. matrix        <text>
+43. blood         <text>
+44. dropwater     <text>
+45. toxic         <text>
+46. lava          <text>
+47. rockart       <text>
+48. bloodglas     <text>
+49. alloween      <text>
+50. darkgold      <text>
+51. joker         <text>
+52. wicker        <text>
+53. firework      <text>
+54. skeleton      <text>
+55. blackpinkart  <text>
+56. sand          <text>
+57. glue          <text>
+58. 1917          <text>
+59. leves         <text>
+60. demon         <text>
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+
+case 'mm3': case 'mmenu3': case 'makerm3': case 'makermenu3':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+61. 3dneon    <text>
+62. 3dspace   <text>
+63. 3dstone   <text>
+64. bookeh    <text>
+65. carbon    <text>
+66. curcuit   <text>
+67. glitch2   <text>
+68. glitch3   <text>
+69. lion      <text>
+70. magma     <text>
+71. matrix    <text>
+72. neongreen <text>
+73. scifi     <text>
+74. thunder   <text>
+75. thunder2  <text>
+76. wall      <text>
+77. grunge    <text>
+78. 3dpaint   <text>
+79. pinggold  <text>
+80. liquid    <text>
+81. burger    <text>
+82. cage      <text>
+83. party     <text>
+84. comic     <text>
+85. topography  <text>
+86. orange    <text>
+87. valentine <text>
+88. lightglow <text>
+89. thor      <text>
+90. 3d_deepsea  <text>
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+
+case 'mm4': case 'mmenu4': case 'makerm4': case 'makermenu4':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+91.  m_black     <text>
+92.  graffititext    <text>
+93.  neonlightgalaxy <text>
+94.  3dmarvel    <text>
+95.  marvelstudiometal <text>
+96.  marvelstudio <text>
+97.  roadwarning  <text>
+98.  advancedglow <text>
+99.  brakewall    <text>
+100. glitch3      <text>
+101. 3dbox        <text>
+102. waterdrop    <text>
+103. lion3        <text>
+104. papercut2    <text>
+105. transformer2 <text>
+106. harrypot2    <text>
+107. window2      <text>
+108. blackpinkneon2   <text>
+109. (pornhub3)   <text>
+110. blackpink4   <text>
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm5': case 'mmenu5': case 'makerm5': case 'makermenu5':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+111. glitch4   <text>
+112. glitch5   <text>
+113. glitch6   <text>
+114. 3dspace2  <text>
+115. lion4     <text>
+116. 3dneon3   <text>
+117. neon4     <text>
+118. holographic3  <text>
+119. bear3     <text>
+120. wolf3     <text>
+121. joker3    <text>
+122. dropwater3    <text>
+123. summertime3   <text>
+124. neonlight5    <text>
+125. thewall3  <text>
+126. natural3  <text>
+127. carbon3   <text>
+128. pencil3   <text>
+129. textmaker3    <text>
+130. (textmaker4)  <text>
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm6': case 'mmenu6': case 'makerm6': case 'makermenu6':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+131. hooror2    <text>
+132. whitebear3 <text>
+133. thunder4   <text>
+134. neon6      <text>
+135. matrix4    <text>
+136. sky3       <text>
+137. magma4     <text>
+138. sand4      <text>
+139. pencil5    <text>
+140. metallic3  <text>
+141. graffititext5 <text>
+142. steel3     <text>
+143. harrypotter6  <text>
+144. underwater4   <text>
+145. luxury3    <text>
+146. glue5      <text>
+147. fabric3    <text>
+148. neonlight7 <text>
+149. lava5      <text>
+150. toxic3     <text>
+151. ancient3   <text>
+152. chrismas4  <text>
+153. scifi4     <text>
+154. rainbow4   <text>
+155. classic3   <text>
+156. watercolor5   <text>
+157. halloween4 <text>
+158. halloweenfire3 <text>
+159. foggy3     <text>
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm7': case 'mmenu7': case 'makerm7': case 'makermenu7':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+160. marvel6    <text>
+161. skeleton4  <text>
+162. sketch3    <text>
+163. wonderful3 <text>
+164. batman3    <text>
+165. juice4     <text>
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'oh': case 'omenu': case 'ownermenu': case 'omu':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.botowner)
+reply(` Hi ${pushname} ,
+Du bist im Ownermenu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+Hier ist die Liste der Owner Befehle:
+
+*━━━〈  🎀 Owner 🎀  〉━━━*
+
+ self , public
+ ban , bangroup
+ verlasse , join
+ block , unblock
+ broadcast(...)
+ 
+ _ban_:
+ ban add (hinzufügen)
+ ban del (entfernen)
+ 
+ botowner
+ botowners
+ ownerlist
+ listowner
+ 
+ allgrouplinks
+ allgrplinks
+ allgrpl , agl
+ 
+ gruppenchats
+
+ *━━━〈  Inhaber  〉━━━*
+ 
+ _Websites_:
+ Gweb , Gwebsite
+ Bweb , Bwebsite
+ oweb , owebsite 
+
+ GWS , BWS
+ ownerwebsite
+
+ _Teamliste_:
+ team , teamlist
+ listt , tlist
+ supporter/in
+ tsup , supt
+ supteam , supportteam
+ listsup , suplist
+ developer/in , devs
+ tdev ,  devt
+ devteam , listdev
+ developerteam , devlist
+ 
+ 
+ _Extras_:
+ script , skript
+ sc , sk
+ groups , pmuser
+ gruppenchats
+ listgc , listpc
+ pruser , pmuser
+ pmchats , chats
+ 
+ *━━━〈  👥️Gruppen👥️  〉━━━*
+ 
+ _Botgruppe_:
+ botsgruppe , botsgrp
+ 
+ _Supportanfragengruppe_:
+ suprqgrp , suprqgruppe
+ supportanfragegruppe
+ supportanfragegruppe
+ 
+ _Befehle - Miku_:
+ commandgrp , cmgrp
+ commandsgrp , mikucgrp
+ 
+ _Ownerchatgruppe_:
+ ochatgrp , ownerchatgrp
+ ownerchatgruppe
+ 
+ _Ideegruppe_:
+ ideengrp , ideengruppe
+ ideagrp
+ 
+ _Teamgruppe_:
+ teamgruppe , teamgrp
+ 
+ _Miku on top_:
+ mikuontop , mikuot
+ 
+ _Testgruppen_:
+ botbetatest
+ betatest , bbt
+ test2grp , bottest2grp
+ 
+ _Supportgruppe_:
+ supgrp , supportgruppe
+ 
+ _Werbegruppe_:
+ werbegruppe , werbegrp
+ 
+ _NSFW-Gruppe_:
+ nsfwgruppe , nsfwgrp
+ 
+ _Chatgruppe_:
+ chatgruppe , chagrp
+ 
+ _Dieses Menu ist erst seit 
+ MkM-Miku Version 4 verfügbar_
+ 
+ 『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+ 
+
 case '':
     if(isCmd){
     if (isBan) return reply(mess.banned)	 			
@@ -6213,88 +7105,68 @@ case '':
       mikupic ='https://wallpapercave.com/wp/wp6299451.jpg'
     
         
- const needhelpmenu = `Brauchst du Hilfe, ${pushname} Senpai? Geben Sie *${prefix}help* ein wenn sie meine befehlsliste sehen wollen .`
+ const needhelpmenu = `Brauchst du Hilfe, ${pushname} Senpai? Geben Sie *${prefix}help* ein, um meine vollständige Befehlsliste zu erhalten.`
      
          let butRun = [
                 {buttonId: `${prefix}help`, buttonText: {displayText: 'Help'}, type: 1}
                 ]
                 let buttonMessage = {
-                    image:fs.readFileSync('./Assets/Nishikigi.Chisato.600.3752321.jpg'),
+                    video:fs.readFileSync('./Assets/pic7.jpg'),gifPlayback:true,
                     caption: needhelpmenu,
                     footer: `${global.BotName}`,
                     buttons: butRun,
                     headerType: 4
                 }
-            Chisato.sendMessage(m.chat,buttonMessage,{quoted:m})
+            Miku.sendMessage(m.chat,buttonMessage,{quoted:m})
                 }
 break
 
 
 
-
-case 'chisato':
+case 'miku':
     if (isBan) return reply(mess.banned)	 			
     if (isBanChat) return reply(mess.bangc)
 
-const txt = `Hi ich bin Chisato`
-const Chisatoarray= [
-            "https://media.tenor.com/zEKmG9Tc0C0AAAPo/lycoris-recoil.mp4",
-            "https://media.tenor.com/x0D0wXtq22AAAAPo/lycoris-recoil.mp4",
-	    "https://media.tenor.com/W3wUoMhulrwAAAPo/lycoris-recoil-lycoris.mp4", 
-	    "https://media.tenor.com/eglg-AaqT4cAAAPo/lycoris-recoil-kazumaozk.mp4",
-	    "https://media.tenor.com/AwbBHFBnTQcAAAPo/lycoris-recoil-takina-inoue.mp4", 
-	    "https://media.tenor.com/dwqn-DDq0GkAAAPo/chisato-nishikigi-lycoris-recoil.mp4", 
-	    "https://media.tenor.com/3a3XcQUCFPkAAAPo/lycoris-recoil-chisato-nishikigi.mp4",
-	    "https://media.tenor.com/SCo7LfX56YEAAAPo/lycoris-recoil.mp4",
-	    "https://media.tenor.com/30_Rrgmy59YAAAPo/lycoris-recoil-%E3%83%AA%E3%82%B3%E3%83%AA%E3%82%B9%E3%83%AA%E3%82%B3%E3%82%A4%E3%83%AB.mp4",
-	    "https://media.tenor.com/WKuGiWrJrbAAAAPo/lycoris-recoil-%E3%83%AA%E3%82%B3%E3%83%AA%E3%82%B9%E3%83%AA%E3%82%B3%E3%82%A4%E3%83%AB.mp4",
-	    "https://media.tenor.com/QFCbAlzNDgkAAAPo/lycoris-recoil-chisato-nishikigi.mp4",
-	    "https://media.tenor.com/GrS9L57IBQMAAAPo/lycoris-recoil-%E3%83%AA%E3%82%B3%E3%83%AA%E3%82%B9%E3%83%AA%E3%82%B3%E3%82%A4%E3%83%AB.mp4",
-	    "https://media.tenor.com/d0ggrAl-cqsAAAPo/lycoris-recoil-%E3%83%AA%E3%82%B3%E3%83%AA%E3%82%B9%E3%83%AA%E3%82%B3%E3%82%A4%E3%83%AB.mp4",
-	    "https://media.tenor.com/e5ADyLaU4WAAAAPo/lycoris-recoil.mp4",
-	    
+const txt = `Liebst du Miku? Dann sind wir gleich.`
+const mikuarray= [
+            "https://c.tenor.com/SOeIW-QVZvoAAAPo/scared-the-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/FDe7lTs0xvMAAAPo/miku-nakano-nakano-miku.mp4",
+            "https://c.tenor.com/IWKYIP6AMIgAAAPo/miku-nakano-the-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/qE3H_Ae_jTQAAAPo/miku-nakano-nakano.mp4",
+            "https://c.tenor.com/9ijVngbm_ZMAAAPo/itsuki-nakano-the-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/Fz9xGVR_FHAAAAPo/miku-nakano-nakano-miku.mp4",
+            "https://c.tenor.com/ALV6SZoJZb8AAAPo/gotoubun-corada.mp4",
+            "https://c.tenor.com/QHefpWiqvN4AAAPo/blush-anime.mp4",
+            "https://c.tenor.com/NJVFjOYEcsIAAAPo/miku-gotoubun.mp4",
+            "https://c.tenor.com/DA88NW5x_0wAAAPo/miku-nakano-stare.mp4",
+            "https://c.tenor.com/zNTH_-ks3GEAAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/V9XEKQYRwrEAAAPo/miku-nakano-the-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/GDH4WFhELpAAAAPo/anime-pout.mp4",
+            "https://c.tenor.com/ME0cvLQiW0kAAAPo/nakano-miku-go-toubun-no-hanayome.mp4",
+            "https://c.tenor.com/d5pE_0GJUf0AAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/zNTH_-ks3GEAAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/pCgBkgDBbnIAAAPo/nakano-miku-go-toubun-no-hanayome.mp4",
+            "https://c.tenor.com/6GTU3JEtpKoAAAPo/miku-nakano-the-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/XNbmenhVucMAAAPo/5toubun-no-hanayome-gotoubun-no-hanayome.mp4",
+            "https://c.tenor.com/lyMqrhEK4scAAAPo/%EC%98%A4%EB%93%B1%EB%B6%84-5%EB%93%B1%EB%B6%84.mp4",
+            "https://c.tenor.com/vQ9TpmdjfWAAAAPo/cuteness-overload.mp4",
+            "https://c.tenor.com/PHngM6-NJVwAAAPo/miku-quintessential.mp4",
+            "https://c.tenor.com/yniTgeiOo4gAAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/AULffc4ZKFIAAAPo/miku-god-miku.mp4",
+            "https://c.tenor.com/Y8Y1GbmQSOIAAAPo/miku-nakano-quintessential-quintuplets.mp4",
+            "https://c.tenor.com/m0EjrelpOfkAAAPo/miku-nakano-nakano-miku.mp4",
+            "https://c.tenor.com/x6RTarQTMzoAAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/hUzZGMltInkAAAPo/gotoubun-corada.mp4",
+            "https://c.tenor.com/9-7azOBpr84AAAPo/miku-nakano-and-i-love-you.mp4",
+            "https://c.tenor.com/Ed5IC_yxZkoAAAPo/miku-nakano-gotoubun-no-hanayome.mp4",
+            "https://c.tenor.com/hDKieuZGiU0AAAPo/miku-nakano.mp4",
+            "https://c.tenor.com/WD8L3QLO024AAAPo/whaatt-the-quintessential-quintuplets.mp4"
+            
             ]
         
-            const Chisatoselection = Chisatoarray[Math.floor(Math.random()*Chisatoarray.length)]
+            const mikuselection = mikuarray[Math.floor(Math.random()*mikuarray.length)]
         
-             Chisato.sendMessage(from,{video:{url:Chisatoselection},gifPlayback:true,caption:txt},{quoted:m})
-		
-		
- case "sayger":  case "sayde": {
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-
-    if (!args[0]) return reply("Please give me a text so that i can speak it!")
-      
-      let texttosay = text
-        ? text
-        : m.quoted && m.quoted.text
-        ? m.quoted.text
-        : m.text;
-      const SpeakEngine = require("google-tts-api"); 
-      const texttospeechurl = SpeakEngine.getAudioUrl(texttosay, {lang: "de", slow: false, host: "https://translate.google.com",});
-       Chisato.sendMessage(m.chat,{audio: {url: texttospeechurl,},mimetype: "audio/mpeg",fileName: ` ChisatoSpeechEngine.mp3`,},{quoted: m,});
-    }
-    break
-		
-		
- case "sayeng":  case "sayen": {
-    if (isBan) return reply(mess.banned)	 			
-    if (isBanChat) return reply(mess.bangc)
-
-    if (!args[0]) return reply("Please give me a text so that i can speak it!")
-      
-      let texttosay = text
-        ? text
-        : m.quoted && m.quoted.text
-        ? m.quoted.text
-        : m.text;
-      const SpeakEngine = require("google-tts-api"); 
-      const texttospeechurl = SpeakEngine.getAudioUrl(texttosay, {lang: "en", slow: false, host: "https://translate.google.com",});
-       Chisato.sendMessage(m.chat,{audio: {url: texttospeechurl,},mimetype: "audio/mpeg",fileName: ` ChisatoSpeechEngine.mp3`,},{quoted: m,});
-    }
-    break
-
+            Miku.sendMessage(from,{video:{url:mikuselection},gifPlayback:true,caption:txt},{quoted:m})
 
 
 
@@ -6311,18 +7183,18 @@ const Chisatoarray= [
         : m.text;
       const SpeakEngine = require("google-tts-api"); 
       const texttospeechurl = SpeakEngine.getAudioUrl(texttosay, {lang: "de", slow: false, host: "https://translate.google.com",});
-       Chisato.sendMessage(m.chat,{audio: {url: texttospeechurl,},mimetype: "audio/mpeg",fileName: ` ChisatoSpeechEngine.mp3`,},{quoted: m,});
+      Miku.sendMessage(m.chat,{audio: {url: texttospeechurl,},mimetype: "audio/mpeg",fileName: `MikuSpeechEngine.mp3`,},{quoted: m,});
     }
     break;
 
 
-		 case 'wetter':
+		 case 'wetter': case 'wt':
         if (isBan) return reply(mess.banned)
         if (!args[0]) return reply("Enter your location to search weather.")
          myweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(" ")}&units=metric&appid=e409825a497a0c894d2dd975542234b0&language=tr`)
 
         const weathertext = `           🌤 *Wetterbericht* 🌤  \n\n🔎 *Standort suchen:* ${myweather.data.name}\n*💮 Land:* ${myweather.data.sys.country}\n🌈 *Wetter:* ${myweather.data.weather[0].description}\n🌡️ *Temperatur:* ${myweather.data.main.temp}°C\n❄️ *Mindest Temperatur:* ${myweather.data.main.temp_min}°C\n📛 *Hochste Temperatur:* ${myweather.data.main.temp_max}°C\n💦 *Humidity:* ${myweather.data.main.humidity}%\n🎐 *Wind:* ${myweather.data.wind.speed} km/h\n`
-         Chisato.sendMessage(from, { video: { url: 'https://media.tenor.com/bC57J4v11UcAAAPo/weather-sunny.mp4' }, gifPlayback: true, caption: weathertext }, { quoted: m })
+        Miku.sendMessage(from, { video: { url: 'https://media.tenor.com/bC57J4v11UcAAAPo/weather-sunny.mp4' }, gifPlayback: true, caption: weathertext }, { quoted: m })
 
         break
 
@@ -6351,7 +7223,7 @@ return reply(bang)
 try {
 reply(util.format(eval(`(async () => { ${budy.slice(3)} })()`)))
 } catch (e) {
- Chisato.sendMessage(from, {image:ErrorPic, caption:String(e)}, {quoted:m})
+Miku.sendMessage(from, {image:ErrorPic, caption:String(e)}, {quoted:m})
 }
 }
 if (budy.startsWith('>')) {
@@ -6361,7 +7233,7 @@ let evaled = await eval(budy.slice(2))
 if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
 await reply(evaled)
 } catch (err) {
-await  Chisato.sendMessage(from, {image:ErrorPic, caption:String(err)}, {quoted:m})
+await Miku.sendMessage(from, {image:ErrorPic, caption:String(err)}, {quoted:m})
 }
 }
 
@@ -6370,7 +7242,7 @@ await  Chisato.sendMessage(from, {image:ErrorPic, caption:String(err)}, {quoted:
 if (budy.startsWith('$')) {
 if (!isCreator) return replay(mess.botowner)
 exec(budy.slice(2), (err, stdout) => {
-if(err) return  Chisato.sendMessage(from, {image:ErrorPic, caption:String(err)}, {quoted:m})
+if(err) return Miku.sendMessage(from, {image:ErrorPic, caption:String(err)}, {quoted:m})
 if (stdout) return replay(stdout)
 })
 }
@@ -6381,11 +7253,11 @@ if (m.chat.endsWith('broadcast')) return
 if (m.isBaileys) return
 let msgs = global.db.database
 if (!(budy.toLowerCase() in msgs)) return
- Chisato.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
+Miku.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 }
 }
 }catch (err) {
- Chisato.sendMessage(`${ownertag}@s.whatsapp.net`, util.format(err), {quoted:m})
+Miku.sendMessage(`${ownertag}@s.whatsapp.net`, util.format(err), {quoted:m})
 console.log(err)
 }
 }
