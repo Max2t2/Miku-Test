@@ -7,18 +7,72 @@ global.autoReadAll = false
 global.antitags = true
 
 
-global.ownernomer = "436764242454" 
-global.Owner = ['436764242454']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
-global.OwnerNumber = ['436764242454']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
-global.ownertag = ['436764242454']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
-global.BotName = "Nishikigi Chisato"
-global.packname = "Erstellt für mein Meister"
-global.author = "ich"
-global.OwnerName = "Sebastian"
+global.Owner = ['493023180366','4917662927731']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
+global.OwnerNumber = ['493023180366','4917662927731']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
+global.ownertag = ['493023180366','4917662927731']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
+global.BotName = "Miku-Max_v4-Beta"
+global.packname = "Erstellt für User"
+global.author = "MkM Bot Inc."
+global.OwnerName = "Max"
 global.BotSourceCode = "https://github.com/FantoX001/Miku-MD" // -- Please don't change -- //
 global.SupportGroupLink = "https://chat.whatsapp.com/JcBzjRIxM5UHfuJbt0KrWt"  // -- Please don't change -- //
 global.sessionName = "session"  // -- Don't change otherwise bot will not work -- //
+global.sitzung = "Miku-Max_v4"
+global.script = "https://github.com/txmx4/m_m0001"
+global.skript = "https://github.com/txmx4/m_m0001"
+global.botname = "Miku-Max_v4-Beta"
 
+
+global.owner1 = "Max_2  | +493023180366"
+global.owner3 = "Max_2  | +4917662927731"
+global.owner2 = "Kirito | +491777062822"
+global.owner4 = "Magic  | +4915212908434"
+global.manage = "Pablo | +491632225167"
+global.chatsup = "Pablo | +491632225167"
+global.support1 = "Jabee1 | +49 4916093444217"
+global.support2 = "Kevin | +491777108553"
+global.support3 = "Mario | +491788781873"
+global.support6 = "Jabee2 | +4916093444217"
+global.support4 = "Yumi | +64273973777"
+global.support5 = "Lisa | +4915205683981"
+global.dev = "*Undefined* | Error"
+global.devs = "*Undefined* | Error"
+global.host1 = "Kevin | +491777108553"
+
+
+
+global.supporter1 = "Jaybee1 | +49 4916093444217"
+global.supporterin1 = "Jaybee1 | +49 4916093444217"
+global.supporter2 = "Kevin | +491777108553"
+global.supporterin2 = "Kevin | +491777108553"
+global.supporter3 = "Mario | +491788781873"
+global.supporterin3 = "Mario | +491788781873"
+global.supporter4 = "Jaybee2 | +4916093444217"
+global.supporterin4 = "Jaybee2 | +4916093444217"
+global.hoster1 = "Kevin | +491777108553"
+global.hosterin1 = "Kevin | +491777108553"
+global.manager = "Pablo | +491632225167"
+global.managerin = "Pablo | +491632225167"
+
+global.chatgrp = "https://chat.whatsapp.com/LPH7g7UTSZO0RH9ZRqBm7D"
+global.ankundigung = "https://chat.whatsapp.com/G0nG2wuUtug4dI12WgXWNt"
+global.werbunggrp = "https://chat.whatsapp.com/GwvXFuOV3MqA5iYyyxZcyx"
+global.nsfwgrp = "https://chat.whatsapp.com/FMDqCkfLfbkHA3oaxtuAc9"
+global.broadcastgrp = "https://chat.whatsapp.com/DqMT7TbY07BFEiYUbwuzk8"
+global.supportgrp = "https://chat.whatsapp.com/DOnXPARAhdg3qptwUlPuye"
+global.bewerbunggrp = "https://chat.whatsapp.com/LS47HKf5kDRDqS7htdGeBY"
+global.test1 = "https://chat.whatsapp.com/GDfOjcVqD3ZITvfe4FM5wf"
+global.test2 = "https://chat.whatsapp.com/EzjnDNuLtoo9px21tDvIi7"
+global.betatest = "https://chat.whatsapp.com/D2RngbN5ZH33IjpnwXrGdD"
+global.mikuot = "https://chat.whatsapp.com/HZtUUYYXceDH9TfmTlwlLr"
+global.teamgrp = "https://chat.whatsapp.com/LWHQvmX171MBHoRzlN9l35"
+global.botsgrp = "https://chat.whatsapp.com/IGZ4LAuoNPtJzMaG5HDrkY"
+global.supportanfragengrp = "https://chat.whatsapp.com/L4LIsHrA051B3PIIhcp4Ji"
+global.mikucommand = "https://chat.whatsapp.com/JFG3pKH5ct5BNxHwIJv34n"
+global.ownerchatgrp = "https://chat.whatsapp.com/JjRfd8fIl8aJEZ6EQwANrx"
+global.ideengrp = "https://chat.whatsapp.com/FFPwoiP84xhDiKOCOZ04mv"
+global.animefchatgrp = "https://chat.whatsapp.com/L8FwBr4LUrIJP4GBUOaLu6"
+global.umfragengrp = "https://chat.whatsapp.com/JEmPVdx1ZXILPYk6S2NvCp"
 
 
 global.prefa = ['!'] // Prefix ---  change it to anythong you want except '@' //
@@ -28,8 +82,8 @@ global.location = "West-Berlin"
 global.reactmoji = "❤️"
 global.themeemoji = "💖"
 global.vidmenu = { url: 'https://c.tenor.com/YGuLegQWubwAAAPo/miku-nakano-gotoubun-no-hanayome.mp4' }
-global.websitex = "https://github.com/Kai0071"
-global.lolhuman = "Sebastian"
+global.websitex = "https://github.com/a"
+global.lolhuman = "Max"
 
 
 global.BotLogo = fs.readFileSync("./Assets/pic1.jpg")
