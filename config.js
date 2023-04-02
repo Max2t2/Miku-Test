@@ -11,6 +11,7 @@ global.Owner = ['493023180366','4917662927731']  // -- Add multiple numbers like
 global.OwnerNumber = ['493023180366','4917662927731']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
 global.ownertag = ['493023180366','4917662927731']  // -- Add multiple numbers like  ['918101967835','919357940276','917896587453']
 global.BotName = "Miku-Max_v4-Beta"
+global.botname = "Miku-Max_v4-Beta"
 global.packname = "Erstellt für User"
 global.author = "MkM Bot Inc."
 global.OwnerName = "Max"
@@ -111,6 +112,7 @@ global.gcrevoke = []
 global.autorep = []
 global.ntilink = []
 
+mess.success = "Erfolgreich!"
 
 global.mess = {
     jobdone: 'Job erledigt...',
