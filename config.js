@@ -19,6 +19,7 @@ global.BotSourceCode = "https://github.com/FantoX001/Miku-MD" // -- Please don't
 global.SupportGroupLink = "https://chat.whatsapp.com/JcBzjRIxM5UHfuJbt0KrWt"  // -- Please don't change -- //
 global.sessionName = "session"  // -- Don't change otherwise bot will not work -- //
 global.sitzung = "Miku-Max_v4"
+global.reactmoji = "☑️"
 global.script = "https://github.com/txmx4/m_m0001"
 global.skript = "https://github.com/txmx4/m_m0001"
 global.botname = "Miku-Max_v4-Beta"
