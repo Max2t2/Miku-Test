@@ -22,6 +22,10 @@ global.sitzung = "Miku-Max_v4"
 global.script = "https://github.com/txmx4/m_m0001"
 global.skript = "https://github.com/txmx4/m_m0001"
 global.botname = "Miku-Max_v4-Beta"
+global.Botv = "Miku-v5"
+global.botv = "Miku-v5"
+global.BotV = "Miku-v5"
+global.botV = "Miku-v5"
 
 
 global.owner1 = "Max_2  | +493023180366"
