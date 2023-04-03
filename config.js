@@ -26,6 +26,8 @@ global.Botv = "Miku-v5"
 global.botv = "Miku-v5"
 global.BotV = "Miku-v5"
 global.botV = "Miku-v5"
+global.aBot = "Miku"
+global.abot = "Miku"
 
 
 global.owner1 = "Max_2  | +493023180366"
