@@ -2135,7 +2135,9 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 	case 'sand4': case 'pencil5': case 'metallic3': case 'graffititext5': case 'steel3': case 'harrypotter6': case 'underwater4':
 	case 'luxury3': case 'glue5': case 'fabric3': case 'neonlight7': case 'lava5': case 'toxic3': case 'ancient3': case 'chrismas4':
 	case 'scifi4': case 'rainbow4': case 'classic3': case 'watercolor5': case 'halloween4': case 'halloweenfire3': case 'foggy3':
-	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':{
+	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':
+        case 'business7': case 'thor7': case 'deepsea7': case 'batman7': case 'diamond7': case 'flag_3D-2': case 'american_3d_flag':
+        case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': case 'spooky8': case 'horror8':
              if (!q) throw `Example : ${prefix + command} ${global.ownername}`
              reply( `${mess.waiting} `)
              let link
@@ -2301,7 +2303,21 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 		if (/wonderful3/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
 		if (/batman3/.test(command)) link = 'https://textpro.me/make-a-batman-logo-online-free-1066.html'
 		if (/juice4/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
-             let anutexpro = await maker.textpro(link, q)
+if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = ""
+if(//.test(command)) link = "
+if(//.test(command)) link = "
+
+	let anutexpro = await maker.textpro(link, q)
                 Miku.sendMessage(m.chat, { image: { url: anutexpro }, caption: `Made by *${global.botname}*\n_Official MkM Bot Inc._` }, { quoted: m })
              }
              break
