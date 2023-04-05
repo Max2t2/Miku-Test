@@ -2303,10 +2303,10 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 		if (/wonderful3/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
 		if (/batman3/.test(command)) link = 'https://textpro.me/make-a-batman-logo-online-free-1066.html'
 		if (/juice4/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
-if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
+                if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
+if(//.test(command)) link = "https://textpro.me/create-thor-logo-style-text-effect-online-1064.html"
+if(//.test(command)) link = "https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html"
+if(//.test(command)) link = "https://textpro.me/make-a-batman-logo-online-free-1066.html"
 if(//.test(command)) link = ""
 if(//.test(command)) link = ""
 if(//.test(command)) link = ""
