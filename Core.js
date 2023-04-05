@@ -2136,8 +2136,8 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 	case 'luxury3': case 'glue5': case 'fabric3': case 'neonlight7': case 'lava5': case 'toxic3': case 'ancient3': case 'chrismas4':
 	case 'scifi4': case 'rainbow4': case 'classic3': case 'watercolor5': case 'halloween4': case 'halloweenfire3': case 'foggy3':
 	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':
-        case 'business7': case 'thor7': case 'deepsea7': case 'batman7': case 'diamond7': case 'flag_3D-2': case 'american_3d_flag':
-        case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': case 'spooky8': case 'horror8':
+case 'business7': case 'thor7': case 'deepsea7': case 'batman7': case 'diamond7': case 'flag_3D-2': case 'american_3d_flag':
+case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': case 'spooky8': case 'horror8':
              if (!q) throw `Example : ${prefix + command} ${global.ownername}`
              reply( `${mess.waiting} `)
              let link
@@ -2303,20 +2303,91 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 		if (/wonderful3/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
 		if (/batman3/.test(command)) link = 'https://textpro.me/make-a-batman-logo-online-free-1066.html'
 		if (/juice4/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
-                if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
+if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
 if(//.test(command)) link = "https://textpro.me/create-thor-logo-style-text-effect-online-1064.html"
 if(//.test(command)) link = "https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html"
 if(//.test(command)) link = "https://textpro.me/make-a-batman-logo-online-free-1066.html"
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = ""
-if(//.test(command)) link = "
+if(//.test(command)) link = "https://textpro.me/create-a-quick-sparkling-diamonds-text-effect-1077.html"
+if(//.test(command)) link = "https://textpro.me/free-online-country-flag-3d-text-effect-generator-1052.html"
+if(//.test(command)) link = "https://textpro.me/create-american-flag-3d-text-effect-online-1051.html"
+if(//.test(command)) link = "https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html"
+if(//.test(command)) link = "https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html"
+if(//.test(command)) link = "https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html"
+if(//.test(command)) link = "https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html"
+if(//.test(command)) link = "https://textpro.me/create-a-spooky-halloween-text-effect-online-1046.html"
+if(//.test(command)) link = "https://textpro.me/create-a-cinematic-horror-text-effect-1045.html"
+ if(//.test(command)) link = "https://textpro.me/create-a-sketch-text-effect-online-1044.html"
+ if(//.test(command)) link = "https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html"
+ if(//.test(command)) link = "https://textpro.me/create-space-text-effects-online-free-1042.html"
+ if(//.test(command)) link = "https://textpro.me/create-a-metallic-text-effect-free-online-1041.html"
+ if(//.test(command)) link = "https://textpro.me/creat-glossy-metalic-text-effect-free-online-1040.html"
+ if(//.test(command)) link = "https://textpro.me/create-a-captain-america-text-effect-free-online-1039.html"
+ if(//.test(command)) link = "https://textpro.me/create-science-fiction-text-effect-online-free-1038.html"
+ if(//.test(command)) link = "https://textpro.me/video-game-classic-8-bit-text-effect-1037.html"
+ if(//.test(command)) link = "https://textpro.me/create-green-horror-style-text-effect-online-1036.html"
+ if(//.test(command)) link = "https://textpro.me/create-a-transformer-text-effect-online-1035.html"
+ if(//.test(command)) link = "https://textpro.me/create-berry-text-effect-online-free-1033.html"
+ if(//.test(command)) link = "https://textpro.me/create-layered-text-effects-online-free-1032.html"
+ if(//.test(command)) link = "https://textpro.me/online-thunder-text-effect-generator-1031.html"
+  if(//.test(command)) link = "https://textpro.me/create-a-magma-hot-text-effect-online-1030.html"
+  if(//.test(command)) link = "https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html"
+  if(//.test(command)) link = "https://textpro.me/create-3d-neon-light-text-effect-online-1028.html"
+  if(//.test(command)) link = "https://textpro.me/create-impressive-glitch-text-effects-online-1027.html"
+  if(//.test(command)) link = "https://textpro.me/create-a-glitch-text-effect-online-free-1026.html"
+  if(//.test(command)) link = "https://textpro.me/create-harry-potter-text-effect-online-1025.html"
+  if(//.test(command)) link = "https://textpro.me/create-embossed-text-effect-on-cracked-surface-1024.html"
+  if(//.test(command)) link = "https://textpro.me/broken-glass-text-effect-free-online-1023.html"
+  if(//.test(command)) link = "https://textpro.me/create-art-paper-cut-text-effect-online-1022.html"
+  if(//.test(command)) link = "https://textpro.me/create-artistic-black-and-white-status-and-quote-with-your-photos-1021.html"
+  if(//.test(command)) link = "https://textpro.me/online-3d-gradient-text-effect-generator-1020.html"
+  if(//.test(command)) link = "https://textpro.me/create-a-3d-glossy-metal-text-effect-1019.html"
+  if(//.test(command)) link = "https://textpro.me/create-3d-realistic-text-effect-on-the-beach-online-1018.html"
+   if(//.test(command)) link = "https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html"
+   if(//.test(command)) link = "https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html"
+   if(//.test(command)) link = "https://textpro.me/write-text-on-foggy-window-online-free-1015.html"
+   if(//.test(command)) link = "https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html"
+   if(//.test(command)) link = "https://textpro.me/3d-underwater-text-effect-generator-online-1013.html
+   if(//.test(command)) link = "https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html"
+   if(//.test(command)) link = "https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html"
+   if(//.test(command)) link = "https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html"
+   if(//.test(command)) link = "https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html"
+   if(//.test(command)) link = "https://textpro.me/create-a-christmas-holiday-snow-text-effect-1007.html"
+   if(//.test(command)) link = "https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html"
+   if(//.test(command)) link = "https://textpro.me/create-snow-text-effects-for-winter-holidays-1005.html"
+   if(//.test(command)) link = "https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html"
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+    if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+     if(//.test(command)) link = "
+
+/* 
+Vorlage:
 if(//.test(command)) link = "
 
+if(//.test(command)) link = "
+
+*/
 	let anutexpro = await maker.textpro(link, q)
                 Miku.sendMessage(m.chat, { image: { url: anutexpro }, caption: `Made by *${global.botname}*\n_Official MkM Bot Inc._` }, { quoted: m })
              }
