@@ -2380,8 +2380,21 @@ if(//.test(command)) link = "https://textpro.me/create-a-cinematic-horror-text-e
      if(//.test(command)) link = "https://textpro.me/holographic-3d-text-effect-975.html"
      if(//.test(command)) link = "https://textpro.me/create-3d-avengers-logo-online-974.html
      if(//.test(command)) link = "https://textpro.me/metal-purple-dual-effect-973.html"
-
-/* 
+      if(//.test(command)) link = "https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html"
+      if(//.test(command)) link = "https://textpro.me/create-logo-style-marvel-studios-online-971.html"
+      if(//.test(command)) link = "https://textpro.me/deluxe-silver-text-effect-970.html"
+      if(//.test(command)) link = "https://textpro.me/color-full-luxury-metal-text-effect-969.html"
+      if(//.test(command)) link = "https://textpro.me/glossy-blue-metal-text-effect-967.html"
+      if(//.test(command)) link = "https://textpro.me/deluxe-gold-text-effect-966.html"
+      if(//.test(command)) link = "https://textpro.me/glossy-carbon-text-effect-965.html"
+      if(//.test(command)) link = "https://textpro.me/fabric-text-effect-online-964.html"
+      if(//.test(command)) link = "https://textpro.me/neon-text-effect-online-963.html"
+      if(//.test(command)) link = "https://textpro.me/new-year-cards-3d-by-name-960.html"
+      if(//.test(command)) link = "https://textpro.me/happ-new-year-card-firework-gif-959.html"
+      if(//.test(command)) link = "https://textpro.me/fullcolor-balloon-text-effect-958.html"
+      if(//.test(command)) link = "
+	
+	/* 
 Vorlage:
 if(//.test(command)) link = "
 
