@@ -2304,11 +2304,11 @@ case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': cas
 		if (/batman3/.test(command)) link = 'https://textpro.me/make-a-batman-logo-online-free-1066.html'
 		if (/juice4/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
 if(/buisness7/.test(command)) link = "https://textpro.me/3d-business-sign-text-effect-1078.html"
-if(//.test(command)) link = "https://textpro.me/create-thor-logo-style-text-effect-online-1064.html"
-if(//.test(command)) link = "https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html"
-if(//.test(command)) link = "https://textpro.me/make-a-batman-logo-online-free-1066.html"
-if(//.test(command)) link = "https://textpro.me/create-a-quick-sparkling-diamonds-text-effect-1077.html"
-if(//.test(command)) link = "https://textpro.me/free-online-country-flag-3d-text-effect-generator-1052.html"
+if(/thor7/.test(command)) link = "https://textpro.me/create-thor-logo-style-text-effect-online-1064.html"
+if(/deepsea7/.test(command)) link = "https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html"
+if(/batman7/.test(command)) link = "https://textpro.me/make-a-batman-logo-online-free-1066.html"
+if(/diamond7/.test(command)) link = "https://textpro.me/create-a-quick-sparkling-diamonds-text-effect-1077.html"
+if(/flag-3D-2/.test(command)) link = "https://textpro.me/free-online-country-flag-3d-text-effect-generator-1052.html"
 if(//.test(command)) link = "https://textpro.me/create-american-flag-3d-text-effect-online-1051.html"
 if(//.test(command)) link = "https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html"
 if(//.test(command)) link = "https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html"
