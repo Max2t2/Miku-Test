@@ -2146,9 +2146,14 @@ case 'watercolor5': case '3D-Multicolor': case 'foggy6': case 'neon_devil-2': ca
 case 'graffiti8': case 'graffiti-wall-2': case 'graffiti9': case 'christmas7': case 'technology-neon-2': case 'snow6': case 'cloud5':
 case '3D-luxury-2': case '3D-gradient-2': case 'blackpink5': case 'vintage6': case 'real-cloud-2': case 'cloud-sky-2': case 'sand-beach-2': 
 case 'sand-writing-2': case 'sand-engraved-2': case 'summery-sand-2': case 'birthday5': case '3D-glue-2':
-            
+case '3D-space': case 'metal-dark-2': case 'tiktok-style-2': case 'a-stone-2': case 'galaxy-style-2': case '1917style5': 
+case '80s-retro': case '3D-Minion3': case 'pornhub8': case 'dexposure': case '3D-holo-2': case 'avengers8': case 'metal-purple-2':
+case 'marvel-metal-2': case 'deluxe-silver-2': case 'luxury_metal-2': case 'glossyblue4': case 'glossycarbon5': 
+case 'fabric7': case 'newyear6': case 'newyeargif3': case 'color-balloon-2': case '3D-metal-2':
+case 'avatargold4': case '3D_metalsilver-2': case '3D_rosegeold-2': case '3D_metalgold-2': case '3D_metalgalaxy-2': case '3D-Christmas-2': 
+case 'blood_text-2': case 'halloweenfire7': case 'metaldarkgold7': case 'wolf_logo-6': case 'lion_logo-6': case 'wolf_logo-6': case 'wolf_logo_galaxy-2': case 'ninja7':
 		
-	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
+		if (!q) throw `Example : ${prefix + command} ${global.ownername}`
              reply( `${mess.waiting} `)
              let link
              if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
