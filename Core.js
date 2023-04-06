@@ -2138,7 +2138,17 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':
 case 'business7': case 'thor7': case 'deepsea7': case 'batman7': case 'diamond7': case 'flag_3D-2': case 'american_3d_flag':
 case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': case 'spooky8': case 'horror8':
-             if (!q) throw `Example : ${prefix + command} ${global.ownername}`
+case 'sketch6': case 'bluecircuit5': case 'space5': case 'metallic5': case 'glossy7': case 'captain_america-2':
+case 'scifi9': case '8bit-2': case 'green_horror-2': case 'transformer4': case 'berry5': case 'layered4': case 'thunder9':
+case 'magma8': case 'stone6': case 'neon8': case 'glitch8': case 'glitch9': case 'harry_potter-2': case 'embossed5': 
+case 'brokenglass5': case 'artpaper-2': case 'bw-2': case 'gradient-3': case '3D_glossy-2': case '3D_beach-2':
+case 'watercolor5': case '3D-Multicolor': case 'foggy6': case 'neon_devil-2': case '3D-Underwater-2': case 'mascot-logo-2': 
+case 'graffiti8': case 'graffiti-wall-2': case 'graffiti9': case 'christmas7': case 'technology-neon-2': case 'snow6': case 'cloud5':
+case '3D-luxury-2': case '3D-gradient-2': case 'blackpink5': case 'vintage6': case 'real-cloud-2': case 'cloud-sky-2': case 'sand-beach-2': 
+case 'sand-writing-2': case 'sand-engraved-2': case 'summery-sand-2': case 'birthday5': case '3D-glue-2':
+            
+		
+	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
              reply( `${mess.waiting} `)
              let link
              if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
@@ -2309,13 +2319,13 @@ if(/deepsea7/.test(command)) link = "https://textpro.me/create-3d-deep-sea-metal
 if(/batman7/.test(command)) link = "https://textpro.me/make-a-batman-logo-online-free-1066.html"
 if(/diamond7/.test(command)) link = "https://textpro.me/create-a-quick-sparkling-diamonds-text-effect-1077.html"
 if(/flag-3D-2/.test(command)) link = "https://textpro.me/free-online-country-flag-3d-text-effect-generator-1052.html"
-if(//.test(command)) link = "https://textpro.me/create-american-flag-3d-text-effect-online-1051.html"
-if(//.test(command)) link = "https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html"
-if(//.test(command)) link = "https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html"
-if(//.test(command)) link = "https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html"
-if(//.test(command)) link = "https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html"
-if(//.test(command)) link = "https://textpro.me/create-a-spooky-halloween-text-effect-online-1046.html"
-if(//.test(command)) link = "https://textpro.me/create-a-cinematic-horror-text-effect-1045.html"
+if(/american_3d_flag/.test(command)) link = "https://textpro.me/create-american-flag-3d-text-effect-online-1051.html"
+if(/scifi_3D-2/.test(command)) link = "https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html"
+if(/rainbow_3D-2/.test(command)) link = "https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html"
+if(/pipe_3D-2/.test(command)) link = "https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html"
+if(/halloween8/.test(command)) link = "https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html"
+if(/spooky8/.test(command)) link = "https://textpro.me/create-a-spooky-halloween-text-effect-online-1046.html"
+if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror-text-effect-1045.html"
  if(//.test(command)) link = "https://textpro.me/create-a-sketch-text-effect-online-1044.html"
  if(//.test(command)) link = "https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html"
  if(//.test(command)) link = "https://textpro.me/create-space-text-effects-online-free-1042.html"
