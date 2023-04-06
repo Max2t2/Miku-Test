@@ -2136,26 +2136,66 @@ case 'lion': case 'magma': case 'matrix': case 'neongreen': case 'scifi': case '
 	case 'luxury3': case 'glue5': case 'fabric3': case 'neonlight7': case 'lava5': case 'toxic3': case 'ancient3': case 'chrismas4':
 	case 'scifi4': case 'rainbow4': case 'classic3': case 'watercolor5': case 'halloween4': case 'halloweenfire3': case 'foggy3':
 	case 'marvel6': case 'skeleton4': case 'sketch3': case 'wonderful3': case 'batman3': case 'juice4':
+/*
+1
+*/
 case 'business7': case 'thor7': case 'deepsea7': case 'batman7': case 'diamond7': case 'flag_3D-2': case 'american_3d_flag':
 case 'scifi_3D-2': case 'rainbow_3D-2': case 'pipe_3D-2': case 'halloween8': case 'spooky8': case 'horror8':
+/*
+2
+*/
 case 'sketch6': case 'bluecircuit5': case 'space5': case 'metallic5': case 'glossy7': case 'captain_america-2':
 case 'scifi9': case '8bit-2': case 'green_horror-2': case 'transformer4': case 'berry5': case 'layered4': case 'thunder9':
+/*
+3
+*/
 case 'magma8': case 'stone6': case 'neon8': case 'glitch8': case 'glitch9': case 'harry_potter-2': case 'embossed5': 
 case 'brokenglass5': case 'artpaper-2': case 'bw-2': case 'gradient-3': case '3D_glossy-2': case '3D_beach-2':
+/*
+4
+*/
 case 'watercolor5': case '3D-Multicolor': case 'foggy6': case 'neon_devil-2': case '3D-Underwater-2': case 'mascot-logo-2': 
 case 'graffiti8': case 'graffiti-wall-2': case 'graffiti9': case 'christmas7': case 'technology-neon-2': case 'snow6': case 'cloud5':
+/*
+5
+*/
 case '3D-luxury-2': case '3D-gradient-2': case 'blackpink5': case 'vintage6': case 'real-cloud-2': case 'cloud-sky-2': case 'sand-beach-2': 
 case 'sand-writing-2': case 'sand-engraved-2': case 'summery-sand-2': case 'birthday5': case '3D-glue-2':
+/*
+5
+*/
 case '3D-space': case 'metal-dark-2': case 'tiktok-style-2': case 'a-stone-2': case 'galaxy-style-2': case '1917style5': 
 case '80s-retro': case '3D-Minion3': case 'pornhub8': case 'dexposure': case '3D-holo-2': case 'avengers8': case 'metal-purple-2':
+/*
+6
+*/
 case 'marvel-metal-2': case 'deluxe-silver-2': case 'luxury_metal-2': case 'glossyblue4': case 'glossycarbon5': 
 case 'fabric7': case 'newyear6': case 'newyeargif3': case 'color-balloon-2': case '3D-metal-2':
+/*
+7
+*/
 case 'avatargold4': case '3D_metalsilver-2': case '3D_rosegeold-2': case '3D_metalgold-2': case '3D_metalgalaxy-2': case '3D-Christmas-2': 
-case 'blood_text-2': case 'halloweenfire7': case 'metaldarkgold7': case 'wolf_logo-6': case 'lion_logo-6': case 'wolf_logo-6': case 'wolf_logo_galaxy-2': case 'ninja7':
+case 'blood_text-2': case 'halloweenfire7': case 'metaldarkgold7': case 'wolf_logo-6': 
+case 'lion_logo-6': case 'wolf_logo-6': case 'wolf_logo_galaxy-2': case 'ninja7':
+/*
+8
+*/
+case 'joker7': case 'wicker7': case 'natural_leaves-2': case 'sparkle7': case 'skeleton7': case 'red_balloon-2': case 'purple_balloon-2': 
+case 'pink_balloon-2': case 'green_balloon-2': case 'cyan_balloon-2': case 'gold_balloon-2': case 'steel7':
+/*
+9
+*/
+case 'ultragloss4': case 'denim4': case 'decor_green-2': case 'peridot_stone-2': case 'rock5': case 'lava8': case 'yellow_glass-2': 
+case 'purple_glass-2': case 'orange_glass-2': case 'green_glass-2': case 'cyan_glass-2': case 'blue_glass-2':
+/*
+10
+*/
+case
 		
-		if (!q) throw `Example : ${prefix + command} ${global.ownername}`
-             reply( `${mess.waiting} `)
-             let link
+
+	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
+        reply( `${mess.waiting} `)
+        let link
              if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
              if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
              if (/3dchristmas/.test(command)) link = 'https://textpro.me/3d-christmas-text-effect-by-name-1055.html'
