@@ -2190,7 +2190,27 @@ case 'purple_glass-2': case 'orange_glass-2': case 'green_glass-2': case 'cyan_g
 /*
 10
 */
-case
+case 'red_glass-2': case 'shinypurple_glass-2': case 'captain-america-2': case 'r2-d2_2': case 'rainbow_eq-2': case 'toxic7': case 'sparklepink_jewelery-2': 
+case 'sparkleblue_jewelery-2': case 'sparklegreen_jewelery-2': case 'sparklepurple_jewelery-2': case 'sparklegold_jewelery-2': case 'sparklered_jewelery-2': 
+/*
+11
+*/
+case 'sparklecyan_jewelery-2': case 'purple_glass-2': case 'decorative-glass-2': case 'chocolate_cake-2': case 'strawberry6': case 'koi_fish-2': 
+case 'bread6': case 'matrix_style-2': case 'horror_blood-2': case 'neonlight6': case 'thunder6': case '3d_box-2': case 'neon6':
+/*
+12
+*/
+case 'road_warning-2': case '3d_steel-2': case 'bokeh6': case 'green_neon-2': case 'free_advanced_glow-2': case 'break_wall-2': 
+case 'christmax_gift-2': case 'honey6': case 'plastic_bag_drug-2': case 'horror_gift-2': case 'marble_slabs-2': case 'marble6':
+/*
+13
+*/
+case 'ice_cold-2': case 'fruit_juice-2': case 'rusty_metal-2': case 'abstra_gold-2': case 'biscuit7': case 'bagel6': case 'wood7': 
+case 'sci--fi_2': case 'metal_rainbow-2': case 'purple_gem-2': case 'shiny_metal-2': case 'yellow_jewelery-2': case 'silver_jewelery-2':
+/*
+14
+*/
+case '
 		
 
 	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
