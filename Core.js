@@ -2215,7 +2215,8 @@ case 'hot_metal-3': case 'hexa_golden-3': case 'blue_glitter-2': case 'purple_gl
 /*
 15
 */
-case 'silver_glitter-2': 
+case 'silver_glitter-2': case 'gold_glitter-2': case 'bronze_glitter-2': case 'eroded_metal-2': case 'carbon9': case 'pink_candy-2': 
+case 'blue_metal-2': case 'blue_gem-2': case 'black_metal-2': case '3d_glowing_metal-2': case '3d_chrome-2':
 		
 		
 
