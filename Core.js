@@ -7276,6 +7276,85 @@ Hier ist die Liste der Maker-Menu Befehle:
 163. wonderful3 <text>
 164. batman3    <text>
 165. juice4     <text>
+/*
+1
+*/
+166. buisness7  <text>
+167. thor7      <text>
+168. deepsea7   <text>
+169. batman7    <text>
+170. diamond7   <text>
+171. flag_3D-2  <text>
+172. american_3d_flag <text>
+173. scifi_3D-2 <text>
+174. rainbow_3D-2     <text>
+175. pipe_3D-2  <text>
+176. halloween8 <text>
+177. spooky8    <text>
+178. horror8    <text>
+/*
+2
+*/
+179. sketch6    <text>
+180. bluecircuit5     <text>
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+
+case 'mm8': case 'mmenu8': case 'makerm8': case 'makermenu8':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+/*
+2
+*/
+181. space5    <text>
+182. metallic5 <text>
+183. glossy7   <text>
+184. captain_america-2 <text>
+185. scifi9    <text>
+186. 8bit-2    <text>
+187. green_horror-2    <text>
+188. transformer4      <text>
+189. berry5    <text>
+190. layered4  <text>
+191. thunder9  <text>
+/*
+3
+*/
+192. magma8    <text>
+193. stone6    <text>
+194. neon8     <text>
+195. glitch8   <text>
+196. glitch9   <text>
+197. harry_potter-2    <text>
+198. embossed5 <text>
+199. brokenglass5      <text>
+
 
 
 
