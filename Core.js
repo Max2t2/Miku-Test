@@ -2210,7 +2210,13 @@ case 'sci--fi_2': case 'metal_rainbow-2': case 'purple_gem-2': case 'shiny_metal
 /*
 14
 */
-case '
+case 'red_jewelery-2': case 'purple_jewelery-2': case 'orange_jewelery-2': case 'green_jewelery-2': case 'cyan_jewelery-2': case 'blue_jewelery-2': 
+case 'hot_metal-3': case 'hexa_golden-3': case 'blue_glitter-2': case 'purple_glitter-2': case 'pink_glitter-2': case 'green_glitter-2':
+/*
+15
+*/
+case 'silver_glitter-2': 
+		
 		
 
 	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
