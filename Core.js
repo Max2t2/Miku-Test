@@ -2460,7 +2460,7 @@ if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror
      if(/pornhub8/.test(command)) link = "https://textpro.me/pornhub-style-logo-online-generator-free-977.html"
      if(/dexposure/.test(command)) link = "https://textpro.me/double-exposure-text-effect-black-white-976.html"
      if(/3D-holo-2/.test(command)) link = "https://textpro.me/holographic-3d-text-effect-975.html"
-     if(/avengers8/.test(command)) link = "https://textpro.me/create-3d-avengers-logo-online-974.html
+     if(/avengers8/.test(command)) link = "https://textpro.me/create-3d-avengers-logo-online-974.html"
      if(/metal-purple-2/.test(command)) link = "https://textpro.me/metal-purple-dual-effect-973.html"
       if(/marvel-metal-2/.test(command)) link = "https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html"
       if(/deluxe-silver-2/.test(command)) link = "https://textpro.me/create-logo-style-marvel-studios-online-971.html"
@@ -6950,6 +6950,10 @@ Hier ist die Liste der Maker-Menu Befehle:
 28. watercolor  <text>
 29. multicolor  <text>
 30. neondevil   <text>
+31. underwater    <text>
+32. graffitibike  <text>
+33. snow          <text>
+34. cloud         <text>
 
 
 『  *${global.sitzung}*  』
@@ -6980,10 +6984,6 @@ dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
 
 Hier ist die Liste der Maker-Menu_2 Befehle:
 
-31. underwater    <text>
-32. graffitibike  <text>
-33. snow          <text>
-34. cloud         <text>
 35. honey         <text>
 36. ice           <text>
 37. fruitjuice    <text>
@@ -7010,6 +7010,16 @@ Hier ist die Liste der Maker-Menu_2 Befehle:
 58. 1917          <text>
 59. leves         <text>
 60. demon         <text>
+61. 3dneon    <text>
+62. 3dspace   <text>
+63. 3dstone   <text>
+64. bookeh    <text>
+65. carbon    <text>
+66. curcuit   <text>
+67. glitch2   <text>
+68. glitch3   <text>
+69. lion      <text>
+70. magma     <text>
 
 
 『  *${global.sitzung}*  』
@@ -7042,16 +7052,6 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-61. 3dneon    <text>
-62. 3dspace   <text>
-63. 3dstone   <text>
-64. bookeh    <text>
-65. carbon    <text>
-66. curcuit   <text>
-67. glitch2   <text>
-68. glitch3   <text>
-69. lion      <text>
-70. magma     <text>
 71. matrix    <text>
 72. neongreen <text>
 73. scifi     <text>
@@ -7072,6 +7072,23 @@ Hier ist die Liste der Maker-Menu Befehle:
 88. lightglow <text>
 89. thor      <text>
 90. 3d_deepsea  <text>
+91.  m_black     <text>
+92.  graffititext    <text>
+93.  neonlightgalaxy <text>
+94.  3dmarvel    <text>
+95.  marvelstudiometal <text>
+96.  marvelstudio <text>
+97.  roadwarning  <text>
+98.  advancedglow <text>
+99.  brakewall    <text>
+100. glitch3      <text>
+101. 3dbox        <text>
+102. waterdrop    <text>
+103. lion3        <text>
+104. papercut2    <text>
+105. transformer2 <text>
+
+
 
 
 『  *${global.sitzung}*  』
@@ -7104,26 +7121,42 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-91.  m_black     <text>
-92.  graffititext    <text>
-93.  neonlightgalaxy <text>
-94.  3dmarvel    <text>
-95.  marvelstudiometal <text>
-96.  marvelstudio <text>
-97.  roadwarning  <text>
-98.  advancedglow <text>
-99.  brakewall    <text>
-100. glitch3      <text>
-101. 3dbox        <text>
-102. waterdrop    <text>
-103. lion3        <text>
-104. papercut2    <text>
-105. transformer2 <text>
 106. harrypot2    <text>
 107. window2      <text>
 108. blackpinkneon2   <text>
 109. (pornhub3)   <text>
 110. blackpink4   <text>
+111. glitch4   <text>
+112. glitch5   <text>
+113. glitch6   <text>
+114. 3dspace2  <text>
+115. lion4     <text>
+116. 3dneon3   <text>
+117. neon4     <text>
+118. holographic3  <text>
+119. bear3     <text>
+120. wolf3     <text>
+121. joker3    <text>
+122. dropwater3    <text>
+123. summertime3   <text>
+124. neonlight5    <text>
+125. thewall3  <text>
+126. natural3  <text>
+127. carbon3   <text>
+128. pencil3   <text>
+129. textmaker3    <text>
+130. (textmaker4)  <text>
+131. hooror2    <text>
+132. whitebear3 <text>
+133. thunder4   <text>
+134. neon6      <text>
+135. matrix4    <text>
+136. sky3       <text>
+137. magma4     <text>
+138. sand4      <text>
+139. pencil5    <text>
+140. metallic3  <text>
+
 
 『  *${global.sitzung}*  』
  Powered by: *MkM Inc.*
@@ -7155,27 +7188,44 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-111. glitch4   <text>
-112. glitch5   <text>
-113. glitch6   <text>
-114. 3dspace2  <text>
-115. lion4     <text>
-116. 3dneon3   <text>
-117. neon4     <text>
-118. holographic3  <text>
-119. bear3     <text>
-120. wolf3     <text>
-121. joker3    <text>
-122. dropwater3    <text>
-123. summertime3   <text>
-124. neonlight5    <text>
-125. thewall3  <text>
-126. natural3  <text>
-127. carbon3   <text>
-128. pencil3   <text>
-129. textmaker3    <text>
-130. (textmaker4)  <text>
-
+141. graffititext5 <text>
+142. steel3     <text>
+143. harrypotter6  <text>
+144. underwater4   <text>
+145. luxury3    <text>
+146. glue5      <text>
+147. fabric3    <text>
+148. neonlight7 <text>
+149. lava5      <text>
+150. toxic3     <text>
+151. ancient3   <text>
+152. chrismas4  <text>
+153. scifi4     <text>
+154. rainbow4   <text>
+155. classic3   <text>
+156. watercolor5   <text>
+157. halloween4 <text>
+158. halloweenfire3 <text>
+159. foggy3     <text>
+160. marvel6    <text>
+161. skeleton4  <text>
+162. sketch3    <text>
+163. wonderful3 <text>
+164. batman3    <text>
+165. juice4     <text>
+/*
+1
+*/
+166. buisness7  <text>
+167. thor7      <text>
+168. deepsea7   <text>
+169. batman7    <text>
+170. diamond7   <text>
+171. flag_3D-2  <text>
+172. american_3d_flag <text>
+173. scifi_3D-2 <text>
+174. rainbow_3D-2     <text>
+175. pipe_3D-2  <text>
 
 
 『  *${global.sitzung}*  』
@@ -7208,87 +7258,6 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-131. hooror2    <text>
-132. whitebear3 <text>
-133. thunder4   <text>
-134. neon6      <text>
-135. matrix4    <text>
-136. sky3       <text>
-137. magma4     <text>
-138. sand4      <text>
-139. pencil5    <text>
-140. metallic3  <text>
-141. graffititext5 <text>
-142. steel3     <text>
-143. harrypotter6  <text>
-144. underwater4   <text>
-145. luxury3    <text>
-146. glue5      <text>
-147. fabric3    <text>
-148. neonlight7 <text>
-149. lava5      <text>
-150. toxic3     <text>
-151. ancient3   <text>
-152. chrismas4  <text>
-153. scifi4     <text>
-154. rainbow4   <text>
-155. classic3   <text>
-156. watercolor5   <text>
-157. halloween4 <text>
-158. halloweenfire3 <text>
-159. foggy3     <text>
-
-
-
-『  *${global.sitzung}*  』
- Powered by: *MkM Inc.*
-
- 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
- " *${prefix}<Befehlsname>* ".
-
- 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
-		
-break
-		
-case 'mm7': case 'mmenu7': case 'makerm7': case 'makermenu7':
-if (isBan) return reply(mess.banned)
-if (isBanChat) return reply(mess.bangc)
-reply(` Hi ${pushname} ,
-Du bist im Maker-Menu gelandet.
-All Rights Reserved by *MkM Bot Inc.*
-
-Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
-Ich befinde mich derzeit in der Version 4, Edition 1.
-Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
-dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
-*Vielen Dank*
-🔰 Mein Präfix ist:  ${prefix}
-
-*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
-
-Hier ist die Liste der Maker-Menu Befehle:
-
-*━━━〈  Schrift-Maker  〉━━━*
-
-160. marvel6    <text>
-161. skeleton4  <text>
-162. sketch3    <text>
-163. wonderful3 <text>
-164. batman3    <text>
-165. juice4     <text>
-/*
-1
-*/
-166. buisness7  <text>
-167. thor7      <text>
-168. deepsea7   <text>
-169. batman7    <text>
-170. diamond7   <text>
-171. flag_3D-2  <text>
-172. american_3d_flag <text>
-173. scifi_3D-2 <text>
-174. rainbow_3D-2     <text>
-175. pipe_3D-2  <text>
 176. halloween8 <text>
 177. spooky8    <text>
 178. horror8    <text>
@@ -7297,38 +7266,6 @@ Hier ist die Liste der Maker-Menu Befehle:
 */
 179. sketch6    <text>
 180. bluecircuit5     <text>
-
-
-
-『  *${global.sitzung}*  』
- Powered by: *MkM Inc.*
-
- 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
- " *${prefix}<Befehlsname>* ".
-
- 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
-		
-break
-
-case 'mm8': case 'mmenu8': case 'makerm8': case 'makermenu8':
-if (isBan) return reply(mess.banned)
-if (isBanChat) return reply(mess.bangc)
-reply(` Hi ${pushname} ,
-Du bist im Maker-Menu gelandet.
-All Rights Reserved by *MkM Bot Inc.*
-
-Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
-Ich befinde mich derzeit in der Version 4, Edition 1.
-Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
-dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
-*Vielen Dank*
-🔰 Mein Präfix ist:  ${prefix}
-
-*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
-
-Hier ist die Liste der Maker-Menu Befehle:
-
-*━━━〈  Schrift-Maker  〉━━━*
 /*
 2
 */
@@ -7367,8 +7304,141 @@ Hier ist die Liste der Maker-Menu Befehle:
 207. foggy6     <text>
 208. neon_devil-2     <text>
 209. 3D-Unterwater-2  <text>
-210. mascot-logo-2    <text>
 
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+		
+case 'mm7': case 'mmenu7': case 'makerm7': case 'makermenu7':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+210. mascot-logo-2    <text>
+211. graffiti8   <text>
+212. graffiti-wall-2   <text>
+213. graffiti9   <text>
+214. christmas7  <text>
+215. technology-neon-2 <text>
+216. snow6   <text>
+217. cloud5  <text>
+/*
+4
+*/
+217. 3D-luxury-2  <text>
+218. 3D-gradient  <text>
+219. blackpink5   <text>
+220. vintage6     <text>
+221. real-cloud-2 <text>
+222. cloud-sky-2  <text>
+223. sand-beach-2 <text>
+224. sand-writing-2  <text>
+225. sand-engraved-2 <text>
+226. summery-sand-2  <text>
+227. bithday5     <text>
+228. 3D-glue-2    <text>
+/*
+5
+*/
+229. 3D-space-2   <text>
+230. metal-dark-2 
+231. tiktok-stayle-2
+232. a-stone-2
+233. glalxy-style-2
+234. 1917style5
+235. 80s-retro
+236. 3D-Minion3
+237. pornhub8
+238. dexposurw
+239. 3D-holo-2
+240. avengers8
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+
+case 'mm8': case 'mmenu8': case 'makerm8': case 'makermenu8':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+/+
+6
+*/
+241. metal-purple-2
+242. marvel-metal-2
+243. deluxe-selver-2
+244. luxury_metal-2
+245. glossyblue4
+246. glossycarbon5
+247. fabric7
+248. newyear6
+249. newyeagif3
+250. color-balloon-2
+251. 3D-metal-2
+252. avatargold4
+253. 3D_metalsilver-2
+254. 3D_rosegold-2
+255. 3D_metalgold-2
+256. 3D_metalgalax<-2
+257. 3D-Christmas-2
+258. blood_text-2
+259. halloweenfire7
+260. metaldarkgold7
+261. wolf_logo-6
+262. lion_logo-7
+263. wolf_logo_galaxy-2
+264. ninja7
+/*
+7
+*/
+265. joker7
 
 
 『  *${global.sitzung}*  』
@@ -7401,28 +7471,21 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-211. graffiti8   <text>
-212. graffiti-wall-2   <text>
-213. graffiti9   <text>
-214. christmas7  <text>
-215. technology-neon-2 <text>
-216. snow6   <text>
-217. cloud5  <text>
+266. wicker7
+267. natural_leaves-2
+268. sparkle7
+269. skeleton7
+270. red_balloon-2
+271. purple_balloon-2
+272. pink_balloon-2
+273. green_balloon-2
+274. cyan_balloon-2
+275. gold_balloon-2
+276. steel7
 /*
-4
+8
 */
-217. 3D-luxury-2  <text>
-218. 3D-gradient  <text>
-219. blackpink5   <text>
-220. vintage6     <text>
-221. real-cloud-2 <text>
-222. cloud-sky-2  <text>
-223. sand-beach-2 <text>
-224. sand-writing-2  <text>
-225. sand-engraved-2 <text>
-226. summery-sand-2  <text>
-227. bithday5     <text>
-228. 3D-glue-2    <text>
+277. ultragloss4
 
 
 『  *${global.sitzung}*  』
@@ -7434,6 +7497,42 @@ Hier ist die Liste der Maker-Menu Befehle:
  🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
 		
 break
+
+/*
+case 'mm7': case 'mmenu7': case 'makerm7': case 'makermenu7':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
+		
+break
+*/
+
 
 case 'oh': case 'omenu': case 'ownermenu': case 'omu':
 if (isBan) return reply(mess.banned)
