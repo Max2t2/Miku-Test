@@ -2217,7 +2217,10 @@ case 'hot_metal-3': case 'hexa_golden-3': case 'blue_glitter-2': case 'purple_gl
 */
 case 'silver_glitter-2': case 'gold_glitter-2': case 'bronze_glitter-2': case 'eroded_metal-2': case 'carbon9': case 'pink_candy-2': 
 case 'blue_metal-2': case 'blue_gem-2': case 'black_metal-2': case '3d_glowing_metal-2': case '3d_chrome-2':
-		
+/*
+b
+*/
+	case 'marvel-01': case 'luxury_metal-2': case 'deluxe_gold-2': case 'neon01': case '3D_metal-3': case '3D_metal-4': case '3D-metal-rose-2':
 		
 
 	if (!q) throw `Example : ${prefix + command} ${global.ownername}`
@@ -2476,7 +2479,7 @@ if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror
       if(/color-balloon-2/.test(command)) link = "https://textpro.me/fullcolor-balloon-text-effect-958.html"
       if(/3D-metal-2/.test(command)) link = "https://textpro.me/create-text-logo-3d-metal-online-957.html"
        if(/avatargold4/.test(command)) link = "https://textpro.me/create-avatar-gold-online-956.html"
-       if(/3D-metal-2/.test(command)) link = "https://textpro.me/text-logo-3d-metal-silver-946.html"
+       if(/3D-metal-4/.test(command)) link = "https://textpro.me/text-logo-3d-metal-silver-946.html"
        if(/3D-metal-rose_2/.test(command)) link = "https://textpro.me/text-logo-3d-metal-rose-gold-945.html"
        if(//.test(command)) link = "https://textpro.me/text-logo-3d-metal-gold-944.html"
        if(//.test(command)) link = "https://textpro.me/text-logo-3d-metal-galaxy-943.html"
