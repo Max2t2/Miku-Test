@@ -2428,7 +2428,7 @@ if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror
    if(/3D-Multicolor/.test(command)) link = "https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html"
    if(/foggy6/.test(command)) link = "https://textpro.me/write-text-on-foggy-window-online-free-1015.html"
    if(/neon_devil-2/.test(command)) link = "https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html"
-   if(/3D-Unterwater-2/.test(command)) link = "https://textpro.me/3d-underwater-text-effect-generator-online-1013.html
+   if(/3D-Unterwater-2/.test(command)) link = "https://textpro.me/3d-underwater-text-effect-generator-online-1013.html"
    if(/mascot-logo-2/.test(command)) link = "https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html"
    if(/graffiti8/.test(command)) link = "https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html"
    if(/graffiti-wall-2/.test(command)) link = "https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html"
@@ -7351,10 +7351,23 @@ Hier ist die Liste der Maker-Menu Befehle:
 194. neon8     <text>
 195. glitch8   <text>
 196. glitch9   <text>
-197. harry_potter-2    <text>
+197. harry_potter-2   <text>
 198. embossed5 <text>
-199. brokenglass5      <text>
-
+199. brokenglass5     <text>
+200. artpaper-2 <text>
+201. bw-2       <text>
+202. gradient-3 <text>
+203. 3D_glossy-2      <text>
+204. 3D_beach2  <text>
+/*
+3
+*/
+205. watercolor5      <text>
+206. 3D-Multicolor    <text>
+207. foggy6     <text>
+208. neon_devil-2     <text>
+209. 3D-Unterwater-2  <text>
+210. mascot-logo-2    <text>
 
 
 
@@ -7367,7 +7380,61 @@ Hier ist die Liste der Maker-Menu Befehle:
  🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
 		
 break
+
+case 'mm9': case 'mmenu9': case 'makerm9': case 'makermenu9':
+if (isBan) return reply(mess.banned)
+if (isBanChat) return reply(mess.bangc)
+reply(` Hi ${pushname} ,
+Du bist im Maker-Menu gelandet.
+All Rights Reserved by *MkM Bot Inc.*
+
+Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
+Ich befinde mich derzeit in der Version 4, Edition 1.
+Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
+dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
+*Vielen Dank*
+🔰 Mein Präfix ist:  ${prefix}
+
+*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
+
+Hier ist die Liste der Maker-Menu Befehle:
+
+*━━━〈  Schrift-Maker  〉━━━*
+
+211. graffiti8   <text>
+212. graffiti-wall-2   <text>
+213. graffiti9   <text>
+214. christmas7  <text>
+215. technology-neon-2 <text>
+216. snow6   <text>
+217. cloud5  <text>
+/*
+4
+*/
+217. 3D-luxury-2  <text>
+218. 3D-gradient  <text>
+219. blackpink5   <text>
+220. vintage6     <text>
+221. real-cloud-2 <text>
+222. cloud-sky-2  <text>
+223. sand-beach-2 <text>
+224. sand-writing-2  <text>
+225. sand-engraved-2 <text>
+226. summery-sand-2  <text>
+227. bithday5     <text>
+228. 3D-glue-2    <text>
+
+
+『  *${global.sitzung}*  』
+ Powered by: *MkM Inc.*
+
+ 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
+ " *${prefix}<Befehlsname>* ".
+
+ 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
 		
+break
+
 case 'oh': case 'omenu': case 'ownermenu': case 'omu':
 if (isBan) return reply(mess.banned)
 if (isBanChat) return reply(mess.bangc)
