@@ -2164,7 +2164,7 @@ case 'sand-writing-2': case 'sand-engraved-2': case 'summery-sand-2': case 'birt
 /*
 5
 */
-case '3D-space': case 'metal-dark-2': case 'tiktok-style-2': case 'a-stone-2': case 'galaxy-style-2': case '1917style5': 
+case '3D-space-2': case 'metal-dark-2': case 'tiktok-style-2': case 'a-stone-2': case 'galaxy-style-2': case '1917style5': 
 case '80s-retro': case '3D-Minion3': case 'pornhub8': case 'dexposure': case '3D-holo-2': case 'avengers8': case 'metal-purple-2':
 /*
 6
@@ -2449,7 +2449,7 @@ if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror
     if(/summery-sand-2/.test(command)) link = "https://textpro.me/create-a-summery-sand-writing-text-effect-988.html"
     if(/birthday5/.test(command)) link = "https://textpro.me/foil-balloon-text-effect-for-birthday-987.html"
     if(/3D-glue-2/.test(command)) link = "https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html"
-     if(//.test(command)) link = "https://textpro.me/create-space-3d-text-effect-online-985.html"
+     if(/3D-space-/.test(command)) link = "https://textpro.me/create-space-3d-text-effect-online-985.html"
      if(//.test(command)) link = "https://textpro.me/metal-dark-gold-text-effect-984.html"
      if(//.test(command)) link = "https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html"
      if(//.test(command)) link = "https://textpro.me/create-a-stone-text-effect-online-982.html"
