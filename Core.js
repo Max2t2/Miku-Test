@@ -6890,6 +6890,19 @@ Hier eine Lister der Miku:\Makermenu Befehle,\nbzw. Eine Liste der Befehle:
 7. ${prefix}mm7
 7. ${prefix}makermenu7
 
+
+8. ${prefix}mm8
+8. ${prefix}makermenu8
+
+9. ${preifx}mm9
+9. ${preifx}makermenu9
+
+10. ${preifx}mm10
+10. ${preifx}makermenu10
+
+11. ${preifx}mm11
+11. ${preifx}makermenu11
+
 『  *${global.sitzung}*  』
  Powered by: *MkM Inc.*
 
@@ -7623,41 +7636,6 @@ Hier ist die Liste der Maker-Menu Befehle:
 337. shiny_metal-2
 338. yellow_jewelery-2
 339. silver_jewelery-2
-/*
-13
-*/
-
-
-『  *${global.sitzung}*  』
- Powered by: *MkM Inc.*
-
- 🔰 Um einen dieser Befehle zu verwenden, geben Sie ein
- " *${prefix}<Befehlsname>* ".
-
- 🔰 Geben Sie " *${prefix}help* " ein, um die vollständige Befehlsliste zu erhalten.`)
-		
-break
-
-case 'mm11': case 'mmenu11': case 'makerm11': case 'makermenu11':
-if (isBan) return reply(mess.banned)
-if (isBanChat) return reply(mess.bangc)
-reply(` Hi ${pushname} ,
-Du bist im Maker-Menu gelandet.
-All Rights Reserved by *MkM Bot Inc.*
-
-Ich bin *Miku Nakano*, ein von *MkM Inc.* entwickelter Bot.
-Ich befinde mich derzeit in der Version 4, Edition 1.
-Es können daher einige Fehler auftreten, bitte kontaktieren, kontaktiert
-dann die Owner, den Owner oder schreibt eine Nachricht in die Supportgruppe.
-*Vielen Dank*
-🔰 Mein Präfix ist:  ${prefix}
-
-*Benutzung: "${prefix} Befehl <text>"\nBeispiel:${prefix}ice Hallo*
-
-Hier ist die Liste der Maker-Menu Befehle:
-
-*━━━〈  Schrift-Maker  〉━━━*
-
 /*
 13
 */
