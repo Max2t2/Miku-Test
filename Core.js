@@ -7486,6 +7486,30 @@ Hier ist die Liste der Maker-Menu Befehle:
 8
 */
 277. ultragloss4
+279. denim4
+280. decor_green-2
+281. peridot_stone-2
+282. rock5
+283. lava8
+284. yellow_glass-2
+285. purple_glass-2
+286. orange_glass-2
+287. green_glass-2
+288. cyan_glass-2
+289. blue_glass-2
+/*
+9
+*/
+290. red_glass-2
+291. shinypurple_glass-2
+292. captain-america-2
+293. r2-d2_2
+294. rainbow_eq-2
+295. toxic7
+296. sparklepink_jewelery-2
+297. sparkleblue_jewelery-2
+298. sparklegreen_jewelery-2
+299. sparklepurple_jewelery-2
 
 
 『  *${global.sitzung}*  』
@@ -7499,7 +7523,7 @@ Hier ist die Liste der Maker-Menu Befehle:
 break
 
 /*
-case 'mm7': case 'mmenu7': case 'makerm7': case 'makermenu7':
+case 'mm10': case 'mmenu10': case 'makerm10': case 'makermenu10':
 if (isBan) return reply(mess.banned)
 if (isBanChat) return reply(mess.bangc)
 reply(` Hi ${pushname} ,
@@ -7519,7 +7543,30 @@ Hier ist die Liste der Maker-Menu Befehle:
 
 *━━━〈  Schrift-Maker  〉━━━*
 
-
+300. sparklegold_jeweery-2
+301. sparklered_jewelery-2
+/*
+10
+*/
+302. sparklecyan_jewelery-2
+303. purple_glass-2
+304. decorative-glass-2
+305. chocolatw_cake-2
+306. strawberry
+307. koi_fish-2
+308. bread6
+309. matrix_style-2
+310. horror_blood-2
+311. neonlight6
+312. thunder6
+313. 3d_box-2
+314. neon6
+/*
+11
+*/
+315. road_warning-2
+316. 3d_steel-2
+317. 
 
 
 『  *${global.sitzung}*  』
