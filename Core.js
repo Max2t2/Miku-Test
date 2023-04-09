@@ -2572,25 +2572,25 @@ if(/horror8/.test(command)) link = "https://textpro.me/create-a-cinematic-horror
               if(/purple_jewelery-2/.test(command)) link = "https://textpro.me/purple-jewelry-text-effect-848.html"
               if(/orange_jewelery-2/.test(command)) link = "https://textpro.me/orange-jewelry-text-effect-847.html"
               if(/green_jewelery-2/.test(command)) link = "https://textpro.me/green-jewelry-text-effect-846.html"
-              if(//.test(command)) link = "https://textpro.me/cyan-jewelry-text-effect-845.html"
-              if(//.test(command)) link = "https://textpro.me/blue-jewelry-text-effect-844.html"
-              if(//.test(command)) link = "https://textpro.me/hot-metal-text-effect-843.html"
-              if(//.test(command)) link = "https://textpro.me/hexa-golden-text-effect-842.html"
-              if(//.test(command)) link = "https://textpro.me/blue-glitter-text-effect-841.html"
-              if(//.test(command)) link = "https://textpro.me/purple-glitter-text-effect-840.html"
-              if(//.test(command)) link = "https://textpro.me/pink-glitter-text-effect-839.html"
-              if(//.test(command)) link = "https://textpro.me/green-glitter-text-effect-838.html"
-               if(//.test(command)) link = "https://textpro.me/silver-glitter-text-effect-837.html"
-               if(//.test(command)) link = "https://textpro.me/gold-glitter-text-effect-836.html"
-               if(//.test(command)) link = "https://textpro.me/bronze-glitter-text-effect-835.html"
-               if(//.test(command)) link = "https://textpro.me/eroded-metal-text-effect-834.html"
-               if(//.test(command)) link = "https://textpro.me/carbon-text-effect-833.html"
-               if(//.test(command)) link = "https://textpro.me/pink-candy-text-effect-832.html"
-               if(//.test(command)) link = "https://textpro.me/blue-metal-text-effect-831.html"
-               if(//.test(command)) link = "https://textpro.me/blue-gem-text-effect-830.html"
-               if(//.test(command)) link = "https://textpro.me/black-metal-text-effect-829.html"
-               if(//.test(command)) link = "https://textpro.me/3d-glowing-metal-text-effect-828.html"
-               if(//.test(command)) link = "https://textpro.me/3d-chrome-text-effect-827.html"
+              if(/cyan_jewlery-2/.test(command)) link = "https://textpro.me/cyan-jewelry-text-effect-845.html"
+              if(/blue_jewelery-2/.test(command)) link = "https://textpro.me/blue-jewelry-text-effect-844.html"
+              if(/hot_metal-3/.test(command)) link = "https://textpro.me/hot-metal-text-effect-843.html"
+              if(/hexa_golden-3/.test(command)) link = "https://textpro.me/hexa-golden-text-effect-842.html"
+              if(/blue_glitter-2/.test(command)) link = "https://textpro.me/blue-glitter-text-effect-841.html"
+              if(/purple_glitter-2/.test(command)) link = "https://textpro.me/purple-glitter-text-effect-840.html"
+              if(/pink_glitter-2/.test(command)) link = "https://textpro.me/pink-glitter-text-effect-839.html"
+              if(/green_glitter-2/.test(command)) link = "https://textpro.me/green-glitter-text-effect-838.html"
+               if(/silver_glitter-2/.test(command)) link = "https://textpro.me/silver-glitter-text-effect-837.html"
+               if(/gold_glitter-2/.test(command)) link = "https://textpro.me/gold-glitter-text-effect-836.html"
+               if(/bronze_glitter-2/.test(command)) link = "https://textpro.me/bronze-glitter-text-effect-835.html"
+               if(/eroded_metal-2/.test(command)) link = "https://textpro.me/eroded-metal-text-effect-834.html"
+               if(/carbon9/.test(command)) link = "https://textpro.me/carbon-text-effect-833.html"
+               if(/pink_candy-2/.test(command)) link = "https://textpro.me/pink-candy-text-effect-832.html"
+               if(/blue_metal-2/.test(command)) link = "https://textpro.me/blue-metal-text-effect-831.html"
+               if(/blue_gem-2/.test(command)) link = "https://textpro.me/blue-gem-text-effect-830.html"
+               if(/black_metal-2/.test(command)) link = "https://textpro.me/black-metal-text-effect-829.html"
+               if(/3d_glowing_metal-2/.test(command)) link = "https://textpro.me/3d-glowing-metal-text-effect-828.html"
+               if(/3d_chrome-2/.test(command)) link = "https://textpro.me/3d-chrome-text-effect-827.html"
 	/* 
 Vorlage:
 if(//.test(command)) link = "
@@ -7669,6 +7669,10 @@ Hier ist die Liste der Maker-Menu Befehle:
 360. black_metal-2
 361. 3d_glowing_metal-2
 362. 3d_chrome-2
+/*
+b
+*/
+363. marvel-01
 
 
 『  *${global.sitzung}*  』
